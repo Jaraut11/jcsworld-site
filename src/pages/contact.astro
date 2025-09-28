@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Base.astro';
+---
+<Layout title="Contact — JCS World">
+  <section class="section">
+    <p class="kicker">Let’s get you compliant</p>
+    <h1 class="h1">Tell us about your requirements.</h1>
+    <p class="lead">Share a few details. We’ll reply within one business day with a tailored proposal and onboarding calendar.</p>
+  </section>
+
+  <section class="section reveal">
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/" style="display:grid;gap:.9rem;max-width:720px">
+      <input type="hidden" name="form-name" value="contact" />
+      <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+
+      <label>Full name <input type="text" name="name" required style="width:100%;padding:.7rem;border:1px solid #ddd;border-radius:10px"></label>
+      <label>Work email <input type="email" name="email" required style="width:100%;padding:.7rem;border:1px solid #ddd;border-radius:10px"></label>
+      <label>Company / Trade name <input type="text" name="company" style="width:100%;padding:.7rem;border:1px solid #ddd;border-radius:10px"></label>
+
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem">
+        <label>Phone <input type="text" name="phone" style="width:100%;padding:.7rem;border:1px solid #ddd;border-radius:10px"></label>
+        <label>Entity type
+          <select name="entity" style="width:100%;padding:.7rem;border:1px solid #ddd;border-radius:10px">
+            <option>Company</option><option>LLP</option><option>Proprietor</option><option>Partnership</option><option>Trust</option><option>Other</option>
+          </select>
+        </label>
+        <label>City & State <input type="text" name="city_state" style="width:100%;padding:.7rem;border:1px solid #ddd;border-radius:10px"></label>
+      </div>
+
+      <div>
+        <span style="display:block;margin:.4rem 0;font-weight:600">What do you need help with?</span>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.4rem">
+          <label><input type="checkbox" name="need" value="Accounting"> Accounting</label>
+          <label><input type="checkbox" name="need" value="GST"> GST</label>
+          <label><input type="checkbox" name="need" value="Payroll"> Payroll (PF/ESI)</label>
+          <label><input type="checkbox" name="need" value="ROC"> ROC</label>
+          <label><input type="checkbox" name="need" value="Registrations"> Registrations/Licenses</label>
+          <label><input type="checkbox" name="need" value="Legal"> Legal Support</label>
+        </div>
+      </div>
+
+      <label>Monthly transactions
+        <select name="volume" style="width:100%;padding:.7rem;border:1px solid #ddd;border-radius:10px">
+          <option>&lt; 200</option><option>200–600</option><option>600+</option>
+        </select>
+      </label>
+
+      <label>Message <textarea name="message" required rows="5" style="width:100%;padding:.7rem;border:1px solid #ddd;border-radius:10px"></textarea></label>
+
+      <button type="submit" class="btn" style="width:fit-content">Send</button>
+    </form>
+  </section>
+</Layout>
