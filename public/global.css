@@ -105,3 +105,11 @@ section{ scroll-margin-top: calc(var(--header-h) + 12px); }
 @media (prefers-reduced-motion: reduce){
   .hero-video{ display:none }
 }
+
+/* Hero background image (sits under the animated glow) */
+.hero.hero-anim{
+  background-image: url("/images/hero-poster.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
