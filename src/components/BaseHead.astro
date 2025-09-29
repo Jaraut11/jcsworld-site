@@ -1,14 +1,48 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL } from '../consts';
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  ogImage = "/og-default.svg",
+  noindex = false
+} = Astro.props;
+const canonical = `${SITE_URL}${Astro.url.pathname}`;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Jaraut Consultancy Services (JCS)",
+  "url": SITE_URL,
+  "logo": "/favicon.ico",
+  "sameAs": ["https://wa.me/918920152372"]
+};
 ---
 <title>{title}</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex,nofollow" />}
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content="JCS" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
 <link rel="icon" href="/favicon.ico" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<!-- Use the public stylesheet -->
 <link rel="stylesheet" href="/global.css" />
+
+<script type="application/ld+json">
+{JSON.stringify(jsonLd)}
+</script>

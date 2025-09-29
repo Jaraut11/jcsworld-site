@@ -1,7 +1,8 @@
 ---
 import Base from "../layouts/Base.astro";
-import Testimonials from "../components/Testimonials.astro";
 import LogoMarquee from "../components/LogoMarquee.astro";
+import Testimonials from "../components/Testimonials.astro";
+import ContactForm from "../components/ContactForm.astro";
 ---
 <Base title="JCS — Accounts, HR & Compliance">
   <!-- HERO -->
@@ -23,26 +24,10 @@ import LogoMarquee from "../components/LogoMarquee.astro";
     <div class="container">
       <h2>Our Services</h2>
       <div class="grid grid-4 stagger">
-        <div class="card card-pad">
-          <h3>📊 Accounts & Tax</h3>
-          <p>Bookkeeping, GST/TDS returns, ITR & balance sheets.</p>
-          <a href="/services/accounts" class="btn btn-primary btn-magnetic">Learn More</a>
-        </div>
-        <div class="card card-pad">
-          <h3>🧾 HR, Payroll & PF/ESI</h3>
-          <p>Registrations, payroll processing, PF/ESI filings.</p>
-          <a href="/services/hr" class="btn btn-primary btn-magnetic">Learn More</a>
-        </div>
-        <div class="card card-pad">
-          <h3>⚖️ Legal Support</h3>
-          <p>Labour & commercial disputes with our legal partners.</p>
-          <a href="/services/legal" class="btn btn-primary btn-magnetic">Learn More</a>
-        </div>
-        <div class="card card-pad">
-          <h3>🧹 Hospitality Staffing</h3>
-          <p>Canteen, housekeeping, catering staff for offices & industries.</p>
-          <a href="/services/hospitality" class="btn btn-primary btn-magnetic">Learn More</a>
-        </div>
+        <div class="card card-pad"><h3>📊 Accounts & Tax</h3><p>Bookkeeping, GST/TDS returns, ITR & balance sheets.</p><a href="/services/accounts" class="btn btn-primary btn-magnetic">Learn More</a></div>
+        <div class="card card-pad"><h3>🧾 HR, Payroll & PF/ESI</h3><p>Registrations, payroll processing, PF/ESI filings.</p><a href="/services/hr" class="btn btn-primary btn-magnetic">Learn More</a></div>
+        <div class="card card-pad"><h3>⚖️ Legal Support</h3><p>Labour & commercial disputes with our legal partners.</p><a href="/services/legal" class="btn btn-primary btn-magnetic">Learn More</a></div>
+        <div class="card card-pad"><h3>🧹 Hospitality Staffing</h3><p>Canteen, housekeeping, catering staff for offices & industries.</p><a href="/services/hospitality" class="btn btn-primary btn-magnetic">Learn More</a></div>
       </div>
     </div>
   </section>
@@ -63,34 +48,13 @@ import LogoMarquee from "../components/LogoMarquee.astro";
   <!-- STATS -->
   <section class="stats section reveal">
     <div class="container s-grid stagger">
-      <div class="card s-card">
-        <div class="num counter" data-to="15">0</div>
-        <p>Years Experience</p>
-      </div>
-      <div class="card s-card">
-        <div class="num counter" data-to="120">0</div>
-        <p>MSMEs Supported</p>
-      </div>
-      <div class="card s-card">
-        <div class="num counter" data-to="24">0</div>
-        <p>Industries Covered</p>
-      </div>
+      <div class="card s-card"><div class="num counter" data-to="15">0</div><p>Years Experience</p></div>
+      <div class="card s-card"><div class="num counter" data-to="120">0</div><p>MSMEs Supported</p></div>
+      <div class="card s-card"><div class="num counter" data-to="24">0</div><p>Industries Covered</p></div>
     </div>
   </section>
 
-  <!-- LOGOS -->
-<Testimonials />
+  <Testimonials />
   <LogoMarquee />
-
-  <!-- CONTACT PREVIEW -->
-  <section class="section reveal">
-    <div class="container" style="text-align:center">
-      <h2>Ready to get compliant?</h2>
-      <p class="lead">Book a free 20-minute consultation. We’ll share a quick compliance checklist for your business.</p>
-      <div class="cta">
-        <a href="/contact" class="btn btn-primary btn-magnetic">Get Proposal</a>
-        <a href="https://wa.me/918920152372" class="btn btn-secondary btn-magnetic">WhatsApp Us</a>
-      </div>
-    </div>
-  </section>
+  <ContactForm />
 </Base>
