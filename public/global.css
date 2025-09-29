@@ -1,51 +1,54 @@
-/* Global styles */
-body{margin:0;font-family:Inter,sans-serif;line-height:1.5;color:#222;background:#fff}
-
-/* Hero background image under animated glow */
-.hero.hero-anim{
-  background-image:url("/images/hero-poster.jpg");
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-}
 /* === JCS Deep Purple Theme === */
 :root{
-  --bg: #0b0b1a;         /* page background */
-  --surface: #13132a;    /* cards/sections */
-  --text: #e8eaff;       /* primary text */
-  --muted: #b9bde0;      /* secondary text */
-  --brand: #7a5cff;      /* violet */
-  --brand-2: #9b7bff;    /* lighter violet */
-  --accent: #4cc9f0;     /* cyan accent */
-  --border: #2a2a49;
+  --bg: #0b0b1a;        /* page background */
+  --surface: #13132a;   /* cards/sections */
+  --text: #e8eaff;      /* primary text */
+  --muted: #b9bde0;     /* secondary text */
+  --brand: #7a5cff;     /* violet */
+  --brand-2: #9b7bff;   /* lighter violet */
+  --accent: #4cc9f0;    /* cyan */
+  --border: #2a2a49;    /* borders on dark */
 }
-html,body{background-color:var(--bg); color:var(--text)}
-.main, .container, section, .card{
-  background: transparent;
-  color: var(--text);
-}
+
+html,body{background-color:var(--bg); color:var(--text); margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
+a{color:var(--brand); text-decoration:none}
+a:hover{color:var(--brand-2)}
+h1,h2,h3{color:var(--text)}
+p,li,small{color:var(--muted)}
+
+.container, main, section{background:transparent}
 .card{
-  background: linear-gradient(180deg, #ffffff07, #ffffff04);
+  background: linear-gradient(180deg, #ffffff10, #ffffff06);
   border: 1px solid var(--border);
   border-radius: 14px;
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
-a, .btn{ color: var(--text) }
-.btn-primary{ background: linear-gradient(90deg,var(--brand),var(--brand-2)); border:1px solid #ffffff22 }
-.btn-secondary{ background: #1b1b36; border:1px solid #ffffff22 }
-header.site-header, footer.site-footer{
-  background: transparent;
-  border-bottom: 1px solid #ffffff22;
+
+/* Header & footer */
+.site-header{background:transparent !important; border-bottom:1px solid var(--border) !important;}
+.site-footer{border-top:1px solid var(--border)}
+
+/* Nav links */
+.nav a{color:var(--muted)}
+.nav a.active, .nav a:hover{color:var(--text)}
+
+/* Buttons */
+.btn{color:#fff; border:1px solid #ffffff22}
+.btn-primary{background:linear-gradient(90deg,var(--brand),var(--brand-2))}
+.btn-secondary{background:#1b1b36}
+
+/* Hero: ensure no white, add deep violet base + keep your image if present */
+.hero.hero-anim{
+  position:relative; overflow:hidden;
+  background-color:#0b0b1a; /* deep base */
+  background-blend-mode:overlay;
 }
-.site-header.is-scrolled{
-  background: rgba(12,12,26,.78);
-  backdrop-filter: blur(8px);
-  border-bottom-color: #ffffff26;
+.hero.hero-anim::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:
+    radial-gradient(1000px 600px at 10% -10%, #7a5cff33, transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, #4cc9f022, transparent 60%),
+    linear-gradient(180deg, #0d0b1f 0%, #0b0b1a 70%, #0b0b1a 100%);
 }
-h1,h2,h3{ color: var(--text) }
-p{ color: var(--muted) }
-/* spacing + contrasts on dark */
-.section{ padding: 4.2rem 0 }
-.hero .badge{ color:#d5d8ff; opacity:.9 }
-.hero .lead{ color:#c9cef8 }
-hr{ border-color:#2a2a49 }
+.section{padding:4rem 0}
