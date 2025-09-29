@@ -32,6 +32,14 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
           e.preventDefault(); document.startViewTransition(() => { window.location = a.href; });
         });
       }
+      {
+        const header=document.querySelector("header,.site-header");
+        const hero=document.querySelector(".hero") || document.body.firstElementChild;
+        if(header && hero){
+          const io=new IntersectionObserver(([e])=>header.classList.toggle("is-scrolled", !e.isIntersecting));
+          io.observe(hero);
+        }
+      }
     </script>
   </body>
 </html>

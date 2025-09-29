@@ -52,3 +52,22 @@ header,.site-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
 .logo-marquee img{height:40px;opacity:.9;filter:grayscale(100%);transition:.2s}.logo-marquee img:hover{opacity:1;filter:none}
 
 .reveal{will-change:transform,opacity}
+
+/* Header scroll state */
+.site-header.is-scrolled, header.is-scrolled{
+  background: rgba(6,10,25,.85);
+  border-bottom-color: #ffffff26;
+  box-shadow: 0 6px 24px rgba(0,0,0,.25);
+}
+
+/* Card micro-interaction */
+.card{transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease}
+.card:hover{transform: translateY(-4px) scale(1.01); box-shadow: 0 14px 40px rgba(0,0,0,.35)}
+
+/* Tighten vertical rhythm a bit */
+.section{padding:4.2rem 0}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important; transition:none !important; scroll-behavior:auto !important}
+}
