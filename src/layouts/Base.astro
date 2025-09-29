@@ -10,7 +10,8 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
 <html lang="en" data-theme="dark">
   <head>
     <BaseHead title={title} description={description} ogImage="/og-default.svg" />
-    <link rel="stylesheet" href="/global.css?v=4" />
+    <link rel="stylesheet" href="/global.css?v=5" />
+    <style>html,body,main,section{background:#0b0b1a !important;color:#e8eaff !important}</style>
   </head>
   <body>
     <AnimShell />

@@ -1,54 +1,24 @@
-/* === JCS Deep Purple Theme === */
 :root{
-  --bg: #0b0b1a;        /* page background */
-  --surface: #13132a;   /* cards/sections */
-  --text: #e8eaff;      /* primary text */
-  --muted: #b9bde0;     /* secondary text */
-  --brand: #7a5cff;     /* violet */
-  --brand-2: #9b7bff;   /* lighter violet */
-  --accent: #4cc9f0;    /* cyan */
-  --border: #2a2a49;    /* borders on dark */
+  --bg:#0b0b1a; --surface:#13132a; --text:#e8eaff; --muted:#b9bde0;
+  --brand:#7a5cff; --brand-2:#9b7bff; --accent:#4cc9f0; --border:#2a2a49;
 }
-
-html,body{background-color:var(--bg); color:var(--text); margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
-a{color:var(--brand); text-decoration:none}
-a:hover{color:var(--brand-2)}
-h1,h2,h3{color:var(--text)}
-p,li,small{color:var(--muted)}
-
+html,body{background-color:var(--bg); color:var(--text); margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+a{color:var(--brand); text-decoration:none} a:hover{color:var(--brand-2)}
+h1,h2,h3{color:var(--text)} p,li,small{color:var(--muted)}
 .container, main, section{background:transparent}
-.card{
-  background: linear-gradient(180deg, #ffffff10, #ffffff06);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
-/* Header & footer */
-.site-header{background:transparent !important; border-bottom:1px solid var(--border) !important;}
+.card{background:linear-gradient(180deg,#ffffff10,#ffffff06); border:1px solid var(--border); border-radius:14px; backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px)}
+.site-header{background:transparent !important; border-bottom:1px solid var(--border) !important}
 .site-footer{border-top:1px solid var(--border)}
-
-/* Nav links */
-.nav a{color:var(--muted)}
-.nav a.active, .nav a:hover{color:var(--text)}
-
-/* Buttons */
+.nav a{color:var(--muted)} .nav a.active,.nav a:hover{color:var(--text)}
 .btn{color:#fff; border:1px solid #ffffff22}
 .btn-primary{background:linear-gradient(90deg,var(--brand),var(--brand-2))}
 .btn-secondary{background:#1b1b36}
-
-/* Hero: ensure no white, add deep violet base + keep your image if present */
-.hero.hero-anim{
-  position:relative; overflow:hidden;
-  background-color:#0b0b1a; /* deep base */
-  background-blend-mode:overlay;
-}
+.hero.hero-anim{position:relative; overflow:hidden; background-color:#0b0b1a; background-blend-mode:overlay}
 .hero.hero-anim::before{
   content:""; position:absolute; inset:0; z-index:-1;
   background:
     radial-gradient(1000px 600px at 10% -10%, #7a5cff33, transparent 60%),
     radial-gradient(900px 500px at 100% 0%, #4cc9f022, transparent 60%),
-    linear-gradient(180deg, #0d0b1f 0%, #0b0b1a 70%, #0b0b1a 100%);
+    linear-gradient(180deg,#0d0b1f 0%,#0b0b1a 70%,#0b0b1a 100%);
 }
 .section{padding:4rem 0}
