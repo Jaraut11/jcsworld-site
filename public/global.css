@@ -8,3 +8,44 @@ body{margin:0;font-family:Inter,sans-serif;line-height:1.5;color:#222;background
   background-position:center;
   background-repeat:no-repeat;
 }
+/* === JCS Deep Purple Theme === */
+:root{
+  --bg: #0b0b1a;         /* page background */
+  --surface: #13132a;    /* cards/sections */
+  --text: #e8eaff;       /* primary text */
+  --muted: #b9bde0;      /* secondary text */
+  --brand: #7a5cff;      /* violet */
+  --brand-2: #9b7bff;    /* lighter violet */
+  --accent: #4cc9f0;     /* cyan accent */
+  --border: #2a2a49;
+}
+html,body{background-color:var(--bg); color:var(--text)}
+.main, .container, section, .card{
+  background: transparent;
+  color: var(--text);
+}
+.card{
+  background: linear-gradient(180deg, #ffffff07, #ffffff04);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  backdrop-filter: blur(4px);
+}
+a, .btn{ color: var(--text) }
+.btn-primary{ background: linear-gradient(90deg,var(--brand),var(--brand-2)); border:1px solid #ffffff22 }
+.btn-secondary{ background: #1b1b36; border:1px solid #ffffff22 }
+header.site-header, footer.site-footer{
+  background: transparent;
+  border-bottom: 1px solid #ffffff22;
+}
+.site-header.is-scrolled{
+  background: rgba(12,12,26,.78);
+  backdrop-filter: blur(8px);
+  border-bottom-color: #ffffff26;
+}
+h1,h2,h3{ color: var(--text) }
+p{ color: var(--muted) }
+/* spacing + contrasts on dark */
+.section{ padding: 4.2rem 0 }
+.hero .badge{ color:#d5d8ff; opacity:.9 }
+.hero .lead{ color:#c9cef8 }
+hr{ border-color:#2a2a49 }
