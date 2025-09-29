@@ -71,3 +71,14 @@ header,.site-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
 @media (prefers-reduced-motion: reduce){
   *{animation:none !important; transition:none !important; scroll-behavior:auto !important}
 }
+
+/* ---- Tighter hero + better anchor offsets ---- */
+:root{ --header-h: 64px; }
+
+section{ scroll-margin-top: calc(var(--header-h) + 12px); }
+
+/* override earlier hero rule to reduce empty space */
+.hero{ min-height: 72vh; }
+@media (max-width: 740px){
+  .hero{ min-height: 86svh; } /* still tall on phones but a bit tighter */
+}

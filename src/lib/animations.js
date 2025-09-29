@@ -3,32 +3,56 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 gsap.registerPlugin(ScrollTrigger);
 
+/** Smooth scrolling */
 export function initSmoothScroll(){
   const lenis = new Lenis({ smoothWheel:true, duration:1.15 });
   function raf(t){ lenis.raf(t); requestAnimationFrame(raf); } requestAnimationFrame(raf);
 }
+
+/** Reveal on scroll */
 export function revealOnScroll(sel=".reveal"){
   gsap.utils.toArray(sel).forEach((el)=>{
     gsap.from(el,{opacity:0,y:36,duration:.9,ease:"power2.out",
       scrollTrigger:{trigger:el,start:"top 85%"}});
   });
 }
+
+/** Stagger children (.stagger > *) */
 export function staggerChildren(sel=".stagger"){
   gsap.utils.toArray(sel).forEach((wrap)=>{
     gsap.from(wrap.children,{opacity:0,y:24,stagger:.08,duration:.6,ease:"power2.out",
       scrollTrigger:{trigger:wrap,start:"top 80%"}});
   });
 }
+
+/** Parallax any .parallax element */
 export function parallax(sel=".parallax"){
   gsap.utils.toArray(sel).forEach((el)=>{
     gsap.to(el,{yPercent:18,ease:"none",scrollTrigger:{trigger:el,scrub:true}});
   });
 }
+
+/** Pin sections for scrollytelling (shorter & disabled on mobile) */
 export function pinSection(sel=".process"){
-  gsap.utils.toArray(sel).forEach((el)=>{
-    ScrollTrigger.create({trigger:el,start:"top top",end:"+=200%",pin:true,scrub:true});
+  ScrollTrigger.matchMedia({
+    // Desktop/tablet: gentle pin (~120% height)
+    "(min-width: 768px)": () => {
+      gsap.utils.toArray(sel).forEach((el)=>{
+        ScrollTrigger.create({
+          trigger: el,
+          start: "top top",
+          end: "+=120%",
+          pin: true,
+          scrub: true
+        });
+      });
+    },
+    // Mobile: no pin (feels snappier, less extra scroll)
+    "(max-width: 767.98px)": () => {}
   });
 }
+
+/** Count-up for elements with .counter and data-to="" */
 export function countUp(sel=".counter"){
   gsap.utils.toArray(sel).forEach((el)=>{
     const target = parseFloat(el.getAttribute("data-to")||"0");
@@ -41,6 +65,8 @@ export function countUp(sel=".counter"){
     }});
   });
 }
+
+/** Infinite marquee (logo slider) */
 export function marqueeOnce(selector="[data-marquee]"){
   gsap.utils.toArray(selector).forEach((row)=>{
     const speed=parseFloat(row.getAttribute("data-speed")||"36");
@@ -49,12 +75,16 @@ export function marqueeOnce(selector="[data-marquee]"){
     gsap.to(track,{xPercent:-50,repeat:-1,ease:"none",duration:speed});
   });
 }
+
+/** Hero intro animation */
 export function heroIntro(){
   const tl = gsap.timeline();
   tl.from(".hero h1",{y:30,opacity:0,duration:.6,ease:"power2.out"})
     .from(".hero .lead",{y:20,opacity:0,duration:.5,ease:"power2.out"},"-=.25")
     .from(".hero .cta > *",{y:14,opacity:0,stagger:.08,duration:.45,ease:"power2.out"},"-=.25");
 }
+
+/** Magnetic hover for buttons (.btn-magnetic) */
 export function magneticButtons(sel=".btn-magnetic"){
   const zone=20;
   document.querySelectorAll(sel).forEach((btn)=>{
@@ -67,6 +97,8 @@ export function magneticButtons(sel=".btn-magnetic"){
     btn.addEventListener("mouseleave",()=>{ btn.style.transform="translate(0,0)"; });
   });
 }
+
+/** Simple autoplay slider: .t-slider (slides inside .track) */
 export function autoSlider(selector=".t-slider"){
   document.querySelectorAll(selector).forEach((wrap)=>{
     const track=wrap.querySelector(".track"); if(!track) return;
