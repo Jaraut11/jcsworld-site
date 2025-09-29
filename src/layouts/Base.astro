@@ -25,5 +25,26 @@ const { title } = Astro.props;
       <slot />
     </main>
     <Footer />
+
+    <script>
+      import { initSmoothScroll, revealOnScroll, pinSection, staggerChildren, countUp, marqueeOnce, parallax, heroIntro, magneticButtons, autoSlider } from "../lib/animations.js";
+      initSmoothScroll();
+      revealOnScroll(".reveal");
+      pinSection(".process");
+      staggerChildren(".stagger");
+      countUp(".counter");
+      marqueeOnce("[data-marquee]");
+      parallax(".parallax");
+      heroIntro();
+      magneticButtons(".btn");
+      if (document.startViewTransition) {
+        document.addEventListener("click", (e) => {
+          const a = e.target.closest("a");
+          if (!a || a.target || a.hasAttribute("download") || (a.getAttribute("href")||"").startsWith("#")) return;
+          e.preventDefault();
+          document.startViewTransition(() => { window.location = a.href; });
+        });
+      }
+    </script>
   </body>
 </html>

@@ -1,59 +1,96 @@
 ---
-import Layout from '../layouts/Base.astro';
-import ProcessScroller from '../components/ProcessScroller.astro';
-import LogoSlider from '../components/LogoSlider.astro';
+import Base from "../layouts/Base.astro";
+import Testimonials from "../components/Testimonials.astro";
+import LogoMarquee from "../components/LogoMarquee.astro";
 ---
-<Layout title="MSME Accounts, HR & Compliance — done right | JCS World">
+<Base title="JCS — Accounts, HR & Compliance">
   <!-- HERO -->
-  <section class="section hero-wrap reveal">
-    <img class="hero-media" src="/hero-poster.jpg" alt="">
-    <div class="hero-gradient"></div>
-    <p class="kicker">Outsourced MSME partner</p>
-    <h1 class="h1">MSME <span class="brand-gradient">Accounts, HR & Compliance</span> — done right.</h1>
-    <p class="lead">End-to-end bookkeeping, payroll (PF/ESI), GST & ROC filings, and legal support—so you can focus on growth.</p>
-    <p style="margin-top:1rem">
-      <a href="/services/" class="btn">Explore Services</a>
-      <a href="/contact/" class="btn secondary" style="margin-left:.5rem">Get a Proposal</a>
-    </p>
+  <section class="hero hero-gradient reveal">
+    <div class="overlay">
+      <span class="badge">JCS — Accounts, HR & Compliance</span>
+      <h1>Accounts, HR & Compliance for MSMEs in Delhi-NCR</h1>
+      <p class="lead">GST, Payroll, PF/ESI, ITR, Legal Support — handled by one trusted team with 15+ years of experience.</p>
+      <div class="cta">
+        <a href="/contact" class="btn btn-primary btn-magnetic">Book a Call</a>
+        <a href="https://wa.me/918920152372" class="btn btn-secondary btn-magnetic">WhatsApp Us</a>
+      </div>
+    </div>
+    <a href="#services" class="scroll-cue"><span>Scroll</span><i class="chev"></i></a>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services section reveal">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="grid grid-4 stagger">
+        <div class="card card-pad">
+          <h3>📊 Accounts & Tax</h3>
+          <p>Bookkeeping, GST/TDS returns, ITR & balance sheets.</p>
+          <a href="/services/accounts" class="btn btn-primary btn-magnetic">Learn More</a>
+        </div>
+        <div class="card card-pad">
+          <h3>🧾 HR, Payroll & PF/ESI</h3>
+          <p>Registrations, payroll processing, PF/ESI filings.</p>
+          <a href="/services/hr" class="btn btn-primary btn-magnetic">Learn More</a>
+        </div>
+        <div class="card card-pad">
+          <h3>⚖️ Legal Support</h3>
+          <p>Labour & commercial disputes with our legal partners.</p>
+          <a href="/services/legal" class="btn btn-primary btn-magnetic">Learn More</a>
+        </div>
+        <div class="card card-pad">
+          <h3>🧹 Hospitality Staffing</h3>
+          <p>Canteen, housekeeping, catering staff for offices & industries.</p>
+          <a href="/services/hospitality" class="btn btn-primary btn-magnetic">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="process section reveal">
+    <div class="container">
+      <h2>Our Process</h2>
+      <ol>
+        <li><strong>Step 1:</strong> Discovery & Consultation</li>
+        <li><strong>Step 2:</strong> Onboarding & Setup</li>
+        <li><strong>Step 3:</strong> Monthly Compliance & Payroll</li>
+        <li><strong>Step 4:</strong> Review & Reports</li>
+      </ol>
+    </div>
   </section>
 
   <!-- STATS -->
-  <section class="section">
-    <div class="stats">
-      <div class="stat reveal"><div class="num"><span data-count="15">0</span>+ yrs</div><div class="label">Experience</div></div>
-      <div class="stat reveal"><div class="num"><span data-count="60">0</span>+</div><div class="label">Clients</div></div>
-      <div class="stat reveal"><div class="num"><span data-count="12">0</span>+</div><div class="label">Industries</div></div>
+  <section class="stats section reveal">
+    <div class="container s-grid stagger">
+      <div class="card s-card">
+        <div class="num counter" data-to="15">0</div>
+        <p>Years Experience</p>
+      </div>
+      <div class="card s-card">
+        <div class="num counter" data-to="120">0</div>
+        <p>MSMEs Supported</p>
+      </div>
+      <div class="card s-card">
+        <div class="num counter" data-to="24">0</div>
+        <p>Industries Covered</p>
+      </div>
     </div>
   </section>
 
-  <!-- SERVICES HIGHLIGHTS -->
-  <section class="section">
-    <div class="grid cols-3">
-      <article class="card reveal" data-speed="0.6">
-        <h3>Accounting & Tax</h3>
-        <p>Monthly books, reconciliations, MIS, ITR/TDS, audit support—kept tidy, timely and review-ready.</p>
-      </article>
-      <article class="card reveal" data-speed="0.8">
-        <h3>HR & Payroll</h3>
-        <p>Payroll processing, payslips, PF/ESI registration & monthly filings, HR policy & onboarding docs.</p>
-      </article>
-      <article class="card reveal" data-speed="1.0">
-        <h3>Compliance</h3>
-        <p>Shops & Establishments, Factory Act, FSSAI, Fire/Pollution, Trade, ISO, MSME/Udyam, IEC & more.</p>
-      </article>
+  <!-- LOGOS -->
+<Testimonials />
+  <LogoMarquee />
+
+  <!-- CONTACT PREVIEW -->
+  <section class="section reveal">
+    <div class="container" style="text-align:center">
+      <h2>Ready to get compliant?</h2>
+      <p class="lead">Book a free 20-minute consultation. We’ll share a quick compliance checklist for your business.</p>
+      <div class="cta">
+        <a href="/contact" class="btn btn-primary btn-magnetic">Get Proposal</a>
+        <a href="https://wa.me/918920152372" class="btn btn-secondary btn-magnetic">WhatsApp Us</a>
+      </div>
     </div>
   </section>
-
-  <!-- LOGO SLIDER -->
-  <LogoSlider />
-
-  <!-- PINNED PROCESS -->
-  <ProcessScroller />
-
-  <!-- CTA -->
-  <section class="section reveal" style="text-align:center">
-    <h2 class="h1" style="font-size:2rem">Get reliable compliance and clean books.</h2>
-    <p class="lead" style="margin:0 auto 1rem">Tell us your volume and locations—get a tailored monthly plan today.</p>
-    <a href="/contact/" class="btn">Request a Proposal</a>
-  </section>
-</Layout>
+</Base>

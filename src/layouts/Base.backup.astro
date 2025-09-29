@@ -1,0 +1,196 @@
+---
+---
+---
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import AnimShell from '../components/AnimShell.astro';
+import AnimShell from '../components/AnimShell.astro';
+import AnimShell from '../components/AnimShell.astro';
+import AnimShell from '../components/AnimShell.astro';
+import Header from '../components/Header.astro';
+import Header from '../components/Header.astro';
+import Header from '../components/Header.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Footer from '../components/Footer.astro';
+import Footer from '../components/Footer.astro';
+import Footer from '../components/Footer.astro';
+const { title } = Astro.props;
+const { title } = Astro.props;
+const { title } = Astro.props;
+const { title } = Astro.props;
+---
+---
+---
+---
+<!doctype html>
+<!doctype html>
+<!doctype html>
+<!doctype html>
+<html lang="en">
+<html lang="en">
+<html lang="en">
+<html lang="en">
+  <head>
+  <head>
+  <head>
+  <head>
+    <meta charset="utf-8" />
+    <meta charset="utf-8" />
+    <meta charset="utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title ?? SITE_TITLE}</title>
+    <title>{title ?? SITE_TITLE}</title>
+    <title>{title ?? SITE_TITLE}</title>
+    <title>{title ?? SITE_TITLE}</title>
+    <meta name="description" content={SITE_DESCRIPTION} />
+    <meta name="description" content={SITE_DESCRIPTION} />
+    <meta name="description" content={SITE_DESCRIPTION} />
+    <meta name="description" content={SITE_DESCRIPTION} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/global.css" />
+    <link rel="stylesheet" href="/global.css" />
+    <link rel="stylesheet" href="/global.css" />
+    <link rel="stylesheet" href="/global.css" />
+  </head>
+  </head>
+  </head>
+  </head>
+  <body>
+  <body>
+  <body>
+  <body>
+    <AnimShell />
+    <AnimShell />
+    <AnimShell />
+    <AnimShell />
+    <Header />
+    <Header />
+    <Header />
+    <Header />
+    <main class="container">
+    <main class="container">
+    <main class="container">
+    <main class="container">
+      <slot />
+      <slot />
+      <slot />
+      <slot />
+    </main>
+    </main>
+    </main>
+    </main>
+    <Footer />
+    <Footer />
+    <Footer />
+    <Footer />
+
+
+
+
+    <!-- ✅ Place animation scripts here -->
+    <!-- ✅ Place animation scripts here -->
+    <!-- ✅ Place animation scripts here -->
+    <!-- ✅ Place animation scripts here -->
+    <script>
+    <script>
+    <script>
+    <script>
+      if (document.startViewTransition) {
+      if (document.startViewTransition) {
+      if (document.startViewTransition) {
+      if (document.startViewTransition) {
+        document.addEventListener("click", (e) => {
+        document.addEventListener("click", (e) => {
+        document.addEventListener("click", (e) => {
+        document.addEventListener("click", (e) => {
+          const a = e.target.closest("a");
+          const a = e.target.closest("a");
+          const a = e.target.closest("a");
+          const a = e.target.closest("a");
+          if (!a || a.target || a.hasAttribute("download") || a.getAttribute("href").startsWith("#")) return;
+          if (!a || a.target || a.hasAttribute("download") || a.getAttribute("href").startsWith("#")) return;
+          if (!a || a.target || a.hasAttribute("download") || a.getAttribute("href").startsWith("#")) return;
+          if (!a || a.target || a.hasAttribute("download") || a.getAttribute("href").startsWith("#")) return;
+          e.preventDefault();
+          e.preventDefault();
+          e.preventDefault();
+          e.preventDefault();
+          document.startViewTransition(() => { window.location = a.href; });
+          document.startViewTransition(() => { window.location = a.href; });
+          document.startViewTransition(() => { window.location = a.href; });
+          document.startViewTransition(() => { window.location = a.href; });
+        });
+        });
+        });
+        });
+      }
+      }
+      }
+      }
+    </script>
+    </script>
+    </script>
+    </script>
+    <script>
+    <script>
+    <script>
+    <script>
+      import { initSmoothScroll, revealOnScroll, pinSection } from "../lib/animations.js";
+      import { initSmoothScroll, revealOnScroll, pinSection } from "../lib/animations.js";
+      import { initSmoothScroll, revealOnScroll, pinSection } from "../lib/animations.js";
+      import { initSmoothScroll, revealOnScroll, pinSection } from "../lib/animations.js";
+      initSmoothScroll();
+      initSmoothScroll();
+      initSmoothScroll();
+      initSmoothScroll();
+      revealOnScroll(".reveal");
+      revealOnScroll(".reveal");
+      revealOnScroll(".reveal");
+      revealOnScroll(".reveal");
+      pinSection(".process");
+      staggerChildren(".stagger");
+      countUp(".counter");
+      marqueeOnce("[data-marquee]");
+      parallax(".parallax");
+      pinSection(".process");
+      pinSection(".process");
+      pinSection(".process");
+    </script>
+    </script>
+    </script>
+    </script>
+  </body>
+  </body>
+  </body>
+  </body>
+</html>
+</html>
+</html>
+</html>
+
+
+
+
