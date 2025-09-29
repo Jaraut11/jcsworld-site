@@ -1,0 +1,45 @@
+---
+const badge = "JCS — Accounts, HR & Compliance";
+const title = "Accounts, HR & Compliance for MSMEs in Delhi-NCR";
+const lead  = "GST, Payroll, PF/ESI, ITR, Legal Support — handled by one trusted team with 15+ years of experience.";
+---
+<section class="hero reveal" style="position:relative;overflow:hidden;background:#0b1020">
+  <!-- Background video with graceful fallbacks -->
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/images/hero-poster.jpg" aria-label="Background video">
+    <source src="/videos/hero.webm" type="video/webm" />
+    <source src="/videos/hero.mp4"  type="video/mp4" />
+  </video>
+
+  <div class="overlay">
+    <span class="badge">{badge}</span>
+    <h1>{title}</h1>
+    <p class="lead">{lead}</p>
+    <div class="cta">
+      <a href="/contact" class="btn btn-primary btn-magnetic">Book a Call</a>
+      <a href="https://wa.me/918920152372" class="btn btn-secondary btn-magnetic">WhatsApp Us</a>
+    </div>
+  </div>
+
+  <a href="#services" class="scroll-cue"><span>Scroll</span><i class="chev"></i></a>
+
+  <!-- Perf: pause when not visible; respect reduced-motion -->
+  <script is:inline>
+    const v = document.querySelector(".hero-video");
+    if (v){
+      const prefersReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReduce) { v.pause(); v.removeAttribute("autoplay"); }
+
+      const io = new IntersectionObserver(([e])=>{
+        if (!prefersReduce){
+          if (e.isIntersecting) v.play().catch(()=>{});
+          else v.pause();
+        }
+      },{threshold:0.1});
+      io.observe(v);
+    }
+  </script>
+
+  <noscript>
+    <img src="/images/hero-poster.jpg" alt="JCS — Accounts, HR & Compliance" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.6) saturate(1.1)" />
+  </noscript>
+</section>
