@@ -1,47 +1,50 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import AnimShell from "../components/AnimShell.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+const site = "https://jcsworld.in";
 ---
 <!doctype html>
 <html lang="en" data-theme="dark">
   <head>
-    <BaseHead title={title} description={description} ogImage="/og-default.svg" />
-    <link rel="stylesheet" href="/global.css?v=5" />
-    <style>html,body,main,section{background:#0b0b1a !important;color:#e8eaff !important}</style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/global.css?v=6" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={site} />
+
+    <script type="application/ld+json" is:inline>
+    {
+      "@context":"https://schema.org",
+      "@type":["Organization","LocalBusiness","ProfessionalService"],
+      "name":"Jaraut Consultancy Services (JCS)",
+      "url":"https://jcsworld.in/",
+      "logo":"https://jcsworld.in/favicon.ico",
+      "telephone":"+91-11-41745010",
+      "email":"Jcsworld.in@gmail.com",
+      "address":{"@type":"PostalAddress","streetAddress":"503, Suneja Tower-2, District Centre, Janakpuri","addressLocality":"New Delhi","postalCode":"110058","addressCountry":"IN"},
+      "areaServed":["Delhi NCR","India"]
+    }
+    </script>
+    <style is:inline>html,body,main,section{background:#0b0b1a;color:#e8eaff}</style>
   </head>
   <body>
-    <AnimShell />
     <Header />
     <main class="container">
       <slot />
     </main>
     <Footer />
 
-    <script>
-      import { initSmoothScroll, revealOnScroll, pinSection, staggerChildren, countUp, marqueeOnce, parallax, heroIntro, magneticButtons, autoSlider } from "../lib/animations.js";
-      initSmoothScroll(); revealOnScroll(".reveal"); pinSection(".process");
-      staggerChildren(".stagger"); countUp(".counter"); marqueeOnce("[data-marquee]");
-      parallax(".parallax"); heroIntro(); magneticButtons(".btn"); autoSlider(".t-slider");
-
-      if (document.startViewTransition) {
-        document.addEventListener("click", (e) => {
-          const a = e.target.closest("a");
-          if (!a || a.target || a.hasAttribute("download") || (a.getAttribute("href")||"").startsWith("#")) return;
-          e.preventDefault(); document.startViewTransition(() => { window.location = a.href; });
-        });
-      }
-      {
-        const header=document.querySelector("header,.site-header");
-        const hero=document.querySelector(".hero") || document.body.firstElementChild;
-        if(header && hero){
-          const io=new IntersectionObserver(([e])=>header.classList.toggle("is-scrolled", !e.isIntersecting));
-          io.observe(hero);
-        }
-      }
-    </script>
+    <script type="module" src={Astro.resolve("../scripts/site.js")}></script>
   </body>
 </html>

@@ -3,22 +3,11 @@ const badge = "JCS — Accounts, HR & Compliance";
 const title = "Accounts, HR & Compliance for MSMEs in Delhi-NCR";
 const lead  = "GST, Payroll, PF/ESI, ITR, Legal Support — handled by one trusted team with 15+ years of experience.";
 ---
-<section
-  class="hero hero-anim reveal"
-  aria-label="JCS hero section"
-  style="position:relative;overflow:hidden;background-color:#0b0b1a;"
->
-  <!-- base gradient backdrop -->
-  <div class="base-grad"></div>
-
-  <!-- animated glow layers -->
-  <div class="bg">
-    <div class="layer l1"></div>
-    <div class="layer l2"></div>
-    <div class="grain"></div>
-  </div>
-
-  <div class="overlay">
+<section class="hero hero-anim reveal" aria-label="JCS hero section" style="background-image:url('/images/hero-poster.jpg');">
+  <div class="layer l1"></div>
+  <div class="layer l2"></div>
+  <div class="grain"></div>
+  <div class="overlay" style="position:relative;z-index:1;max-width:980px;margin-inline:auto;padding:2.2rem 1rem">
     <span class="badge">{badge}</span>
     <h1>{title}</h1>
     <p class="lead">{lead}</p>
@@ -27,47 +16,4 @@ const lead  = "GST, Payroll, PF/ESI, ITR, Legal Support — handled by one trust
       <a href="https://wa.me/918920152372" class="btn btn-secondary btn-magnetic">WhatsApp Us</a>
     </div>
   </div>
-
-  <a href="#services" class="scroll-cue"><span>Scroll</span><i class="chev"></i></a>
-
-  <style>
-    .hero.hero-anim{min-height:72vh;display:grid;place-items:center;text-align:center}
-    @media (max-width:740px){ .hero.hero-anim{min-height:86svh} }
-
-    /* base deep-violet gradient */
-    .base-grad{
-      position:absolute; inset:0; z-index:-3;
-      background:
-        radial-gradient(1200px 600px at 10% -10%, #7a5cff33, transparent 60%),
-        radial-gradient(1000px 500px at 100% 0%, #4cc9f022, transparent 60%),
-        linear-gradient(180deg, #0d0b1f 0%, #0b0b1a 60%, #0b0b1a 100%);
-    }
-
-    .hero.hero-anim .bg{position:absolute;inset:-10%;z-index:-2;filter:saturate(1.15)}
-    .hero.hero-anim .layer{
-      position:absolute;inset:-20%;
-      background:
-        radial-gradient(35% 35% at 20% 10%, rgba(122,197,255,.20) 0%, transparent 60%),
-        radial-gradient(45% 45% at 80% 0%, rgba(124,243,255,.16) 0%, transparent 70%),
-        conic-gradient(from 0deg at 50% 50%, #7a5cff44, transparent 40%, #4cc9f033 60%, transparent 100%);
-      opacity:.65; animation: rotate 26s linear infinite;
-    }
-    .hero.hero-anim .l2{
-      mix-blend-mode:screen; opacity:.8; filter:blur(36px);
-      animation-duration: 38s; animation-direction: reverse; transform: scale(1.15);
-    }
-    @keyframes rotate{ from{transform:rotate(0turn)} to{transform:rotate(1turn)} }
-
-    .hero.hero-anim .grain{
-      position:absolute; inset:-100%; opacity:.05; pointer-events:none; mix-blend-mode:overlay;
-      background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAG0lEQVR4nO3BMQEAAADCoPdPbQ43oAAAAAAAAAAAgCwE5qYAAc+qg5EAAAAASUVORK5CYII=");
-      background-size:200px 200px; animation:grainShift 6s steps(6) infinite;
-    }
-    @keyframes grainShift{
-      0%{transform:translate(0,0)}20%{transform:translate(-10px,6px)}
-      40%{transform:translate(10px,-8px)}60%{transform:translate(-6px,12px)}
-      80%{transform:translate(8px,4px)}100%{transform:translate(0,0)}
-    }
-    @media (prefers-reduced-motion: reduce){ .hero.hero-anim .layer,.hero.hero-anim .grain{animation:none} }
-  </style>
 </section>

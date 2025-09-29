@@ -1,29 +1,24 @@
 ---
 import Base from "../layouts/Base.astro";
-import HeroAnimated from "../components/HeroAnimated.astro";
+import Hero from "../components/HeroAnimated.astro";
 import LogoMarquee from "../components/LogoMarquee.astro";
 import Testimonials from "../components/Testimonials.astro";
-import ContactForm from "../components/ContactForm.astro";
 ---
-<Base title="JCS — Accounts, HR & Compliance">
-  <!-- HERO -->
-  <HeroAnimated />
-
-  <!-- SERVICES -->
+<Base title="JCS — Accounts, HR & Compliance" description="End-to-end GST, Payroll, PF/ESI & Legal Support for MSMEs in Delhi-NCR.">
+  <Hero />
   <section id="services" class="services section reveal">
     <div class="container">
       <h2>Our Services</h2>
-      <div class="grid grid-4 stagger">
-        <div class="card card-pad"><h3>📊 Accounts & Tax</h3><p>Bookkeeping, GST/TDS returns, ITR & balance sheets.</p><a href="/services/accounts" class="btn btn-primary btn-magnetic">Learn More</a></div>
-        <div class="card card-pad"><h3>🧾 HR, Payroll & PF/ESI</h3><p>Registrations, payroll processing, PF/ESI filings.</p><a href="/services/hr" class="btn btn-primary btn-magnetic">Learn More</a></div>
-        <div class="card card-pad"><h3>⚖️ Legal Support</h3><p>Labour & commercial disputes with our legal partners.</p><a href="/services/legal" class="btn btn-primary btn-magnetic">Learn More</a></div>
-        <div class="card card-pad"><h3>🧹 Hospitality Staffing</h3><p>Canteen, housekeeping, catering staff for offices & industries.</p><a href="/services/hospitality" class="btn btn-primary btn-magnetic">Learn More</a></div>
+      <div class="grid grid-4 stagger" style="margin-top:1rem">
+        <div class="card card-pad"><h3>📊 Accounts & Tax</h3><p>Bookkeeping, GST/TDS returns, ITR & balance sheets.</p><a href="/services/accounts" class="btn btn-primary">Learn More</a></div>
+        <div class="card card-pad"><h3>🧾 HR, Payroll & PF/ESI</h3><p>Registrations, payroll processing, PF/ESI filings.</p><a href="/services/hr" class="btn btn-primary">Learn More</a></div>
+        <div class="card card-pad"><h3>⚖️ Legal Support</h3><p>Labour & commercial disputes with our legal partners.</p><a href="/services/legal" class="btn btn-primary">Learn More</a></div>
+        <div class="card card-pad"><h3>🧹 Hospitality Staffing</h3><p>Canteen, housekeeping, catering staff for offices & industries.</p><a href="/services/hospitality" class="btn btn-primary">Learn More</a></div>
       </div>
     </div>
   </section>
 
-  <!-- PROCESS -->
-  <section id="process" class="process section reveal">
+  <section class="process section reveal">
     <div class="container">
       <h2>Our Process</h2>
       <ol>
@@ -35,7 +30,6 @@ import ContactForm from "../components/ContactForm.astro";
     </div>
   </section>
 
-  <!-- STATS -->
   <section class="stats section reveal">
     <div class="container s-grid stagger">
       <div class="card s-card"><div class="num counter" data-to="15">0</div><p>Years Experience</p></div>
@@ -46,5 +40,21 @@ import ContactForm from "../components/ContactForm.astro";
 
   <Testimonials />
   <LogoMarquee />
-  <ContactForm />
+
+  <section class="section reveal">
+    <div class="container" style="max-width:760px">
+      <h2>Get in touch</h2>
+      <form name="contact" method="POST" netlify netlify-honeypot="bot-field" action="/thanks" class="card card-pad">
+        <input type="hidden" name="form-name" value="contact">
+        <p style="display:none"><label>Don’t fill this out: <input name="bot-field"></label></p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <p><label>Your Name<br><input required name="name"></label></p>
+          <p><label>Phone / WhatsApp<br><input required name="phone"></label></p>
+        </div>
+        <p><label>Email<br><input type="email" name="email" required></label></p>
+        <p><label>Message<br><textarea name="message" rows="4"></textarea></label></p>
+        <div class="cta"><button type="submit" class="btn btn-primary">Send</button> <a href="https://wa.me/918920152372" class="btn btn-secondary">WhatsApp Us</a></div>
+      </form>
+    </div>
+  </section>
 </Base>

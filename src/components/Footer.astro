@@ -1,21 +1,11 @@
----
-const year = new Date().getFullYear();
----
 <footer class="site-footer">
-  <div class="wrap">
-    <div class="info">
-      <strong>Jaraut Consultancy Services Pvt. Ltd.</strong><br />
-      Regd. Off.: 503, Suneja Tower-2, District Centre, Janakpuri, New Delhi-58<br />
-      Phone: 011-41745010 • Mobile: 8920152372 / 7827680615<br />
+  <div class="container" style="display:grid;gap:1rem">
+    <div>
+      <strong>Jaraut Consultancy Services Pvt. Ltd.</strong><br/>
+      Regd. Off.: 503, Suneja Tower-2, District Centre, Janakpuri, New Delhi-58<br/>
+      Phone: 011-41745010 • Mobile: 8920152372 / 7827680615<br/>
       Email: <a href="mailto:Jcsworld.in@gmail.com">Jcsworld.in@gmail.com</a>
     </div>
-    <div class="copy">© {year} JCS World. All rights reserved.</div>
+    <small>© {new Date().getFullYear()} JCS World. All rights reserved.</small>
   </div>
 </footer>
-
-<style>
-.site-footer{margin-top:3rem;border-top:1px solid #eee}
-.wrap{max-width:1000px;margin:0 auto;padding:1.25rem}
-.info{line-height:1.6}
-.copy{opacity:.75;margin-top:.5rem}
-</style>
