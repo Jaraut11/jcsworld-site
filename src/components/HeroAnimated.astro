@@ -3,7 +3,11 @@ const badge = "JCS — Accounts, HR & Compliance";
 const title = "Accounts, HR & Compliance for MSMEs in Delhi-NCR";
 const lead  = "GST, Payroll, PF/ESI, ITR, Legal Support — handled by one trusted team with 15+ years of experience.";
 ---
-<section class="hero hero-anim reveal" aria-label="JCS hero">
+<section
+  class="hero hero-anim reveal"
+  aria-label="JCS hero section"
+  style="background-image:url('/images/hero-poster.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#0b1020;position:relative;overflow:hidden;"
+>
   <div class="bg">
     <div class="layer l1"></div>
     <div class="layer l2"></div>
@@ -23,8 +27,9 @@ const lead  = "GST, Payroll, PF/ESI, ITR, Legal Support — handled by one trust
   <a href="#services" class="scroll-cue"><span>Scroll</span><i class="chev"></i></a>
 
   <style>
-    .hero.hero-anim{min-height:72vh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;background-color:#0b1020}
+    .hero.hero-anim{min-height:72vh;display:grid;place-items:center;text-align:center}
     @media (max-width:740px){ .hero.hero-anim{min-height:86svh} }
+
     .hero.hero-anim .bg{position:absolute;inset:-10%;z-index:-2;filter:saturate(1.15)}
     .hero.hero-anim .layer{
       position:absolute;inset:-20%;
