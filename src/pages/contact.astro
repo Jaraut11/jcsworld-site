@@ -6,7 +6,7 @@ const description = "Get in touch with our team.";
 <Base {title} {description}>
   <section class="container" style="max-width:720px;margin:2rem auto">
     <h1>Contact</h1>
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <form name="contact" action="/thanks/" method="POST" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="contact" />
       <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
 
