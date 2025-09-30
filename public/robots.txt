@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://jcsworld.in/sitemap-index.xml
