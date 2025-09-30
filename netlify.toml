@@ -1,3 +1,44 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  [build.environment]
+    NODE_VERSION = "18"
+
+# Force www → apex (both http and https)
+[[redirects]]
+  from = "http://www.jcsworld.in/*"
+  to = "https://jcsworld.in/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.jcsworld.in/*"
+  to = "https://jcsworld.in/:splat"
+  status = 301
+  force = true
+
+# Long cache for hashed assets Astro emits under /_astro
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# 7-day cache for your public CSS/JS
+[[headers]]
+  for = "/global.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/scripts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Security headers (safe defaults)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
