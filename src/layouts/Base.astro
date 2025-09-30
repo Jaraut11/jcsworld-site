@@ -17,6 +17,8 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/global.css?v=7" />
     <style is:inline>html,body{background:#0a0f1a;color:#eaf2ff}</style>
+
+    <!-- SEO -->
     <link rel="canonical" href="https://jcsworld.in/" />
     <meta property="og:site_name" content="JCS World" />
     <meta property="og:type" content="website" />
@@ -24,11 +26,19 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://jcsworld.in/og.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Organization JSON-LD -->
     <script type="application/ld+json">
-    { \"@context\": \"https://schema.org\", \"@type\": \"Organization\",
-      \"name\": \"JCS World\", \"url\": \"https://jcsworld.in\",
-      \"logo\": \"https://jcsworld.in/logo.png\" }
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "JCS World",
+      "url": "https://jcsworld.in",
+      "logo": "https://jcsworld.in/logo.png"
+    }
     </script>
+
+    <!-- Analytics (Plausible) -->
     <script defer data-domain="jcsworld.in" src="https://plausible.io/js/plausible.js"></script>
   </head>
   <body>
@@ -37,7 +47,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
       <slot />
     </main>
     <Footer />
-   <script type="module" src="/scripts/site.js"></script>
-
+    <!-- Serve JS from /public -->
+    <script type="module" src="/scripts/site.js"></script>
   </body>
 </html>

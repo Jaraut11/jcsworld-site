@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/Base.astro";
+const title = "Page Not Found – JCS World";
+const description = "We couldn’t find that page. Try the home page or our services.";
+---
+<Base {title} {description}>
+  <section style="min-height:60vh;display:grid;place-items:center;text-align:center">
+    <div>
+      <h1 style="font-size:2.25rem;margin-bottom:0.5rem">404 – Page not found</h1>
+      <p style="opacity:.8;margin-bottom:1.25rem">The page you’re looking for doesn’t exist.</p>
+      <a href="/" class="button">Go home</a>
+    </div>
+  </section>
+</Base>
