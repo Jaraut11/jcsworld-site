@@ -1,11 +1,21 @@
-<footer class="site-footer">
+---
+const year = new Date().getFullYear();
+---
+<footer class="footer" style="padding:2rem 0;border-top:1px solid hsl(220 20% 22%);margin-top:3rem">
   <div class="container" style="display:grid;gap:1rem">
-    <div>
-      <strong>Jaraut Consultancy Services Pvt. Ltd.</strong><br/>
-      Regd. Off.: 503, Suneja Tower-2, District Centre, Janakpuri, New Delhi-58<br/>
-      Phone: 011-41745010 • Mobile: 8920152372 / 7827680615<br/>
-      Email: <a href="mailto:Jcsworld.in@gmail.com">Jcsworld.in@gmail.com</a>
+    <div style="opacity:.9;font-weight:700">Jaraut Consultancy Services Pvt. Ltd.</div>
+    <div style="opacity:.8">
+      Regd. Off.: 503, Suneja Tower-2, District Centre, Janakpuri, New Delhi-58
     </div>
-    <small>© {new Date().getFullYear()} JCS World. All rights reserved.</small>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap">
+      <a href="tel:+911141745010">011-41745010</a>
+      <span>•</span>
+      <a href="tel:+918920152372">+91 8920152372</a>
+      <span>•</span>
+      <a href="tel:+917827680615">+91 7827680615</a>
+      <span>•</span>
+      <a href="mailto:jcsworld.in@gmail.com" rel="noopener">jcsworld.in@gmail.com</a>
+    </div>
+    <div style="opacity:.7">© {year} JCS World. All rights reserved.</div>
   </div>
 </footer>
