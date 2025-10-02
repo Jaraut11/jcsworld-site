@@ -1,0 +1,65 @@
+---
+---
+<style>
+.lead-magnet{background:linear-gradient(135deg,#1e40af 0%,#7c3aed 100%);color:#fff;padding:80px 20px;position:relative;overflow:hidden}
+.lead-magnet::before{content:'';position:absolute;top:-50%;right:-50%;width:500px;height:500px;background:rgba(255,255,255,.05);border-radius:50%}
+.lead-content{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;position:relative;z-index:1}
+.lead-text h2{font-size:2.2rem;margin:0 0 15px}
+.lead-text p{font-size:1.1rem;opacity:.95;margin:0 0 10px;line-height:1.7}
+.lead-text ul{list-style:none;padding:0;margin:20px 0 0}
+.lead-text li{padding:8px 0;padding-left:28px;position:relative}
+.lead-text li:before{content:"✓";position:absolute;left:0;font-weight:700}
+.lead-form{background:rgba(255,255,255,.95);padding:40px;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.2)}
+.lead-form h3{color:#1f2937;margin:0 0 20px;font-size:1.5rem}
+.form-group{margin-bottom:15px}
+.form-group input{width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:6px;font-size:1rem}
+.form-group input:focus{outline:none;border-color:#3b82f6}
+.submit-btn{width:100%;background:#3b82f6;color:#fff;padding:14px;border:none;border-radius:6px;font-size:1.05rem;font-weight:600;cursor:pointer;transition:background .3s}
+.submit-btn:hover{background:#2563eb}
+.privacy{font-size:.85rem;color:#6b7280;margin-top:10px;text-align:center}
+@media(max-width:768px){.lead-content{grid-template-columns:1fr}}
+</style>
+
+<section class="lead-magnet">
+  <div class="lead-content">
+    <div class="lead-text">
+      <h2>Free Download: 2025 GST & Compliance Calendar</h2>
+      <p><strong>Never miss another filing deadline.</strong></p>
+      <p>Get our comprehensive compliance calendar with:</p>
+      <ul>
+        <li>All GST, TDS, PF/ESI due dates for 2025</li>
+        <li>Month-by-month checklist format</li>
+        <li>Late fee calculations for each filing</li>
+        <li>WhatsApp reminders (opt-in)</li>
+        <li>Penalty avoidance tips</li>
+      </ul>
+    </div>
+
+    <div class="lead-form">
+      <h3>Get Your Free Checklist</h3>
+      <form name="checklist-download" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you">
+        <input type="hidden" name="form-name" value="checklist-download" />
+        <p style="display:none"><label>Don't fill: <input name="bot-field" /></label></p>
+        
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Your Name *" required />
+        </div>
+
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Work Email *" required />
+        </div>
+
+        <div class="form-group">
+          <input type="tel" name="phone" placeholder="WhatsApp Number *" required />
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="company" placeholder="Company Name" />
+        </div>
+
+        <button type="submit" class="submit-btn">Download Free Checklist</button>
+        <p class="privacy">We respect your privacy. Unsubscribe anytime.</p>
+      </form>
+    </div>
+  </div>
+</section>
