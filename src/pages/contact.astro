@@ -46,8 +46,8 @@ import Base from '../layouts/Base.astro';
   <div class="contact-grid">
     <div class="contact-form">
       <h2>Request a Consultation</h2>
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="contact" />
+      <form name="contact" method="GET" action="/thank-you">
+        
         <p style="display:none"><label>Don't fill this: <input name="bot-field" /></label></p>
         
         <div class="form-group">
