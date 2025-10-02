@@ -1,11 +1,10 @@
 import type { APIContext } from 'astro';
 import { Resend } from 'resend';
 
-export const prerender = false; // ensure server function
+export const prerender = false;
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
-// keep this until your Resend domain is verified; then change to 'noreply@jcsworld.in'
-const FROM_OK = 'onboarding@resend.dev';
+const FROM_OK = 'onboarding@resend.dev'; // change to noreply@jcsworld.in after Resend domain is verified
 const TO = 'jcsworld.in@gmail.com';
 
 function textField(v: unknown) {
@@ -29,9 +28,9 @@ export async function POST({ request }: APIContext) {
       fields = Object.fromEntries([...form].map(([k, v]) => [k, textField(v)]));
     }
 
-    // spam honeypot — only block if it has a value
+    // Do NOT block on honeypot right now; only log
     if (fields['bot-field']) {
-      return new Response('Forbidden', { status: 403 });
+      console.warn('Honeypot filled:', fields['bot-field']);
     }
 
     const name = fields.name || 'Website Lead';
@@ -42,7 +41,7 @@ export async function POST({ request }: APIContext) {
     const employees = fields.employees || '';
     const message = fields.message || '';
 
-    const subject = `New Lead: ${name} ${company ? `(${company})` : ''}`;
+    const subject = `New Lead: ${name}${company ? ` (${company})` : ''}`;
     const bodyText =
 `Name: ${name}
 Email: ${email}
@@ -63,10 +62,7 @@ ${message}
       text: bodyText,
     });
 
-    return new Response(null, {
-      status: 303,
-      headers: { Location: '/thank-you' },
-    });
+    return new Response(null, { status: 303, headers: { Location: '/thank-you' } });
   } catch (err) {
     console.error('Lead API error:', err);
     return new Response('Internal Error', { status: 500 });
