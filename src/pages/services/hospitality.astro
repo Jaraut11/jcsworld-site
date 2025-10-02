@@ -1,20 +1,140 @@
 ---
-import Base from "../../layouts/Base.astro";
+import Base from '../../layouts/Base.astro';
 ---
-<Base title="Hospitality Staffing — JCS">
-  <main class="container">
-    <h1>Hospitality Staffing</h1>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Hospitality Staffing","provider":{"@type":"Organization","name":"Jaraut Consultancy Services"},"areaServed":"Delhi NCR","url":"https://jcsworld.in/services/hospitality/"}</script>
-    <p>Canteen services, housekeeping/catering staffing, vendor coordination for offices & industrial units.</p>
-  </main>
+<Base title="Hospitality Staffing - Canteen, Housekeeping, Catering | JCS Delhi-NCR">
+<style>
+*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:#1f2937;margin:0;background:#fafafa}
+.hero{background:linear-gradient(135deg,#ea580c 0%,#f97316 100%);color:#fff;padding:100px 20px 80px;text-align:center}
+.hero h1{font-size:2.8rem;margin:0 0 20px;font-weight:700;line-height:1.2}
+.hero .subtitle{font-size:1.3rem;opacity:.95;max-width:700px;margin:0 auto 30px;font-weight:400}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+.section{padding:80px 20px}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;padding:80px 20px;background:#fff}
+.service{background:#f9fafb;padding:35px;border-radius:12px;border:2px solid #e5e7eb;transition:all .3s}
+.service:hover{border-color:#f97316;transform:translateY(-5px);box-shadow:0 10px 30px rgba(249,115,22,.15)}
+.service .icon{font-size:2.5rem;margin-bottom:15px}
+.service h3{color:#1f2937;margin:0 0 12px;font-size:1.3rem}
+.service p{color:#4b5563;font-size:.95rem;line-height:1.6;margin-bottom:15px}
+.service ul{list-style:none;padding:0;margin:15px 0 0}
+.service li{padding:8px 0;color:#4b5563;font-size:.95rem;padding-left:24px;position:relative}
+.service li:before{content:"✓";position:absolute;left:0;color:#f97316;font-weight:700}
+.guarantee{background:#f0fdfa;padding:60px 20px;text-align:center}
+.guarantee h2{color:#0f766e;font-size:2rem;margin:0 0 20px}
+.guarantee p{max-width:700px;margin:0 auto;color:#115e59;font-size:1.1rem;line-height:1.8}
+.final-cta{background:linear-gradient(135deg,#ea580c 0%,#f97316 100%);color:#fff;padding:80px 20px;text-align:center}
+.final-cta h2{font-size:2.2rem;margin:0 0 15px}
+.final-cta p{font-size:1.2rem;opacity:.95;margin:0 0 35px;max-width:600px;margin-left:auto;margin-right:auto}
+.final-cta .btn{display:inline-block;padding:18px 40px;background:#fff;color:#ea580c;border-radius:8px;text-decoration:none;font-weight:700;font-size:1.1rem;transition:all .3s}
+.final-cta .btn:hover{transform:scale(1.05);box-shadow:0 10px 30px rgba(255,255,255,.3)}
+@media(max-width:768px){.hero h1{font-size:2rem}.hero .subtitle{font-size:1.1rem}.section{padding:60px 20px}.services-grid{grid-template-columns:1fr}}
+</style>
+
+<div class="hero">
+  <div class="container">
+    <h1>Your Office. Your Canteen. Our Staff.</h1>
+    <p class="subtitle">Trained housekeeping, canteen, and catering staff for offices & factories—with full compliance and 7-day replacement guarantee</p>
+  </div>
+</div>
+
+<div class="services-grid">
+  <div class="container" style="max-width:1100px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px">
+      <div class="service">
+        <div class="icon">🍽️</div>
+        <h3>Canteen Management</h3>
+        <p>Full-service canteen for your office or factory—menu planning, hygiene, staff, everything.</p>
+        <ul>
+          <li>Cooks, helpers & service staff</li>
+          <li>Daily menu planning (veg/non-veg)</li>
+          <li>FSSAI hygiene compliance</li>
+          <li>Raw material sourcing</li>
+          <li>Kitchen equipment setup</li>
+          <li>Monthly/quarterly contracts</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">🧹</div>
+        <h3>Housekeeping Staff</h3>
+        <p>Trained cleaning staff for offices, showrooms, hospitals, and industrial units.</p>
+        <ul>
+          <li>Office floor cleaning & dusting</li>
+          <li>Washroom & pantry maintenance</li>
+          <li>Glass & window cleaning</li>
+          <li>Waste disposal management</li>
+          <li>Daily/weekly/on-call services</li>
+          <li>Supervisor included (for teams 5+)</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">👨‍🍳</div>
+        <h3>Event Catering Staff</h3>
+        <p>Indoor & outdoor event staff—corporate events, conferences, weddings, parties.</p>
+        <ul>
+          <li>Chefs, cooks & kitchen helpers</li>
+          <li>Waiters & service staff</li>
+          <li>Bartenders (for corporate events)</li>
+          <li>Setup & cleanup teams</li>
+          <li>1-day to multi-day events</li>
+          <li>PAN-India deployment</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">🤝</div>
+        <h3>Vendor Coordination</h3>
+        <p>We handle your suppliers so you don't have to chase them.</p>
+        <ul>
+          <li>Food & beverage suppliers</li>
+          <li>Cleaning product vendors</li>
+          <li>Kitchen equipment suppliers</li>
+          <li>Waste management coordination</li>
+          <li>Quality checks & inspections</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">📋</div>
+        <h3>Full Compliance Included</h3>
+        <p>All staff deployed through us are 100% compliant—no legal headaches for you.</p>
+        <ul>
+          <li>PF, ESI, PT registration & filings</li>
+          <li>Attendance tracking & payroll</li>
+          <li>Police verification (for all staff)</li>
+          <li>Health checkups (food handlers)</li>
+          <li>Statutory records maintenance</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">🔄</div>
+        <h3>Replacement Guarantee</h3>
+        <p>Staff not performing? We replace them within 7 days—no questions asked.</p>
+        <ul>
+          <li>7-day replacement guarantee</li>
+          <li>Backup staff on standby</li>
+          <li>Monthly performance reviews</li>
+          <li>Supervisor spot checks</li>
+          <li>Client feedback system</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="guarantee">
+  <div class="container">
+    <h2>Our Service Guarantee</h2>
+    <p>Unhappy with a staff member? We replace them within 7 working days. All staff are police-verified, trained, and covered under our PF/ESI compliance. You get peace of mind, not paperwork.</p>
+  </div>
+</div>
+
+<div class="final-cta">
+  <div class="container">
+    <h2>Need Staff? Get a Quote in 24 Hours</h2>
+    <p>Tell us your requirements—number of staff, location, shift timings. We'll send you a detailed quote by tomorrow.</p>
+    <a href="https://wa.me/918920152372?text=I%27m%20interested%20in%20hospitality%20staffing%20services.%20Here%27s%20what%20I%20need:" class="btn">Request Quote →</a>
+  </div>
+</div>
 </Base>
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Service",
-  "serviceType":"Hospitality Staffing",
-  "provider":{"@type":"Organization","name":"Jaraut Consultancy Services"},
-  "areaServed":"Delhi NCR",
-  "url":"https://jcsworld.in/services/hospitality/"
-}
-</script>

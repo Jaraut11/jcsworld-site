@@ -1,20 +1,195 @@
 ---
-import Base from "../../layouts/Base.astro";
+import Base from '../../layouts/Base.astro';
 ---
-<Base title="Legal Support — JCS">
-  <main class="container">
-    <h1>Legal Support</h1>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Legal Support","provider":{"@type":"Organization","name":"Jaraut Consultancy Services"},"areaServed":"Delhi NCR","url":"https://jcsworld.in/services/legal/"}</script>
-    <p>Labour & commercial disputes with our legal partners; scope defined in engagement letter.</p>
-  </main>
+<Base title="Legal Support Services - Labour Court, Consumer Court | JCS Delhi-NCR">
+<style>
+*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:#1f2937;margin:0;background:#fafafa}
+.hero{background:linear-gradient(135deg,#7c3aed 0%,#a855f7 100%);color:#fff;padding:100px 20px 80px;text-align:center}
+.hero h1{font-size:2.8rem;margin:0 0 20px;font-weight:700;line-height:1.2}
+.hero .subtitle{font-size:1.3rem;opacity:.95;max-width:700px;margin:0 auto 30px;font-weight:400}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+.section{padding:80px 20px}
+.intro{background:#fff;padding:60px 20px;text-align:center}
+.intro p{max-width:800px;margin:0 auto 30px;font-size:1.1rem;color:#4b5563;line-height:1.8}
+.intro .partners{background:#f9fafb;padding:25px;border-radius:8px;max-width:700px;margin:0 auto;border-left:4px solid #a855f7}
+.intro .partners strong{color:#7c3aed;display:block;margin-bottom:10px}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;padding:80px 20px;background:#f9fafb}
+.service{background:#fff;padding:35px;border-radius:12px;border:2px solid #e5e7eb;transition:all .3s}
+.service:hover{border-color:#a855f7;transform:translateY(-5px);box-shadow:0 10px 30px rgba(168,85,247,.15)}
+.service .icon{font-size:2.5rem;margin-bottom:15px}
+.service h3{color:#1f2937;margin:0 0 12px;font-size:1.3rem}
+.service p{color:#4b5563;font-size:.95rem;line-height:1.6}
+.service ul{list-style:none;padding:0;margin:15px 0 0}
+.service li{padding:8px 0;color:#4b5563;font-size:.95rem;padding-left:24px;position:relative}
+.service li:before{content:"✓";position:absolute;left:0;color:#a855f7;font-weight:700}
+.process{background:#fff;padding:80px 20px}
+.process h2{text-align:center;font-size:2rem;margin:0 0 50px}
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;max-width:1100px;margin:0 auto}
+.step{background:#f9fafb;padding:30px;border-radius:8px;border-left:4px solid #a855f7}
+.step .num{background:#a855f7;color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:15px}
+.step h4{color:#1f2937;margin:0 0 10px}
+.step p{color:#6b7280;margin:0;font-size:.95rem}
+.warning{background:#fef3c7;padding:60px 20px;text-align:center}
+.warning h2{color:#92400e;font-size:2rem;margin:0 0 20px}
+.warning p{max-width:800px;margin:0 auto;color:#78350f;font-size:1.1rem;line-height:1.8}
+.final-cta{background:linear-gradient(135deg,#7c3aed 0%,#a855f7 100%);color:#fff;padding:80px 20px;text-align:center}
+.final-cta h2{font-size:2.2rem;margin:0 0 15px}
+.final-cta p{font-size:1.2rem;opacity:.95;margin:0 0 35px;max-width:600px;margin-left:auto;margin-right:auto}
+.final-cta .btn{display:inline-block;padding:18px 40px;background:#fff;color:#7c3aed;border-radius:8px;text-decoration:none;font-weight:700;font-size:1.1rem;transition:all .3s}
+.final-cta .btn:hover{transform:scale(1.05);box-shadow:0 10px 30px rgba(255,255,255,.3)}
+@media(max-width:768px){.hero h1{font-size:2rem}.hero .subtitle{font-size:1.1rem}.section{padding:60px 20px}.services-grid,.process-steps{grid-template-columns:1fr}}
+</style>
+
+<div class="hero">
+  <div class="container">
+    <h1>Don't Fight Legal Battles Alone</h1>
+    <p class="subtitle">Expert legal support for labour disputes, consumer cases, and MSME recovery—with our network of experienced advocates</p>
+  </div>
+</div>
+
+<div class="intro">
+  <div class="container">
+    <p>Business disputes don't stop just because you're busy running your company. Whether it's a wrongful termination case, a delayed payment from a client, or a consumer complaint, you need experienced legal professionals on your side.</p>
+    <div class="partners">
+      <strong>⚖️ Important Note:</strong>
+      All legal services are provided through our network of qualified advocates and legal consultants. We coordinate your case, but representation is handled by licensed professionals. Scope of work and fees are defined in a separate engagement letter before we start.
+    </div>
+  </div>
+</div>
+
+<div class="services-grid">
+  <div class="container" style="max-width:1100px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px">
+      <div class="service">
+        <div class="icon">⚖️</div>
+        <h3>Labour Court Matters</h3>
+        <p>When employee disputes escalate, you need someone who knows labour law inside-out.</p>
+        <ul>
+          <li>Wrongful termination cases</li>
+          <li>Industrial disputes & strikes</li>
+          <li>Wage & overtime disputes</li>
+          <li>PF/ESI tribunal matters</li>
+          <li>Retrenchment & layoff issues</li>
+          <li>Contract labor disputes</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">🏛️</div>
+        <h3>Consumer Court Cases</h3>
+        <p>Protect your business reputation when customers file complaints.</p>
+        <ul>
+          <li>Service deficiency cases</li>
+          <li>Product liability claims</li>
+          <li>Refund & compensation disputes</li>
+          <li>Unfair trade practice allegations</li>
+          <li>False advertising claims</li>
+          <li>Settlement negotiations</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">🏢</div>
+        <h3>MSME Payment Recovery</h3>
+        <p>Get your money back when clients delay payments beyond 45 days.</p>
+        <ul>
+          <li>MSME Samadhaan portal filings</li>
+          <li>Delayed payment recovery (with interest)</li>
+          <li>Vendor dispute resolution</li>
+          <li>Procurement-related grievances</li>
+          <li>Legal notice drafting & dispatch</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">📋</div>
+        <h3>Commercial Dispute Support</h3>
+        <p>IPC matters and contract disputes that affect your business.</p>
+        <ul>
+          <li>Cheque bounce cases (Section 138 NI Act)</li>
+          <li>Fraud & misrepresentation complaints</li>
+          <li>Breach of contract cases</li>
+          <li>Partnership & shareholder disputes</li>
+          <li>Property disputes (commercial)</li>
+          <li>Criminal complaint filing support</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">📄</div>
+        <h3>Legal Documentation</h3>
+        <p>Get it in writing—protect yourself before disputes happen.</p>
+        <ul>
+          <li>Employment contracts & offer letters</li>
+          <li>Vendor & supplier agreements</li>
+          <li>Non-Disclosure Agreements (NDA)</li>
+          <li>Service & consultancy agreements</li>
+          <li>Legal notice drafting</li>
+          <li>Document review & vetting</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">🤝</div>
+        <h3>Settlement Negotiation</h3>
+        <p>Most disputes settle out of court—we help you reach fair terms.</p>
+        <ul>
+          <li>Mediation & conciliation support</li>
+          <li>Settlement agreement drafting</li>
+          <li>Out-of-court resolution</li>
+          <li>Compromise & settlement deeds</li>
+          <li>Full & final settlement (F&F)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="process">
+  <div class="container">
+    <h2>How We Handle Your Legal Matter</h2>
+    <div class="process-steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h4>Initial Consultation</h4>
+        <p>Share your case details. We assess the situation and recommend the right legal expert from our network.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h4>Case Evaluation</h4>
+        <p>Our legal partner reviews your documents, evaluates chances of success, and provides a fee estimate.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h4>Engagement Letter</h4>
+        <p>We sign a clear agreement outlining scope of work, representation details, fees, and timelines.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <h4>Filing & Representation</h4>
+        <p>Our advocate files the case, handles court appearances, and keeps you updated at every stage.</p>
+      </div>
+      <div class="step">
+        <div class="num">5</div>
+        <h4>Resolution</h4>
+        <p>Whether through settlement or judgment, we ensure you get the best possible outcome.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="warning">
+  <div class="container">
+    <h2>⚠️ Transparency First</h2>
+    <p>We don't make false promises. Legal cases take time—some settle in weeks, others take months. We connect you with experienced advocates who will be honest about your case's strengths and weaknesses. Fees depend on case complexity, court jurisdiction, and advocate seniority. We provide an estimate upfront, with no hidden costs.</p>
+  </div>
+</div>
+
+<div class="final-cta">
+  <div class="container">
+    <h2>Get a Free Case Evaluation</h2>
+    <p>Talk to our legal coordinator. We'll assess your situation and connect you with the right advocate—no obligation.</p>
+    <a href="https://wa.me/918920152372?text=I%27d%20like%20to%20discuss%20a%20legal%20matter%20for%20my%20business" class="btn">Schedule Consultation →</a>
+  </div>
+</div>
 </Base>
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Service",
-  "serviceType":"Legal Support",
-  "provider":{"@type":"Organization","name":"Jaraut Consultancy Services"},
-  "areaServed":"Delhi NCR",
-  "url":"https://jcsworld.in/services/legal/"
-}
-</script>

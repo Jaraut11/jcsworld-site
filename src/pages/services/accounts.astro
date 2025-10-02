@@ -1,20 +1,255 @@
 ---
-import Base from "../../layouts/Base.astro";
+import Base from '../../layouts/Base.astro';
 ---
-<Base title="Accounts & Tax — JCS">
-  <main class="container">
-    <h1>Accounts & Tax</h1>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"Accounts & Tax","provider":{"@type":"Organization","name":"Jaraut Consultancy Services"},"areaServed":"Delhi NCR","url":"https://jcsworld.in/services/accounts/"}</script>
-    <p>Bookkeeping, GST/TDS returns, ITR & balance sheet preparation.</p>
-  </main>
+<Base title="Accounts & Tax Services - GST, TDS, ITR Filing | JCS Delhi-NCR">
+<style>
+*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:#1f2937;margin:0;background:#fafafa}
+.hero{background:linear-gradient(135deg,#1e40af 0%,#7c3aed 100%);color:#fff;padding:100px 20px 80px;text-align:center}
+.hero h1{font-size:2.8rem;margin:0 0 20px;font-weight:700;line-height:1.2}
+.hero .subtitle{font-size:1.3rem;opacity:.95;max-width:700px;margin:0 auto 30px;font-weight:400}
+.hero .stats{display:flex;gap:40px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.hero .stat{text-align:center}.hero .stat strong{display:block;font-size:2.5rem;font-weight:700;margin-bottom:5px}
+.hero .stat span{font-size:.95rem;opacity:.9}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+.section{padding:80px 20px}
+.problem{background:#fef2f2;padding:60px 20px}
+.problem h2{text-align:center;color:#991b1b;font-size:2rem;margin:0 0 40px}
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;max-width:1100px;margin:0 auto}
+.problem-item{background:#fff;padding:25px;border-radius:8px;border-left:4px solid #dc2626}
+.problem-item h4{color:#991b1b;margin:0 0 10px;font-size:1.1rem}
+.problem-item p{color:#4b5563;margin:0;font-size:.95rem}
+.solution{background:#fff;padding:80px 20px}
+.solution h2{text-align:center;font-size:2rem;margin:0 0 20px;color:#1f2937}
+.solution .intro{text-align:center;max-width:700px;margin:0 auto 50px;color:#6b7280;font-size:1.1rem}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}
+.service{background:#f9fafb;padding:35px;border-radius:12px;border:2px solid #e5e7eb;transition:all .3s}
+.service:hover{border-color:#3b82f6;transform:translateY(-5px);box-shadow:0 10px 30px rgba(59,130,246,.15)}
+.service .icon{font-size:2.5rem;margin-bottom:15px}
+.service h3{color:#1f2937;margin:0 0 12px;font-size:1.3rem}
+.service ul{list-style:none;padding:0;margin:15px 0 0}
+.service li{padding:8px 0;color:#4b5563;font-size:.95rem;padding-left:24px;position:relative}
+.service li:before{content:"✓";position:absolute;left:0;color:#10b981;font-weight:700}
+.pricing{background:#f9fafb;padding:80px 20px}
+.pricing h2{text-align:center;font-size:2rem;margin:0 0 50px}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:35px;max-width:1100px;margin:0 auto}
+.plan{background:#fff;padding:40px;border-radius:12px;border:3px solid #e5e7eb;position:relative;transition:all .3s}
+.plan:hover{border-color:#3b82f6;box-shadow:0 15px 40px rgba(59,130,246,.2)}
+.plan.featured{border-color:#3b82f6;box-shadow:0 10px 30px rgba(59,130,246,.15)}
+.plan.featured .badge{position:absolute;top:-12px;right:20px;background:#3b82f6;color:#fff;padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:600}
+.plan h3{font-size:1.5rem;margin:0 0 10px;color:#1f2937}
+.plan .price{font-size:2rem;color:#3b82f6;font-weight:700;margin:15px 0}
+.plan .price span{font-size:1rem;color:#6b7280;font-weight:400}
+.plan ul{list-style:none;padding:0;margin:25px 0}
+.plan li{padding:12px 0;border-bottom:1px solid #f3f4f6;color:#4b5563;padding-left:28px;position:relative}
+.plan li:before{content:"✓";position:absolute;left:0;color:#10b981;font-weight:700;font-size:1.2rem}
+.plan li:last-child{border:0}
+.plan .cta-btn{display:block;width:100%;padding:16px;background:#3b82f6;color:#fff;text-align:center;border-radius:8px;text-decoration:none;font-weight:600;margin-top:25px;transition:background .3s}
+.plan .cta-btn:hover{background:#2563eb}
+.social-proof{background:#fff;padding:80px 20px;text-align:center}
+.social-proof h2{font-size:2rem;margin:0 0 40px}
+.testimonial{max-width:800px;margin:0 auto;background:#f9fafb;padding:40px;border-radius:12px;border-left:4px solid #3b82f6}
+.testimonial p{font-size:1.15rem;color:#374151;font-style:italic;margin:0 0 20px;line-height:1.8}
+.testimonial .author{font-weight:600;color:#1f2937;font-style:normal}
+.testimonial .company{color:#6b7280;font-size:.9rem}
+.guarantee{background:#ecfdf5;padding:60px 20px;text-align:center}
+.guarantee h2{color:#065f46;font-size:2rem;margin:0 0 20px}
+.guarantee p{max-width:700px;margin:0 auto;color:#047857;font-size:1.1rem;line-height:1.8}
+.final-cta{background:linear-gradient(135deg,#1e40af 0%,#7c3aed 100%);color:#fff;padding:80px 20px;text-align:center}
+.final-cta h2{font-size:2.2rem;margin:0 0 15px}
+.final-cta p{font-size:1.2rem;opacity:.95;margin:0 0 35px;max-width:600px;margin-left:auto;margin-right:auto}
+.final-cta .btn{display:inline-block;padding:18px 40px;background:#fff;color:#1e40af;border-radius:8px;text-decoration:none;font-weight:700;font-size:1.1rem;transition:all .3s}
+.final-cta .btn:hover{transform:scale(1.05);box-shadow:0 10px 30px rgba(255,255,255,.3)}
+@media(max-width:768px){.hero h1{font-size:2rem}.hero .subtitle{font-size:1.1rem}.section{padding:60px 20px}.services-grid,.pricing-grid{grid-template-columns:1fr}}
+</style>
+
+<div class="hero">
+  <div class="container">
+    <h1>Stop Worrying About Compliance Penalties</h1>
+    <p class="subtitle">We handle your GST, TDS, ITR & bookkeeping so you can focus on growing your business—not filing returns</p>
+    <div class="stats">
+      <div class="stat"><strong>Zero</strong><span>Late Filing Penalties</span></div>
+      <div class="stat"><strong>₹50K+</strong><span>Avg. Saved Per Year</span></div>
+      <div class="stat"><strong>48 Hours</strong><span>Onboarding Time</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="problem">
+  <h2>Are You Losing Sleep Over These Issues?</h2>
+  <div class="problem-grid">
+    <div class="problem-item">
+      <h4>Missed GST/TDS Deadlines</h4>
+      <p>Late fees pile up. ₹200/day adds up to ₹6,000/month in penalties alone.</p>
+    </div>
+    <div class="problem-item">
+      <h4>Messy Books During Audits</h4>
+      <p>Scrambling to find invoices and receipts when the auditor arrives.</p>
+    </div>
+    <div class="problem-item">
+      <h4>Cash Flow Confusion</h4>
+      <p>Not knowing your real profitability until tax season hits.</p>
+    </div>
+    <div class="problem-item">
+      <h4>TDS Mismatch Notices</h4>
+      <p>Income tax notices for TDS not matching—costly to fix later.</p>
+    </div>
+    <div class="problem-item">
+      <h4>No Time for Bookkeeping</h4>
+      <p>You're running a business, not doing data entry all weekend.</p>
+    </div>
+    <div class="problem-item">
+      <h4>Overpaying Taxes</h4>
+      <p>Missing legitimate deductions because records aren't organized.</p>
+    </div>
+  </div>
+</div>
+
+<div class="solution">
+  <div class="container">
+    <h2>How We Fix This (Without Adding to Your Workload)</h2>
+    <p class="intro">You send us your bills once a month. We handle everything else—bookkeeping, GST, TDS, ITR, and year-end statements. Audit-ready books, on time, every time.</p>
+    
+    <div class="services-grid">
+      <div class="service">
+        <div class="icon">📊</div>
+        <h3>Monthly Bookkeeping</h3>
+        <ul>
+          <li>Daily transaction recording in Tally/QuickBooks</li>
+          <li>Bank reconciliation (catch errors early)</li>
+          <li>Expense categorization for tax savings</li>
+          <li>Monthly P&L statement (know your profit)</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">📄</div>
+        <h3>GST Returns (GSTR-1, 3B)</h3>
+        <ul>
+          <li>Monthly/quarterly filing (never miss a deadline)</li>
+          <li>Input tax credit maximization</li>
+          <li>Invoice matching & reconciliation</li>
+          <li>GST notices handled for you</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">💰</div>
+        <h3>TDS Compliance</h3>
+        <ul>
+          <li>Quarterly TDS return filing (24Q, 26Q, 27Q)</li>
+          <li>TDS payment tracking & reminders</li>
+          <li>Form 16/16A preparation</li>
+          <li>TDS mismatch resolution</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">📋</div>
+        <h3>Income Tax Returns (ITR)</h3>
+        <ul>
+          <li>Annual ITR filing for business & directors</li>
+          <li>Advance tax calculation (avoid interest)</li>
+          <li>Tax-saving strategies (Section 80C, 80D, etc.)</li>
+          <li>IT notice response & liaison</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">🔍</div>
+        <h3>Audit Support</h3>
+        <ul>
+          <li>Tax audit (44AB) coordination</li>
+          <li>GST audit documentation</li>
+          <li>Auditor queries handled</li>
+          <li>Compliance checklist preparation</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">📈</div>
+        <h3>Year-End Financials</h3>
+        <ul>
+          <li>Balance sheet & P&L preparation</li>
+          <li>Cash flow statement</li>
+          <li>Director's report (for pvt. ltd.)</li>
+          <li>ROC annual filing support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pricing">
+  <div class="container">
+    <h2>Simple, Transparent Pricing</h2>
+    <div class="pricing-grid">
+      <div class="plan">
+        <h3>Compliance Starter</h3>
+        <div class="price">₹4,999–₹7,999<span>/month</span></div>
+        <ul>
+          <li>Monthly GST returns (GSTR-1, 3B)</li>
+          <li>Basic bookkeeping (up to 50 entries/month)</li>
+          <li>Due date reminders (WhatsApp + Email)</li>
+          <li>Email & phone support</li>
+        </ul>
+        <a href="https://wa.me/918920152372?text=I%27m%20interested%20in%20the%20Compliance%20Starter%20plan" class="cta-btn">Get Started →</a>
+      </div>
+
+      <div class="plan featured">
+        <span class="badge">Most Popular</span>
+        <h3>Accounts & ITR Plus</h3>
+        <div class="price">₹9,999–₹19,999<span>/month</span></div>
+        <ul>
+          <li>Everything in Starter, plus:</li>
+          <li>Complete bookkeeping (unlimited entries)</li>
+          <li>GST + TDS returns (all quarters)</li>
+          <li>Quarterly review call</li>
+          <li>Annual ITR filing (business + 2 directors)</li>
+          <li>Balance sheet & P&L</li>
+          <li>Dedicated account manager</li>
+        </ul>
+        <a href="https://wa.me/918920152372?text=I%27d%20like%20a%20quote%20for%20Accounts%20%26%20ITR%20Plus" class="cta-btn">Request Quote →</a>
+      </div>
+
+      <div class="plan">
+        <h3>Full-Service CFO</h3>
+        <div class="price">₹24,999+<span>/month</span></div>
+        <ul>
+          <li>Everything in Plus, plus:</li>
+          <li>Weekly financial review</li>
+          <li>Cash flow forecasting</li>
+          <li>Budgeting & expense control</li>
+          <li>Tax planning strategies</li>
+          <li>Audit representation</li>
+          <li>Priority support (24-hour response)</li>
+        </ul>
+        <a href="https://wa.me/918920152372?text=I%27d%20like%20to%20discuss%20the%20Full-Service%20CFO%20package" class="cta-btn">Talk to Expert →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="social-proof">
+  <div class="container">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial">
+      <p>"JCS saved us over ₹80,000 last year by catching TDS errors we didn't even know about. Their monthly reports help us make better inventory decisions. Best decision we made."</p>
+      <div class="author">Rajesh Kumar</div>
+      <div class="company">Manufacturing Unit, Mayapuri</div>
+    </div>
+  </div>
+</div>
+
+<div class="guarantee">
+  <h2>Our Zero-Penalty Guarantee</h2>
+  <p>If we miss a filing deadline and you incur late fees, we cover the penalty. That's how confident we are in our systems.</p>
+</div>
+
+<div class="final-cta">
+  <div class="container">
+    <h2>Get Audit-Ready Books in 48 Hours</h2>
+    <p>Free compliance audit included. We'll review your last 6 months and show you exactly where you're losing money.</p>
+    <a href="https://wa.me/918920152372?text=I%27d%20like%20a%20free%20compliance%20audit%20for%20my%20business" class="btn">Book Free Audit →</a>
+  </div>
+</div>
 </Base>
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Service",
-  "serviceType":"Accounts & Tax",
-  "provider":{"@type":"Organization","name":"Jaraut Consultancy Services"},
-  "areaServed":"Delhi NCR",
-  "url":"https://jcsworld.in/services/accounts/"
-}
-</script>

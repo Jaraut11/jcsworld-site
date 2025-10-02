@@ -1,20 +1,224 @@
 ---
-import Base from "../../layouts/Base.astro";
+import Base from '../../layouts/Base.astro';
 ---
-<Base title="HR, Payroll & PF/ESI — JCS">
-  <main class="container">
-    <h1>HR, Payroll & PF/ESI</h1>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","serviceType":"HR, Payroll & PF/ESI","provider":{"@type":"Organization","name":"Jaraut Consultancy Services"},"areaServed":"Delhi NCR","url":"https://jcsworld.in/services/hr/"}</script>
-    <p>Registrations, payroll processing, PF/ESI filings, records maintenance and audits.</p>
-  </main>
+<Base title="HR, Payroll & PF/ESI Services | JCS Delhi-NCR">
+<style>
+*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:#1f2937;margin:0;background:#fafafa}
+.hero{background:linear-gradient(135deg,#059669 0%,#10b981 100%);color:#fff;padding:100px 20px 80px;text-align:center}
+.hero h1{font-size:2.8rem;margin:0 0 20px;font-weight:700;line-height:1.2}
+.hero .subtitle{font-size:1.3rem;opacity:.95;max-width:700px;margin:0 auto 30px;font-weight:400}
+.hero .stats{display:flex;gap:40px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.hero .stat{text-align:center}.hero .stat strong{display:block;font-size:2.5rem;font-weight:700;margin-bottom:5px}
+.hero .stat span{font-size:.95rem;opacity:.9}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+.section{padding:80px 20px}
+.problem{background:#fef2f2;padding:60px 20px}
+.problem h2{text-align:center;color:#991b1b;font-size:2rem;margin:0 0 40px}
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;max-width:1100px;margin:0 auto}
+.problem-item{background:#fff;padding:25px;border-radius:8px;border-left:4px solid #dc2626}
+.problem-item h4{color:#991b1b;margin:0 0 10px;font-size:1.1rem}
+.problem-item p{color:#4b5563;margin:0;font-size:.95rem}
+.solution{background:#fff;padding:80px 20px}
+.solution h2{text-align:center;font-size:2rem;margin:0 0 20px;color:#1f2937}
+.solution .intro{text-align:center;max-width:700px;margin:0 auto 50px;color:#6b7280;font-size:1.1rem}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}
+.service{background:#f9fafb;padding:35px;border-radius:12px;border:2px solid #e5e7eb;transition:all .3s}
+.service:hover{border-color:#10b981;transform:translateY(-5px);box-shadow:0 10px 30px rgba(16,185,129,.15)}
+.service .icon{font-size:2.5rem;margin-bottom:15px}
+.service h3{color:#1f2937;margin:0 0 12px;font-size:1.3rem}
+.service ul{list-style:none;padding:0;margin:15px 0 0}
+.service li{padding:8px 0;color:#4b5563;font-size:.95rem;padding-left:24px;position:relative}
+.service li:before{content:"✓";position:absolute;left:0;color:#10b981;font-weight:700}
+.pricing{background:#f9fafb;padding:80px 20px}
+.pricing h2{text-align:center;font-size:2rem;margin:0 0 50px}
+.pricing-card{background:#fff;padding:40px;border-radius:12px;border:3px solid#e5e7eb;max-width:600px;margin:0 auto 40px}
+.pricing-card h3{font-size:1.8rem;margin:0 0 20px;color:#1f2937}
+.pricing-card .price{font-size:2.5rem;color:#10b981;font-weight:700;margin:15px 0}
+.pricing-card .price span{font-size:1rem;color:#6b7280;font-weight:400}
+.pricing-card ul{list-style:none;padding:0;margin:25px 0}
+.pricing-card li{padding:12px 0;border-bottom:1px solid #f3f4f6;color:#4b5563;padding-left:28px;position:relative}
+.pricing-card li:before{content:"✓";position:absolute;left:0;color:#10b981;font-weight:700;font-size:1.2rem}
+.pricing-card .note{background:#f0fdf4;padding:20px;border-radius:8px;margin-top:25px;color:#166534;font-size:.95rem}
+.pricing-card .cta-btn{display:block;width:100%;padding:16px;background:#10b981;color:#fff;text-align:center;border-radius:8px;text-decoration:none;font-weight:600;margin-top:25px;transition:background .3s}
+.pricing-card .cta-btn:hover{background:#059669}
+.final-cta{background:linear-gradient(135deg,#059669 0%,#10b981 100%);color:#fff;padding:80px 20px;text-align:center}
+.final-cta h2{font-size:2.2rem;margin:0 0 15px}
+.final-cta p{font-size:1.2rem;opacity:.95;margin:0 0 35px;max-width:600px;margin-left:auto;margin-right:auto}
+.final-cta .btn{display:inline-block;padding:18px 40px;background:#fff;color:#059669;border-radius:8px;text-decoration:none;font-weight:700;font-size:1.1rem;transition:all .3s}
+.final-cta .btn:hover{transform:scale(1.05);box-shadow:0 10px 30px rgba(255,255,255,.3)}
+@media(max-width:768px){.hero h1{font-size:2rem}.hero .subtitle{font-size:1.1rem}.section{padding:60px 20px}.services-grid{grid-template-columns:1fr}}
+</style>
+
+<div class="hero">
+  <div class="container">
+    <h1>Stop Losing ₹2 Lakh+ Every Year in Payroll Errors</h1>
+    <p class="subtitle">PF/ESI penalties, wrong salary calculations, missing challans—we fix all of it for ₹35–70 per employee/month</p>
+    <div class="stats">
+      <div class="stat"><strong>100%</strong><span>On-Time PF/ESI Filing</span></div>
+      <div class="stat"><strong>₹35</strong><span>Per Employee/Month</span></div>
+      <div class="stat"><strong>2 Days</strong><span>Onboarding</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="problem">
+  <h2>These Mistakes Are Costing You Money Right Now</h2>
+  <div class="problem-grid">
+    <div class="problem-item">
+      <h4>Late PF/ESI Challans</h4>
+      <p>₹5,000–₹25,000 penalty per month. Inspectors show up unannounced.</p>
+    </div>
+    <div class="problem-item">
+      <h4>Wrong Salary Calculations</h4>
+      <p>Overtime errors, leave deductions wrong—employees complain, turnover increases.</p>
+    </div>
+    <div class="problem-item">
+      <h4>UAN Not Activated</h4>
+      <p>Employees can't withdraw PF. They blame you, not EPFO.</p>
+    </div>
+    <div class="problem-item">
+      <h4>No Professional Tax Filing</h4>
+      <p>₹10,000 penalty per month in Maharashtra/Karnataka. Adds up fast.</p>
+    </div>
+    <div class="problem-item">
+      <h4>Contract Labor Issues</h4>
+      <p>Labor dept visits, no proper records—risk of ₹1 lakh+ fine.</p>
+    </div>
+    <div class="problem-item">
+      <h4>Spending 2 Days on Payroll</h4>
+      <p>You're doing manual Excel calculations when you should be growing the business.</p>
+    </div>
+  </div>
+</div>
+
+<div class="solution">
+  <div class="container">
+    <h2>We Handle Payroll End-to-End (You Just Approve)</h2>
+    <p class="intro">Send us attendance, we calculate salaries, file PF/ESI, transfer to banks. You approve with one click. Done in 3 hours, not 3 days.</p>
+    
+    <div class="services-grid">
+      <div class="service">
+        <div class="icon">💼</div>
+        <h3>Monthly Payroll Processing</h3>
+        <ul>
+          <li>Salary calculation (basic + allowances + OT)</li>
+          <li>Statutory deductions (PF/ESI/PT/TDS)</li>
+          <li>Professional payslips (PDF via email/WhatsApp)</li>
+          <li>Bank transfer file (NEFT/RTGS ready)</li>
+          <li>Salary register for your records</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">🧾</div>
+        <h3>PF & ESI Compliance</h3>
+        <ul>
+          <li>Monthly challan generation & payment reminders</li>
+          <li>ECR filing (on time, every month)</li>
+          <li>UAN activation & Aadhaar seeding</li>
+          <li>PF withdrawal/transfer support</li>
+          <li>Form 5/10/19/31 preparation</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">🏢</div>
+        <h3>Registrations & Licenses</h3>
+        <ul>
+          <li>Shop & Establishment Act registration</li>
+          <li>Factory Act license (if manufacturing)</li>
+          <li>PF, ESI, Professional Tax registration</li>
+          <li>MSME/Udyam registration</li>
+          <li>Contract Labor License (CLRA)</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">📋</div>
+        <h3>HR Policies & Manuals</h3>
+        <ul>
+          <li>Employee handbook creation</li>
+          <li>Leave & attendance policy</li>
+          <li>Appraisal & increment policy</li>
+          <li>Offer letters & appointment letters</li>
+          <li>Exit management (F&F settlement)</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">🔍</div>
+        <h3>HR Compliance Audit</h3>
+        <ul>
+          <li>PF/ESI record verification</li>
+          <li>Wage register checks</li>
+          <li>Contract labor compliance audit</li>
+          <li>Statutory register maintenance</li>
+          <li>Inspection-ready documentation</li>
+        </ul>
+      </div>
+
+      <div class="service">
+        <div class="icon">👥</div>
+        <h3>Manpower Outsourcing</h3>
+        <ul>
+          <li>Temporary staffing (1 day to 12 months)</li>
+          <li>Contract labor supply</li>
+          <li>Recruitment support (skilled/unskilled)</li>
+          <li>Replacement guarantee (7 days)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pricing">
+  <div class="container">
+    <h2>Simple Per-Employee Pricing</h2>
+    
+    <div class="pricing-card">
+      <h3>Payroll & PF/ESI Package</h3>
+      <div class="price">₹35–70<span>/employee/month</span></div>
+      <ul>
+        <li>Complete payroll processing</li>
+        <li>Professional payslips (email/WhatsApp)</li>
+        <li>PF & ESI challan + ECR filing</li>
+        <li>Bank transfer file preparation</li>
+        <li>Salary register & MIS reports</li>
+        <li>Statutory records maintenance</li>
+        <li>Form 16 at year-end</li>
+        <li>Email & phone support</li>
+      </ul>
+      <div class="note">
+        <strong>Pricing depends on:</strong> Number of employees, PF/ESI applicability, attendance complexity (fixed vs variable pay)
+      </div>
+      <a href="https://wa.me/918920152372?text=I%27d%20like%20a%20quote%20for%20payroll%20services%20for%20__%20employees" class="cta-btn">Get Custom Quote →</a>
+    </div>
+
+    <div class="pricing-card">
+      <h3>One-Time Registrations</h3>
+      <div class="price">Pricing on Call</div>
+      <ul>
+        <li>Shop & Establishment Act</li>
+        <li>Factory Act license</li>
+        <li>PF registration (new establishment)</li>
+        <li>ESI registration</li>
+        <li>Professional Tax registration</li>
+        <li>MSME/Udyam registration</li>
+        <li>Contract Labor License (CL
+RA)</li>
+        <li>Import/Export license (IEC)</li>
+        <li>FSSAI license</li>
+      </ul>
+      <a href="https://wa.me/918920152372?text=I%27d%20like%20a%20quote%20for%20HR%20registrations" class="cta-btn">Get Quote →</a>
+    </div>
+  </div>
+</div>
+
+<div class="final-cta">
+  <div class="container">
+    <h2>Free Payroll Error Audit</h2>
+    <p>Send us your last 3 months' payroll. We'll find mistakes that are costing you money and show you exactly how to fix them.</p>
+    <a href="https://wa.me/918920152372?text=I%27d%20like%20a%20free%20payroll%20audit%20for%20my%20business" class="btn">Get Free Audit →</a>
+  </div>
+</div>
 </Base>
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Service",
-  "serviceType":"HR, Payroll & PF/ESI",
-  "provider":{"@type":"Organization","name":"Jaraut Consultancy Services"},
-  "areaServed":"Delhi NCR",
-  "url":"https://jcsworld.in/services/hr/"
-}
-</script>
