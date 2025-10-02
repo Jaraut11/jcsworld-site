@@ -1,14 +1,41 @@
-<header class="site-header">
-  <nav class="container nav" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:64px;">
-    <h2 style="margin:0;font-weight:800;font-size:1.05rem;"><a href="/" style="text-decoration:none;color:inherit">JCS — Accounts, HR & Compliance</a></h2>
-    <div style="display:flex;gap:1rem;align-items:center">
-      <a href="/" class="active">Home</a>
-      <a href="/services/">Services</a>
-      <a href="/pricing/">Pricing</a>
-      <a href="/about/">About</a>
-      <a href="/blog/">Blog</a>
-      <a href="/contact/">Contact</a>
-      <a href="/contact/" class="btn btn-ghost">Get Proposal</a>
-    </div>
+---
+---
+<style>
+.header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:999;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.nav{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;height:70px}
+.logo{font-size:1.5rem;font-weight:700;color:#1e40af;text-decoration:none}
+.menu{display:flex;gap:35px;align-items:center;list-style:none;margin:0;padding:0}
+.menu a{color:#374151;text-decoration:none;font-weight:500;transition:color .3s}
+.menu a:hover{color:#1e40af}
+.dropdown{position:relative}
+.dropdown-content{display:none;position:absolute;top:100%;left:0;background:#fff;min-width:220px;box-shadow:0 4px 12px rgba(0,0,0,.15);border-radius:8px;padding:10px 0;margin-top:10px}
+.dropdown:hover .dropdown-content{display:block}
+.dropdown-content a{display:block;padding:12px 20px;color:#374151}
+.dropdown-content a:hover{background:#f3f4f6;color:#1e40af}
+.cta-btn{background:#3b82f6;color:#fff!important;padding:10px 24px;border-radius:6px;transition:background .3s}
+.cta-btn:hover{background:#2563eb}
+.mobile-toggle{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer}
+@media(max-width:768px){.menu{display:none}.mobile-toggle{display:block}}
+</style>
+
+<header class="header">
+  <nav class="nav">
+    <a href="/" class="logo">JCS</a>
+    <button class="mobile-toggle">☰</button>
+    <ul class="menu">
+      <li><a href="/">Home</a></li>
+      <li class="dropdown">
+        <a href="#">Services ▾</a>
+        <div class="dropdown-content">
+          <a href="/services/accounts">Accounts & Tax</a>
+          <a href="/services/hr">HR & Payroll</a>
+          <a href="/services/legal">Legal Support</a>
+          <a href="/services/hospitality">Hospitality Staffing</a>
+        </div>
+      </li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/contact" class="cta-btn">Get Free Audit</a></li>
+    </ul>
   </nav>
 </header>
