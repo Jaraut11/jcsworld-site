@@ -1,37 +1,150 @@
 ---
-import Layout from '../layouts/Base.astro';
+import Base from '../layouts/Base.astro';
 ---
-<Layout title="About — JCS World">
-  <section class="section">
-    <p class="kicker">Who we are</p>
-    <h1 class="h1">Reliable, process-driven services for MSMEs.</h1>
-    <p class="lead">We help MSMEs stay compliant and focused on growth across Accounts, HR, Compliance and Legal—delivered with clarity and deadlines.</p>
-  </section>
+<Base title="About JCS - 15+ Years of Trusted Service | Delhi-NCR">
+<style>
+*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;color:#1f2937;margin:0;background:#fafafa}
+.hero{background:linear-gradient(135deg,#1e40af 0%,#7c3aed 100%);color:#fff;padding:100px 20px 80px;text-align:center}
+.hero h1{font-size:2.8rem;margin:0 0 20px;font-weight:700}
+.hero p{font-size:1.3rem;opacity:.95;max-width:700px;margin:0 auto}
+.container{max-width:900px;margin:0 auto;padding:80px 20px}
+.section{margin-bottom:80px}
+.section h2{font-size:2rem;color:#1f2937;margin:0 0 25px;text-align:center}
+.section p{font-size:1.1rem;color:#4b5563;line-height:1.8;margin-bottom:20px}
+.stats{background:#fff;padding:60px 40px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.08);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;text-align:center;margin:60px 0}
+.stat strong{display:block;font-size:3rem;color:#3b82f6;font-weight:700;margin-bottom:10px}
+.stat span{color:#6b7280;font-size:1rem}
+.values{background:#f9fafb;padding:60px 40px;border-radius:12px;margin:60px 0}
+.values h3{color:#1f2937;font-size:1.5rem;margin:0 0 30px}
+.values ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
+.values li{background:#fff;padding:25px;border-radius:8px;border-left:4px solid #3b82f6}
+.values li strong{display:block;color:#1f2937;margin-bottom:8px;font-size:1.1rem}
+.values li p{margin:0;color:#6b7280;font-size:.95rem}
+.cta{background:linear-gradient(135deg,#1e40af 0%,#7c3aed 100%);color:#fff;padding:80px 40px;text-align:center;border-radius:12px;margin:60px 0}
+.cta h2{font-size:2.2rem;margin:0 0 15px}
+.cta p{font-size:1.2rem;opacity:.95;margin:0 0 35px}
+.cta .btn{display:inline-block;background:#fff;color:#1e40af;padding:18px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:1.1rem;transition:all .3s}
+.cta .btn:hover{transform:scale(1.05);box-shadow:0 10px 30px rgba(255,255,255,.3)}
+@media(max-width:768px){.hero h1{font-size:2rem}.stats{grid-template-columns:1fr}.values ul{grid-template-columns:1fr}}
+</style>
 
-  <section class="section">
-    <div class="grid cols-3">
-      <article class="card reveal">
-        <h3>Vision</h3>
-        <p>To be a specialist, process-driven and most trusted outsource partner at competitive costs.</p>
-      </article>
-      <article class="card reveal">
-        <h3>Mission</h3>
-        <p>Deliver uninterrupted, reliable services as a preferred multi-service provider for MSMEs.</p>
-      </article>
-      <article class="card reveal">
-        <h3>Values</h3>
-        <p>Honesty • Integrity • Respect • Fairness • Responsibility • “Can-Do Together”.</p>
-      </article>
-    </div>
-  </section>
+<div class="hero">
+  <h1>15+ Years of Trusted Service</h1>
+  <p>From a small practice to Delhi-NCR's reliable partner for MSME compliance—our story is built on client success</p>
+</div>
 
-  <section class="section">
-    <h2 class="h1" style="font-size:2rem">How we work</h2>
-    <div class="grid cols-3">
-      <article class="card reveal"><h4>1) Discovery</h4><p>Understand entity type, locations, tools, and current gaps.</p></article>
-      <article class="card reveal"><h4>2) Onboarding</h4><p>Calendarize GST, PF/ESI & ROC due dates; set data cutoffs and SLAs.</p></article>
-      <article class="card reveal"><h4>3) Run</h4><p>Books, payroll, returns & filings on schedule; MIS to management.</p></article>
-      <article class="card reveal"><h4>4) Review</h4><p>Quarterly compliance review; zero-surprise dashboard and next-steps.</p></article>
+<div class="container">
+  <div class="section">
+    <h2>Who We Are</h2>
+    <p>
+      Jaraut Consultancy Services (JCS) began in 2010 with a simple mission: help small businesses stay compliant without the complexity and cost of hiring full-time specialists. What started as a two-person team handling GST returns has grown into a full-service consultancy supporting over 100 MSMEs across Delhi-NCR.
+    </p>
+    <p>
+      We're not a faceless corporation. We're a group of professionals—accountants, HR specialists, legal advisors, and hospitality coordinators—who've worked in the trenches. We understand the 11 PM panic when you realize a GST deadline is tomorrow. We've seen businesses get hit with ₹50,000+ penalties for missing PF filings. That's why we exist: to take that stress off your plate.
+    </p>
+    <p>
+      Our clients range from manufacturing units in Mayapuri to coaching institutes in Janakpuri, from tech startups to traditional family businesses. What they all have in common: they want to focus on growth, not paperwork.
+    </p>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <strong>15+</strong>
+      <span>Years Experience</span>
     </div>
-  </section>
-</Layout>
+    <div class="stat">
+      <strong>100+</strong>
+      <span>MSMEs Supported</span>
+    </div>
+    <div class="stat">
+      <strong>15+</strong>
+      <span>Industries Covered</span>
+    </div>
+    <div class="stat">
+      <strong>Zero</strong>
+      <span>Late Filing Penalties</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Our Vision</h2>
+    <p style="text-align:center;font-size:1.2rem;color:#1f2937;font-weight:500">
+      To be known as a specialist, process-driven, and most trusted outsource partner for MSMEs in Delhi-NCR—delivering compliance and support at competitive costs.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Our Mission</h2>
+    <p style="text-align:center;font-size:1.2rem;color:#1f2937;font-weight:500">
+      Excellence in Service. Establish JCS as the preferred provider of accounts, HR, legal, and hospitality services—delivering uninterrupted, reliable, and best-in-class support.
+    </p>
+  </div>
+
+  <div class="values">
+    <h3>Our Core Values</h3>
+    <ul>
+      <li>
+        <strong>Honesty</strong>
+        <p>We tell you what you need to hear, not what you want to hear. If your books are a mess, we'll say so—and fix it.</p>
+      </li>
+      <li>
+        <strong>Integrity</strong>
+        <p>No shortcuts. No under-the-table deals. We do things the right way, every time.</p>
+      </li>
+      <li>
+        <strong>Respect</strong>
+        <p>Your time is valuable. We respond within 24 hours, show up on time, and deliver what we promise.</p>
+      </li>
+      <li>
+        <strong>Fairness</strong>
+        <p>Transparent pricing. No hidden fees. You know exactly what you're paying for.</p>
+      </li>
+      <li>
+        <strong>Purposefulness</strong>
+        <p>Every service we offer solves a real problem. We don't sell you things you don't need.</p>
+      </li>
+      <li>
+        <strong>Can-Do Together</strong>
+        <p>Your success is our success. We're partners, not vendors.</p>
+      </li>
+      <li>
+        <strong>Responsibility</strong>
+        <p>If we miss a deadline, we own it—and we cover the penalty. That's our guarantee.</p>
+      </li>
+      <li>
+        <strong>Citizenship</strong>
+        <p>We believe in building stronger businesses that contribute to stronger communities.</p>
+      </li>
+      <li>
+        <strong>Caring</strong>
+        <p>We genuinely care about your business. When you're stressed, we step up.</p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Why Choose JCS?</h2>
+    <p>
+      There are hundreds of CA firms and HR consultants in Delhi. Here's what makes us different:
+    </p>
+    <p>
+      <strong>We're process-driven, not person-dependent.</strong> Your work doesn't stop if someone's on leave. We have systems, backups, and documented processes.
+    </p>
+    <p>
+      <strong>We specialize in MSMEs.</strong> We understand tight cash flows, seasonal businesses, and lean teams. Our pricing and services reflect that reality.
+    </p>
+    <p>
+      <strong>We're available when you need us.</strong> Yes, even on WhatsApp at 9 PM when you have a question about tomorrow's GST filing.
+    </p>
+    <p>
+      <strong>We've seen it all.</strong> From labor court cases to TDS mismatches to PF inspector visits—we've handled thousands of compliance situations and know how to navigate them.
+    </p>
+  </div>
+
+  <div class="cta">
+    <h2>Ready to Work Together?</h2>
+    <p>Let's talk about your business and how we can support your growth</p>
+    <a href="/contact" class="btn">Get in Touch</a>
+  </div>
+</div>
+</Base>

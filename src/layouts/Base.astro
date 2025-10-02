@@ -1,4 +1,6 @@
 ---
+import Footer from '../components/Footer.astro';
+
 const title = Astro.props.title || "JCS - Accounts, HR & Compliance for MSMEs | Delhi-NCR";
 const description = Astro.props.description || "Complete GST, TDS, ITR, Payroll, PF/ESI, Legal & Hospitality services for businesses in Delhi-NCR. 15+ years experience. Book free consultation.";
 const canonicalURL = new URL(Astro.url.pathname, 'https://www.jcsworld.in');
@@ -37,7 +39,7 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.jcsworld.in');
       "addressCountry": "IN"
     },
     "telephone": "+91-11-41745010",
-    "email": "hello@jcsworld.in",
+    "email": "jcsworld.in@gmail.com",
     "url": "https://www.jcsworld.in",
     "priceRange": "₹₹",
     "areaServed": "Delhi-NCR"
@@ -48,5 +50,6 @@ const canonicalURL = new URL(Astro.url.pathname, 'https://www.jcsworld.in');
 </head>
 <body>
   <slot />
+  <Footer />
 </body>
 </html>
