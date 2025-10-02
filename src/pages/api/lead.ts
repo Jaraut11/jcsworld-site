@@ -1,63 +1,74 @@
-import type { APIRoute } from 'astro';
+import type { APIContext } from 'astro';
 import { Resend } from 'resend';
 
+export const prerender = false; // ensure server function
+
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
+// keep this until your Resend domain is verified; then change to 'noreply@jcsworld.in'
+const FROM_OK = 'onboarding@resend.dev';
+const TO = 'jcsworld.in@gmail.com';
 
-export const POST: APIRoute = async ({ request, redirect }) => {
+function textField(v: unknown) {
+  return (typeof v === 'string' ? v.trim() : '');
+}
+
+export async function GET() {
+  return new Response('OK', { status: 200, headers: { 'content-type': 'text/plain;charset=UTF-8' } });
+}
+
+export async function POST({ request }: APIContext) {
   try {
-    const form = await request.formData();
-    const name = String(form.get('name') || '');
-    const email = String(form.get('email') || '');
-    const phone = String(form.get('phone') || '');
-    const company = String(form.get('company') || '');
-    const service = String(form.get('service') || '');
-    const employees = String(form.get('employees') || '');
-    const message = String(form.get('message') || '');
-    const botField = String(form.get('bot-field') || '');
+    const ct = request.headers.get('content-type') || '';
+    let fields: Record<string, string> = {};
 
-    // honeypot
-    if (botField) return new Response('ok', { status: 200 });
-
-    // basic validation
-    if (!name || !phone) {
-      return new Response('Missing required fields', { status: 400 });
+    if (ct.includes('application/json')) {
+      const body = await request.json().catch(() => ({}));
+      fields = Object.fromEntries(Object.entries(body).map(([k,v]) => [k, textField(v)]));
+    } else {
+      const form = await request.formData();
+      fields = Object.fromEntries([...form].map(([k, v]) => [k, textField(v)]));
     }
 
-    // send email to you
+    // spam honeypot — only block if it has a value
+    if (fields['bot-field']) {
+      return new Response('Forbidden', { status: 403 });
+    }
+
+    const name = fields.name || 'Website Lead';
+    const email = fields.email || '';
+    const phone = fields.phone || '';
+    const company = fields.company || '';
+    const service = fields.service || '';
+    const employees = fields.employees || '';
+    const message = fields.message || '';
+
+    const subject = `New Lead: ${name} ${company ? `(${company})` : ''}`;
+    const bodyText =
+`Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Company: ${company}
+Service: ${service}
+Employees: ${employees}
+
+Message:
+${message}
+`;
+
     await resend.emails.send({
-      from: 'JCS Website <noreply@jcsworld.in>',
-      to: ['jcsworld.in@gmail.com'],
-      subject: `New Lead: ${name} (${service || 'General'})`,
+      from: FROM_OK,
+      to: TO,
+      subject,
       reply_to: email || undefined,
-      text: [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Phone: ${phone}`,
-        `Company: ${company}`,
-        `Service: ${service}`,
-        `Employees: ${employees}`,
-        `Message: ${message}`,
-      ].join('\n'),
+      text: bodyText,
     });
 
-    // optional: send an autoresponder to the visitor
-    if (email) {
-      await resend.emails.send({
-        from: 'JCS Team <noreply@jcsworld.in>',
-        to: [email],
-        subject: 'Thanks! We got your request',
-        text: `Hi ${name || ''},\n\nThanks for contacting JCS. Our team will WhatsApp/call you shortly.\n\n— JCS (www.jcsworld.in)`,
-      });
-    }
-
-    // redirect to thank-you page
-    return redirect('/thank-you', 303);
+    return new Response(null, {
+      status: 303,
+      headers: { Location: '/thank-you' },
+    });
   } catch (err) {
-    console.error('Lead API error', err);
-    return new Response('Server error', { status: 500 });
+    console.error('Lead API error:', err);
+    return new Response('Internal Error', { status: 500 });
   }
-};
-
-// helpful for quick checks
-export const GET: APIRoute = async () =>
-  new Response('OK', { status: 200 });
+}
