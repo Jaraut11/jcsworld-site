@@ -1,3 +1,2 @@
-/*    /index.html   200
-http://www.jcsworld.in/*   https://jcsworld.in/:splat   301!
-https://www.jcsworld.in/*  https://jcsworld.in/:splat   301!
+http://jcsworld.in/* https://www.jcsworld.in/:splat 301!
+https://jcsworld.in/* https://www.jcsworld.in/:splat 301!
