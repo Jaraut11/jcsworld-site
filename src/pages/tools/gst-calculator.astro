@@ -1,0 +1,96 @@
+---
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>GST Late Fee & Interest Calculator | JCS</title>
+    <meta name="description" content="Estimate late fees and interest for GSTR-3B and GSTR-1 quickly.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; color:#111; }
+      main { max-width: 760px; margin: 0 auto; padding: 1.25rem; }
+      label { display:block; margin:.6rem 0 .3rem }
+      input, select { width:100%; padding:.7rem; border:1px solid #ddd; border-radius:8px }
+      button { margin-top:1rem; padding:.75rem 1rem; border:0; border-radius:10px; background:#111; color:#fff; cursor:pointer }
+      #result { margin-top:1rem; padding:1rem; background:#f7f7f7; border-radius:10px }
+      .hint { font-size:.9rem; opacity:.8 }
+      .row { display:grid; gap:1rem; grid-template-columns: 1fr 1fr; }
+      @media (max-width: 640px){ .row { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>GST Late Fee & Interest Calculator</h1>
+      <p class="hint">Illustrative estimate. Final dues depend on turnover, return period, and current CBIC notifications.</p>
+
+      <div class="row">
+        <div>
+          <label for="returnType">Return Type</label>
+          <select id="returnType" aria-label="Return Type">
+            <option value="GSTR-3B">GSTR-3B</option>
+            <option value="GSTR-1">GSTR-1</option>
+          </select>
+        </div>
+        <div>
+          <label for="daysLate">Days Late</label>
+          <input id="daysLate" type="number" min="0" value="10" inputmode="numeric"/>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="taxableValue">Taxable Value (₹)</label>
+          <input id="taxableValue" type="number" min="0" value="250000" inputmode="numeric"/>
+        </div>
+        <div>
+          <label for="interestRate">Annual Interest %</label>
+          <input id="interestRate" type="number" min="0" step="0.1" value="18"/>
+        </div>
+      </div>
+
+      <button id="calc">Calculate</button>
+      <div id="result" role="status" aria-live="polite"></div>
+      <p class="hint">Need a precise calculation for your case? <a href="/contact">Get a free audit →</a></p>
+    </main>
+
+    <script>
+      const perActCap = 5000; // illustrative cap; adjust as you update rules
+      const round2 = n => Math.round(n * 100) / 100;
+      document.getElementById('calc').addEventListener('click', () => {
+        const type = document.getElementById('returnType').value;
+        const days = Math.max(0, +document.getElementById('daysLate').value || 0);
+        const taxable = Math.max(0, +document.getElementById('taxableValue').value || 0);
+        const rate = Math.max(0, +document.getElementById('interestRate').value || 0);
+
+        // Simplified daily fee: 3B ≈ ₹50+₹50 (CGST+SGST); GSTR-1 ≈ ₹25+₹25 (common pattern).
+        const perDay = (type === 'GSTR-3B') ? 100 : 50; // total CGST+SGST
+        const lateFee = Math.min(days * perDay, perActCap * 2);
+        const interest = taxable * (rate / 100) * (days / 365);
+        const total = round2(lateFee + interest);
+
+        const html = `
+          <h2>Estimated Dues</h2>
+          <p><strong>Late Fee:</strong> ₹${round2(lateFee).toLocaleString('en-IN')}</p>
+          <p><strong>Interest:</strong> ₹${round2(interest).toLocaleString('en-IN')}</p>
+          <p><strong>Total:</strong> ₹${total.toLocaleString('en-IN')}</p>
+          <p class="hint">Share this with us on WhatsApp for exact dues:
+            <a id="waLink" href="#" target="_blank" rel="noopener">Send details →</a>
+          </p>`;
+        document.getElementById('result').innerHTML = html;
+
+        const msg = encodeURIComponent(
+`GST Calculator:
+Return: ${type}
+Days Late: ${days}
+Taxable: ₹${taxable.toLocaleString('en-IN')}
+Interest%: ${rate}
+Est Late Fee: ₹${round2(lateFee).toLocaleString('en-IN')}
+Est Interest: ₹${round2(interest).toLocaleString('en-IN')}
+Total: ₹${total.toLocaleString('en-IN')}`
+        );
+        const wa = document.getElementById('waLink');
+        if (wa) wa.href = 'https://wa.me/918920152372?text=' + msg; // put your WhatsApp number
+      });
+    </script>
+  </body>
+</html>

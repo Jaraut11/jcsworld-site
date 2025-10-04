@@ -313,25 +313,6 @@
         }
     </style>
 </head>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "JCS (Accounts, HR/Payroll & Legal)",
-  "url": "https://jcsworld.in/",
-  "areaServed": "Delhi NCR",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "503, Suneja Tower-2",
-    "addressLocality": "Janakpuri, Delhi",
-    "postalCode": "110058",
-    "addressCountry": "IN"
-  },
-  "telephone": "+918920152372",
-  "openingHours": "Mo-Fr 10:00-18:00",
-  "sameAs": ["https://wa.me/918920152372"]
-}
-</script>
 <body>
     <header>
         <div class="container">
@@ -808,25 +789,6 @@ EOFcat > index.html << 'EOF'
         }
     </style>
 </head>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "JCS (Accounts, HR/Payroll & Legal)",
-  "url": "https://jcsworld.in/",
-  "areaServed": "Delhi NCR",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "503, Suneja Tower-2",
-    "addressLocality": "Janakpuri, Delhi",
-    "postalCode": "110058",
-    "addressCountry": "IN"
-  },
-  "telephone": "+918920152372",
-  "openingHours": "Mo-Fr 10:00-18:00",
-  "sameAs": ["https://wa.me/918920152372"]
-}
-</script>
 <body>
     <header>
         <div class="container">

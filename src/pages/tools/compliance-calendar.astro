@@ -1,0 +1,127 @@
+---
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Compliance Calendar (ICS) | JCS</title>
+    <meta name="description" content="Generate and download a compliance calendar (.ics) for GST, TDS, PF/ESI.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; color:#111; }
+      main { max-width: 760px; margin: 0 auto; padding: 1.25rem; }
+      label { display:block; margin:.6rem 0 .3rem }
+      select, input { width:100%; padding:.7rem; border:1px solid #ddd; border-radius:8px }
+      button { margin-top:1rem; padding:.75rem 1rem; border:0; border-radius:10px; background:#111; color:#fff; cursor:pointer }
+      .row { display:grid; gap:1rem; grid-template-columns: 1fr 1fr; }
+      @media (max-width: 640px){ .row { grid-template-columns: 1fr; } }
+      .hint { font-size:.9rem; opacity:.8 }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Compliance Calendar</h1>
+      <p class="hint">Generate a simple .ics with common recurring deadlines. Import to Google/Apple Calendar.</p>
+
+      <div class="row">
+        <div>
+          <label for="industry">Industry</label>
+          <select id="industry">
+            <option>Manufacturing</option>
+            <option>Coaching/Education</option>
+            <option>Hospitality</option>
+            <option>Trading</option>
+            <option>IT/Services</option>
+          </select>
+        </div>
+        <div>
+          <label for="states"># of States of Operation</label>
+          <input id="states" type="number" min="1" value="1" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="year">Year</label>
+          <input id="year" type="number" min="2024" max="2100" />
+        </div>
+        <div>
+          <label for="returns">Returns</label>
+          <select id="returns" multiple size="4" aria-label="Returns">
+            <option selected>GST GSTR-3B</option>
+            <option selected>GST GSTR-1</option>
+            <option selected>TDS</option>
+            <option selected>PF/ESI</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="gen">Download .ics</button>
+      <p class="hint">Note: Generic recurring dates used (e.g., GSTR-3B ~ 20th, GSTR-1 ~ 11th, TDS ~ 7th, PF/ESI ~ 15th). Adjust as per current notifications.</p>
+    </main>
+
+    <script>
+      function pad(n){ return String(n).padStart(2,'0'); }
+      function icsDate(y,m,d){ return `${y}${pad(m)}${pad(d)}T090000`; } // 9 AM local
+      function fileDownload(name, content){
+        const blob = new Blob([content], {type: 'text/calendar;charset=utf-8'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = name;
+        document.body.appendChild(a); a.click(); a.remove();
+      }
+      function recurringDates(year, day){
+        const res = [];
+        for (let m=1; m<=12; m++){
+          const last = new Date(year, m, 0).getDate();
+          res.push(Math.min(day, last));
+        }
+        return res;
+      }
+
+      document.getElementById('year').value = new Date().getFullYear();
+
+      document.getElementById('gen').addEventListener('click', () => {
+        const industry = document.getElementById('industry').value;
+        const states = Math.max(1, +document.getElementById('states').value || 1);
+        const year = +document.getElementById('year').value || new Date().getFullYear();
+        const returns = Array.from(document.getElementById('returns').selectedOptions).map(o=>o.value);
+
+        const lines = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//JCS//Compliance Calendar//EN',
+          'CALSCALE:GREGORIAN',
+          'METHOD:PUBLISH'
+        ];
+
+        const templates = [
+          { key: 'GST GSTR-3B', day: 20, title: 'GST GSTR-3B Due', desc: 'Generic reminder — verify due date for your state/turnover.' },
+          { key: 'GST GSTR-1', day: 11, title: 'GST GSTR-1 Due', desc: 'Generic reminder — verify due date.' },
+          { key: 'TDS', day: 7, title: 'TDS Payment Due', desc: 'Generic reminder — verify due date.' },
+          { key: 'PF/ESI', day: 15, title: 'PF/ESI Payment Due', desc: 'Generic reminder — verify due date.' },
+        ].filter(t => returns.includes(t.key));
+
+        templates.forEach(t => {
+          const days = recurringDates(year, t.day);
+          days.forEach((d, idx) => {
+            const start = icsDate(year, idx+1, d);
+            const uid = `${Date.now()}-${t.key.replace(/\W+/g,'')}-${idx}@jcs`;
+            lines.push(
+              'BEGIN:VEVENT',
+              `UID:${uid}`,
+              `DTSTAMP:${icsDate(year, idx+1, d)}Z`,
+              `DTSTART;TZID=Asia/Kolkata:${start}`,
+              `DTEND;TZID=Asia/Kolkata:${start}`,
+              `SUMMARY:${t.title}`,
+              `DESCRIPTION:Industry: ${industry}; States: ${states}. ${t.desc}`,
+              'END:VEVENT'
+            );
+          });
+        });
+
+        lines.push('END:VCALENDAR');
+        fileDownload(`JCS-Compliance-${year}.ics`, lines.join('\r\n'));
+      });
+    </script>
+  </body>
+</html>

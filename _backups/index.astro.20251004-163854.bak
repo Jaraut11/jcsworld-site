@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import Testimonials from '../components/Testimonials.astro';
 import LeadMagnet from '../components/LeadMagnet.astro';
-import KPIBand from '../components/KPIBand.astro';
 ---
 <Base title="JCS - Accounts, HR & Compliance for MSMEs | Delhi-NCR">
 <style>
@@ -128,7 +127,3 @@ import KPIBand from '../components/KPIBand.astro';
 <LeadMagnet />
 
 </Base>
-
-<section class="home-kpis r">
-  <KPIBand />
-</section>

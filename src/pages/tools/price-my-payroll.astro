@@ -1,0 +1,109 @@
+---
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Price My Payroll | JCS</title>
+    <meta name="description" content="Get a transparent monthly payroll quote based on headcount and compliances.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; color:#111; }
+      main { max-width: 760px; margin: 0 auto; padding: 1.25rem; }
+      label { display:block; margin:.6rem 0 .3rem }
+      input, select { width:100%; padding:.7rem; border:1px solid #ddd; border-radius:8px }
+      button { margin-top:1rem; padding:.75rem 1rem; border:0; border-radius:10px; background:#111; color:#fff; cursor:pointer }
+      #result { margin-top:1rem; padding:1rem; background:#f7f7f7; border-radius:10px }
+      .row { display:grid; gap:1rem; grid-template-columns: 1fr 1fr; }
+      @media (max-width: 640px){ .row { grid-template-columns: 1fr; } }
+      .hint { font-size:.9rem; opacity:.8 }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Price My Payroll</h1>
+      <p class="hint">Illustrative pricing; final quote depends on scope & state-wise registrations.</p>
+
+      <div class="row">
+        <div>
+          <label for="emp">Employees</label>
+          <input id="emp" type="number" min="1" value="25" />
+        </div>
+        <div>
+          <label for="pfesi">PF &amp; ESI Coverage?</label>
+          <select id="pfesi">
+            <option value="both" selected>PF + ESI</option>
+            <option value="pf">PF only</option>
+            <option value="none">Neither</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="states"># of States of Operation</label>
+          <input id="states" type="number" min="1" value="1" />
+        </div>
+        <div>
+          <label for="contractorShare">Contractor/Temp Share (%)</label>
+          <input id="contractorShare" type="number" min="0" max="100" value="10" />
+        </div>
+      </div>
+
+      <button id="calc">Get Quote</button>
+      <div id="result" role="status" aria-live="polite"></div>
+
+      <p class="hint">Want this formalized? <a href="/contact">Request a written quote →</a></p>
+    </main>
+
+    <script>
+      const round0 = n => Math.round(n);
+      document.getElementById('calc').addEventListener('click', () => {
+        const emp = Math.max(1, +document.getElementById('emp').value || 1);
+        const pfesi = document.getElementById('pfesi').value;
+        const states = Math.max(1, +document.getElementById('states').value || 1);
+        const contractor = Math.min(100, Math.max(0, +document.getElementById('contractorShare').value || 0));
+
+        // Base per-employee banding (illustrative; match to your pricing)
+        let perEmp = 45; // ₹/employee/month baseline
+        if (emp < 20) perEmp = 60;
+        else if (emp <= 50) perEmp = 50;
+        else if (emp <= 200) perEmp = 40;
+        else perEmp = 35;
+
+        // Adjustments
+        if (pfesi === 'both') perEmp += 8;
+        if (pfesi === 'pf') perEmp += 4;
+
+        // Contractor handling overhead
+        perEmp += (contractor >= 30) ? 6 : (contractor >= 10 ? 3 : 0);
+
+        // Multi-state overhead
+        const multiState = (states > 1) ? (states - 1) * 500 : 0;
+
+        const monthly = round0(perEmp * emp + multiState);
+        const plan = monthly <= 5000 ? 'Basic' : (monthly <= 15000 ? 'Standard' : 'Plus');
+
+        document.getElementById('result').innerHTML = `
+          <h2>Estimated Monthly</h2>
+          <p><strong>₹${monthly.toLocaleString('en-IN')}</strong> — suggested plan: <strong>${plan}</strong></p>
+          <ul>
+            <li>Per-employee basis with compliance handling</li>
+            <li>Includes payroll run, payslips, and filings per scope</li>
+          </ul>
+          <p><a id="waQuote" target="_blank" rel="noopener">WhatsApp me this quote →</a></p>
+        `;
+        const msg = encodeURIComponent(
+`Payroll Quote:
+Employees: ${emp}
+PF/ESI: ${pfesi}
+States: ${states}
+Contractor%: ${contractor}
+Estimated Monthly: ₹${monthly.toLocaleString('en-IN')}
+Plan: ${plan}`
+        );
+        const wa = document.getElementById('waQuote');
+        if (wa) wa.href = 'https://wa.me/918920152372?text=' + msg; // put your WhatsApp number
+      });
+    </script>
+  </body>
+</html>

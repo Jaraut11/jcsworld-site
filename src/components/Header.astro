@@ -1,41 +1,44 @@
 ---
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/services/accounts', label: 'Accounts & Tax' },
+  { href: '/services/hr', label: 'HR & Payroll' },
+  { href: '/services/legal', label: 'Legal' },
+  { href: '/services/hospitality', label: 'Hospitality' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/contact', label: 'Contact' },
+];
 ---
 <style>
-.header{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:999;box-shadow:0 1px 3px rgba(0,0,0,.1)}
-.nav{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;height:70px}
-.logo{font-size:1.5rem;font-weight:700;color:#1e40af;text-decoration:none}
-.menu{display:flex;gap:35px;align-items:center;list-style:none;margin:0;padding:0}
-.menu a{color:#374151;text-decoration:none;font-weight:500;transition:color .3s}
-.menu a:hover{color:#1e40af}
-.dropdown{position:relative}
-.dropdown-content{display:none;position:absolute;top:100%;left:0;background:#fff;min-width:220px;box-shadow:0 4px 12px rgba(0,0,0,.15);border-radius:8px;padding:10px 0;margin-top:10px}
-.dropdown:hover .dropdown-content{display:block}
-.dropdown-content a{display:block;padding:12px 20px;color:#374151}
-.dropdown-content a:hover{background:#f3f4f6;color:#1e40af}
-.cta-btn{background:#3b82f6;color:#fff!important;padding:10px 24px;border-radius:6px;transition:background .3s}
-.cta-btn:hover{background:#2563eb}
-.mobile-toggle{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer}
-@media(max-width:768px){.menu{display:none}.mobile-toggle{display:block}}
+.header{position:sticky;top:0;z-index:50;background:#0f172a;color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.container{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 16px}
+.brand a{color:#fff;text-decoration:none;font-weight:800;letter-spacing:.2px}
+.nav{display:flex;gap:18px;align-items:center}
+.nav a{color:#cbd5e1;text-decoration:none;font-weight:600;font-size:.95rem}
+.nav a:hover{color:#fff}
+.wa{background:#22c55e;color:#052e12;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700}
+.hamb{display:none;background:transparent;border:0;color:#fff;font-size:1.6rem}
+@media(max-width:900px){
+  .nav{display:none;position:absolute;left:0;right:0;top:56px;background:#0f172a;border-bottom:1px solid rgba(255,255,255,.08);flex-direction:column;padding:14px}
+  .nav.show{display:flex}
+  .hamb{display:block}
+}
 </style>
 
 <header class="header">
-  <nav class="nav">
-    <a href="/" class="logo">JCS</a>
-    <button class="mobile-toggle">☰</button>
-    <ul class="menu">
-      <li><a href="/">Home</a></li>
-      <li class="dropdown">
-        <a href="#">Services ▾</a>
-        <div class="dropdown-content">
-          <a href="/services/accounts">Accounts & Tax</a>
-          <a href="/services/hr">HR & Payroll</a>
-          <a href="/services/legal">Legal Support</a>
-          <a href="/services/hospitality">Hospitality Staffing</a>
-        </div>
-      </li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/contact">Contact</a></li>
-      <li><a href="/contact" class="cta-btn">Get Free Audit</a></li>
-    </ul>
-  </nav>
+  <div class="container">
+    <div class="brand"><a href="/">JCS</a></div>
+    <button class="hamb" aria-label="Toggle menu" id="hamb">☰</button>
+    <nav class="nav" id="nav">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      <a class="wa" href="https://wa.me/918920152372?text=Hi%20JCS%20Team%2C%20I%27d%20like%20a%20free%20audit." onClick="window.gtag&&gtag('event','wa_click',{location:document.location.pathname,position:'header'});">WhatsApp</a>
+    </nav>
+  </div>
 </header>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=> {
+  const b=document.getElementById('hamb'); const n=document.getElementById('nav');
+  if(b&&n) b.addEventListener('click', ()=> n.classList.toggle('show'));
+});
+</script>

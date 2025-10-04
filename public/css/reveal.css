@@ -1,0 +1,9 @@
+/* Global staggered reveal (add class .r on elements; JS toggles .in) */
+.r { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+.r.in { opacity: 1; transform: translateY(0); }
+/* Minor stagger helper: set --i: 0,1,2... on children */
+.r[data-stagger] > * { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; transition-delay: calc(var(--i, 0) * 60ms); }
+.r.in[data-stagger] > * { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .r, .r[data-stagger] > * { transition: none !important; transform: none !important; opacity: 1 !important; }
+}

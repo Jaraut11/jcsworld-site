@@ -1,55 +1,60 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import FloatingWA from '../components/FloatingWA.astro';
+import SchemaLocalBusiness from '../components/SchemaLocalBusiness.astro';
 
-const title = Astro.props.title || "JCS - Accounts, HR & Compliance for MSMEs | Delhi-NCR";
-const description = Astro.props.description || "Complete GST, TDS, ITR, Payroll, PF/ESI, Legal & Hospitality services for businesses in Delhi-NCR. 15+ years experience. Book free consultation.";
-const canonicalURL = new URL(Astro.url.pathname, 'https://www.jcsworld.in');
+const {
+  title = 'Accounts, Payroll & Compliance for MSMEs | JCS Delhi-NCR',
+  description = 'Zero-penalty compliance. GST/TDS/ITR, payroll PF/ESI, legal coordination via partner advocates.',
+  ogTitle = undefined,
+  ogDescription = undefined,
+} = Astro.props;
+
+const SITE = Astro.site || new URL('https://www.jcsworld.in');
+const CANON = new URL(Astro.url.pathname, SITE).toString();
+
+// GA ID priority: env var GA_MEASUREMENT_ID (optional)
+const GA = import.meta.env.GA_MEASUREMENT_ID || '';
 ---
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <link rel="canonical" href={canonicalURL} />
-  
+  <link rel="canonical" href={CANON} />
+
   <meta property="og:type" content="website" />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:url" content={canonicalURL} />
-  <meta property="og:image" content="https://www.jcsworld.in/hero.jpg" />
-  
-  <script type="application/ld+json" is:inline>
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Jaraut Consultancy Services",
-    "image": "https://www.jcsworld.in/hero.jpg",
-    "description": "Complete GST, TDS, ITR, Payroll, PF/ESI, Legal & Hospitality services for businesses in Delhi-NCR. 15+ years experience.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "503, Suneja Tower-2, Distt. Centre",
-      "addressLocality": "Janakpuri",
-      "addressRegion": "Delhi",
-      "postalCode": "110058",
-      "addressCountry": "IN"
-    },
-    "telephone": "+91-11-41745010",
-    "email": "jcsworld.in@gmail.com",
-    "url": "https://www.jcsworld.in",
-    "priceRange": "₹₹",
-    "areaServed": "Delhi-NCR"
-  }
-  </script>
-  
-  <link rel="stylesheet" href="/global.css">
+  <meta property="og:title" content={ogTitle ?? title} />
+  <meta property="og:description" content={ogDescription ?? description} />
+  <meta property="og:url" content={CANON} />
+  <meta property="og:image" content="https://www.jcsworld.in/og-image.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={ogTitle ?? title} />
+  <meta name="twitter:description" content={ogDescription ?? description} />
+  <meta name="twitter:image" content="https://www.jcsworld.in/og-image.jpg" />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <SchemaLocalBusiness />
+
+  {GA && (
+    <>
+      <script async src={"https://www.googletagmanager.com/gtag/js?id="+GA}></script>
+      <script>
+        {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date()); gtag('config','${GA}');`}
+      </script>
+    </>
+  )}
 </head>
 <body>
   <Header />
   <slot />
   <Footer />
+  <FloatingWA />
 </body>
 </html>
