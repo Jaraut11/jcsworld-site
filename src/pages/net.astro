@@ -1,25 +1,6 @@
 ---
-/** Network / Deploy check
- * - Shows server-side request info (useful on Vercel)
- * - Also shows client-side UA/host so local dev isn't blank
- * - Add ?all=1 to print all request headers
- */
-const req = Astro.request;
-const url = req.url;
-const method = req.method;
-const showAll = new URL(url).searchParams.get('all') === '1';
-const rawHeaders = Array.from(req.headers.entries());
-function pick(key: string) {
-  const v = req.headers.get(key);
-  return v && v.trim() ? v : '—';
-}
-const rows = [
-  ['host', pick('host')],
-  ['x-forwarded-for', pick('x-forwarded-for')],
-  ['x-real-ip', pick('x-real-ip')],
-  ['x-vercel-ip-country', pick('x-vercel-ip-country')],
-  ['user-agent', pick('user-agent')],
-];
+/** Static-friendly Net Check (client-only, no headers) */
+const now = new Date().toISOString();
 ---
 <html lang="en">
   <head>
@@ -33,43 +14,17 @@ const rows = [
       code{background:#f5f5f7;padding:2px 6px;border-radius:6px}
       .card{border:1px solid #e5e7eb;border-radius:12px;padding:16px;margin:12px 0}
       .muted{opacity:.75}
-      table{border-collapse:collapse;width:100%}
-      th,td{border-bottom:1px solid #e5e7eb;padding:6px 8px;text-align:left;font-variant-numeric:tabular-nums}
-      .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-      a.btn{display:inline-block;border:1px solid currentColor;border-radius:10px;padding:8px 12px;text-decoration:none}
     </style>
   </head>
   <body>
     <h1>Network / Deploy Check</h1>
 
     <div class="card">
-      <div><strong>URL:</strong> <code>{url}</code></div>
-      <div><strong>Method:</strong> <code>{method}</code></div>
+      <div><strong>Build time (UTC):</strong> <code>{now}</code></div>
+      <div><strong>Environment:</strong> <code id="env">—</code></div>
     </div>
 
     <div class="card">
-      <h3 style="margin:0 0 8px">Server request headers (selected)</h3>
-      <table>
-        <thead><tr><th>Header</th><th>Value</th></tr></thead>
-        <tbody>
-          {rows.map(([k,v]) => <tr><td class="mono">{k}</td><td class="mono">{v}</td></tr>)}
-        </tbody>
-      </table>
-      {!showAll && <p class="muted" style="margin-top:8px">Add <code>?all=1</code> to see all headers.</p>}
-      {showAll && (
-        <>
-          <h4 style="margin:14px 0 6px">All headers</h4>
-          <table>
-            <thead><tr><th>Header</th><th>Value</th></tr></thead>
-            <tbody>
-              {rawHeaders.map(([k,v]) => <tr><td class="mono">{k}</td><td class="mono">{v}</td></tr>)}
-            </tbody>
-          </table>
-        </>
-      )}
-    </div>
-
-    <div class="card" id="client">
       <h3 style="margin:0 0 8px">Client (browser) info</h3>
       <div><strong>Location:</strong> <code id="cl-url"></code></div>
       <div><strong>Host:</strong> <code id="cl-host"></code></div>
@@ -80,15 +35,16 @@ const rows = [
     </div>
 
     <p>
-      <a class="btn" href="/thank-you?name=Test&email=test%40example.com&phone=9999999999">Test /thank-you with params</a>
+      <a class="btn" style="display:inline-block;border:1px solid currentColor;border-radius:10px;padding:8px 12px;text-decoration:none"
+         href="/thank-you?name=Test&email=test%40example.com&phone=9999999999">Test /thank-you with params</a>
     </p>
 
     <script is:inline>
-      // Fill client fallbacks so dev doesn’t look empty
       try {
-        document.getElementById('cl-url').textContent = window.location.href;
+        document.getElementById('env').textContent = (window.location.hostname.includes('vercel') || window.__VERCEL) ? 'Vercel' : 'Local';
+        document.getElementById('cl-url').textContent  = window.location.href;
         document.getElementById('cl-host').textContent = window.location.host || '—';
-        document.getElementById('cl-ua').textContent = navigator.userAgent || '—';
+        document.getElementById('cl-ua').textContent   = navigator.userAgent || '—';
       } catch(_) {}
     </script>
   </body>
