@@ -146,3 +146,6 @@ __backup/
 # backups
 _bak/
 *.bak.*
+_backups/
+*.bak
+*.bak.*
