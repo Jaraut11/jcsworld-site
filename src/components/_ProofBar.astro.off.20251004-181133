@@ -1,0 +1,18 @@
+---
+/** Simple 3-point proof bar */
+const items = [
+  { k: '15+ Years', v: 'Experience' },
+  { k: '100+ MSMEs', v: 'Supported' },
+  { k: 'Zero', v: 'Penalty Program' },
+];
+---
+<section class="section r" aria-label="Proof">
+  <div class="wrap" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:center">
+    {items.map(i => (
+      <div class="card" style="padding:14px;border:1px solid rgba(0,0,0,.12)">
+        <div style="font-weight:800;font-size:clamp(18px,2.6vw,22px)">{i.k}</div>
+        <div style="opacity:.75">{i.v}</div>
+      </div>
+    ))}
+  </div>
+</section>

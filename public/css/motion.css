@@ -1,0 +1,41 @@
+:root{
+  --r:16px;
+  --e: cubic-bezier(.22,.61,.36,1);
+  --brand: currentColor;
+  --mask-w: 56px;
+}
+/* edge masks for marquees / scrollers */
+.mask-lr{
+  -webkit-mask: linear-gradient(90deg, transparent, #000 var(--mask-w), #000 calc(100% - var(--mask-w)), transparent);
+          mask: linear-gradient(90deg, transparent, #000 var(--mask-w), #000 calc(100% - var(--mask-w)), transparent);
+}
+/* page top progress */
+.progressbar{position:fixed;left:0;top:0;height:3px;width:0;background:currentColor;z-index:9999;transform:translateZ(0)}
+/* magnetic buttons */
+.btn.mag{will-change: transform; transition: transform .18s var(--e)}
+/* scroll-snap slider (for testimonials) */
+.snap{scroll-snap-type:x mandatory;display:flex;overflow:auto;gap:16px;padding-bottom:6px}
+.snap>*{scroll-snap-align:center;min-width:min(86%,560px)}
+/* float WhatsApp bubble */
+.wa-float{position:fixed;right:16px;bottom:16px;z-index:9998}
+.wa-float a{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;background:#25D366;color:#fff;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.15)}
+.wa-float a svg{width:26px;height:26px}
+/* subtle parallax container */
+.parallax{position:relative;overflow:hidden;perspective:1000px}
+.parallax>[data-depth]{will-change: transform}
+/* gradient marquee track */
+.marq{overflow:hidden}
+.marq .track{display:flex;gap:clamp(28px,6vw,56px);width:max-content;animation:marq 24s linear infinite}
+.marq:hover .track{animation-play-state:paused}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* reveal utility (pairs with JS) */
+.r{opacity:0;transform:translateY(16px);transition:opacity .55s var(--e),transform .55s var(--e)}
+.r.in{opacity:1;transform:none}
+.r[data-stagger]>*{opacity:0;transform:translateY(16px);transition:opacity .55s var(--e),transform .55s var(--e);transition-delay:calc(var(--i,0)*60ms)}
+.r.in[data-stagger]>*{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .progressbar{display:none}
+  .marq .track{animation:none}
+  .btn.mag{transition:none}
+  .r,.r[data-stagger]>*{transition:none!important;opacity:1!important;transform:none!important}
+}

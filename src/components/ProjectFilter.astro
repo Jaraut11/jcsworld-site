@@ -1,0 +1,28 @@
+---
+const chips = [
+  { key: 'all', label: 'All' },
+  { key: 'gst', label: 'GST' },
+  { key: 'itr', label: 'ITR' },
+  { key: 'payroll', label: 'Payroll' }
+];
+const cards = [
+  { title:'SMB GST Cleanup', tags:'gst' },
+  { title:'ITR for Founders', tags:'itr' },
+  { title:'Payroll Rollout', tags:'payroll' },
+  { title:'GST + Payroll Stack', tags:'gst,payroll' },
+];
+---
+<section class="r" aria-label="Caseboards">
+  <div class="filter-chips">
+    {chips.map(c => <button type="button" data-filter={c.key}>{c.label}</button>)}
+  </div>
+  <div class="cards">
+    {cards.map(c => (
+      <article class="card r" data-tags={c.tags}>
+        <h4 style="margin:0 0 .35rem 0">{c.title}</h4>
+        <p style="opacity:.75;margin:0">Tags: {c.tags}</p>
+        <a class="magnetic" href="https://wa.me/918920152372?text=Hello%20JCS%20Team%20%E2%80%94%20I%E2%80%99d%20like%20to%20discuss%20your%20Accounts%2C%20HR%20%26%20Compliance%20services%20for%20my%20business.%20Could%20we%20schedule%20a%20quick%20consultation%3F" target="_blank" rel="noopener" style="display:inline-block;margin-top:.75rem">WhatsApp Us</a>
+      </article>
+    ))}
+  </div>
+</section>

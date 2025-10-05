@@ -5,6 +5,8 @@ const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 // Allow your own domain(s) only
 const ALLOWED_ORIGINS = new Set([
+  'http://localhost:4321',
+  'http://localhost:4000',
   'https://www.jcsworld.in',
   'https://jcsworld.in',
 ]);

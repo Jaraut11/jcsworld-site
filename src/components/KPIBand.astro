@@ -1,34 +1,15 @@
 ---
-/* Drop <KPIBand /> anywhere on a page */
+const { items = [
+  { label: 'Returns Filed', value: 1200 },
+  { label: 'Happy Clients', value: 350 },
+  { label: 'Years Experience', value: 12 }
+] } = Astro.props;
 ---
-<div class="kpis">
-  <div><span class="num" data-to="100">0</span>+ Clients</div>
-  <div><span class="num" data-to="4000000">0</span> Revenue Impact</div>
-  <div><span class="num" data-to="3.4" data-decimals="1">0</span>X ROI</div>
-</div>
-
-<script is:inline>
-const ease=t=>1-Math.pow(1-t,3);
-function animateNum(el,to,dur=1200){
-  const dec=+(el.dataset.decimals||0);
-  const start=performance.now();
-  function tick(now){
-    const p=Math.min(1,(now-start)/dur);
-    const val=(to*ease(p)).toFixed(dec);
-    el.textContent = dec ? val : Math.round(val).toLocaleString('en-IN');
-    if(p<1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){ animateNum(e.target, +e.target.dataset.to); io.unobserve(e.target); }
-  });
-},{threshold:.5});
-document.querySelectorAll('.num').forEach(n=>io.observe(n));
-</script>
-
-<style>
-.kpis{display:flex;gap:24px;flex-wrap:wrap;font-weight:600}
-.kpis .num{display:inline-block; min-width:3ch}
-</style>
+<section class="kpi-band r" aria-label="Key performance indicators">
+  {items.map((it) => (
+    <div class="kpi r">
+      <strong data-count={it.value}>0</strong>
+      <span>{it.label}</span>
+    </div>
+  ))}
+</section>

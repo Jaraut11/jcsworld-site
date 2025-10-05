@@ -1,0 +1,146 @@
+---
+import LogoMarquee from "../components/LogoMarquee.astro";
+import ProcessSticky from "../components/ProcessSticky.astro";
+import Base from '../layouts/Base.astro';
+import Testimonials from '../components/Testimonials.astro';
+import LeadMagnet from '../components/LeadMagnet.astro';
+import KPIBand from '../components/KPIBand.astro';
+---
+---
+---
+<Base title="JCS - Accounts, HR & Compliance for MSMEs | Delhi-NCR">
+<style>
+*{box-sizing:border-box}
+.hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:120px 20px 80px;text-align:center}
+.hero h1{font-size:3rem;margin:0 0 20px;font-weight:700}
+.hero p{font-size:1.3rem;opacity:.95;max-width:700px;margin:0 auto 40px}
+.hero-cta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:16px 35px;border-radius:8px;text-decoration:none;font-weight:600;font-size:1.1rem;transition:all .3s}
+.btn-primary{background:#fff;color:#667eea}
+.btn-primary:hover{transform:scale(1.05)}
+.btn-secondary{background:transparent;color:#fff;border:2px solid #fff}
+.btn-secondary:hover{background:rgba(255,255,255,.1)}
+.services{background:#fff;padding:80px 20px}
+.services h2{text-align:center;font-size:2rem;margin:0 0 50px;color:#1f2937}
+.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;max-width:1100px;margin:0 auto}
+.service-card{background:#f9fafb;padding:30px;border-radius:12px;border:1px solid #e5e7eb;transition:all .3s;text-align:center}
+.service-card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,.1)}
+.service-card .icon{font-size:2.5rem;margin-bottom:15px}
+.service-card h3{color:#1f2937;margin:0 0 10px;font-size:1.3rem}
+.service-card p{color:#6b7280;margin:0 0 15px;font-size:.95rem}
+.service-card a{color:#667eea;text-decoration:none;font-weight:600}
+.stats{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:60px 20px;text-align:center}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;max-width:900px;margin:0 auto}
+.stat strong{display:block;font-size:2.5rem;font-weight:700;margin-bottom:5px}
+.stat span{opacity:.9;font-size:.95rem}
+.process{background:#f9fafb;padding:80px 20px}
+.process h2{text-align:center;font-size:2rem;margin:0 0 50px;color:#1f2937}
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+.step{background:#fff;padding:25px;border-radius:8px;border-left:4px solid #667eea}
+.step h4{color:#667eea;margin:0 0 8px}
+.step p{color:#6b7280;margin:0;font-size:.95rem}
+@media(max-width:768px){.hero h1{font-size:2rem}.service-grid{grid-template-columns:1fr}}
+</style>
+
+<section class="hero">
+  <h1>Stop Paying ₹50,000+ in Compliance Penalties</h1>
+  <p>We handle your GST, PF/ESI, and payroll so you can focus on growing your business—not filing returns</p>
+  <div class="hero-cta">
+    <a href="/contact" class="btn btn-primary">Get Free Audit</a>
+    <a href="https://wa.me/918920152372" class="btn btn-secondary">WhatsApp Us</a>
+  </div>
+</section>
+
+<section data-stagger class="stats">
+  <div class="stats-grid">
+    <div class="stat">
+      <strong>15+</strong>
+      <span>Years Experience</span>
+    </div>
+    <div class="stat">
+      <strong>100+</strong>
+      <span>MSMEs Supported</span>
+    </div>
+    <div class="stat">
+      <strong>15+</strong>
+      <span>Industries Covered</span>
+    </div>
+    <div class="stat">
+      <strong>Zero</strong>
+      <span>Penalty Guarantee</span>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <h2>Our Services</h2>
+  <div class="service-grid">
+    <div class="service-card">
+      <div class="icon">📊</div>
+      <h3>Accounts & Tax</h3>
+      <p>Bookkeeping, GST/TDS returns, ITR & balance sheets.</p>
+      <a href="/services/accounts">Learn More →</a>
+    </div>
+    
+    <div class="service-card">
+      <div class="icon">🧾</div>
+      <h3>HR, Payroll & PF/ESI</h3>
+      <p>Registrations, payroll processing, PF/ESI filings.</p>
+      <a href="/services/hr">Learn More →</a>
+    </div>
+    
+    <div class="service-card">
+      <div class="icon">⚖️</div>
+      <h3>Legal Support</h3>
+      <p>Labour & commercial disputes with our legal partners.</p>
+      <a href="/services/legal">Learn More →</a>
+    </div>
+    
+    <div class="service-card">
+      <div class="icon">🧹</div>
+      <h3>Hospitality Staffing</h3>
+      <p>Canteen, housekeeping, catering staff for offices & industries.</p>
+      <a href="/services/hospitality">Learn More →</a>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <h2>How We Work</h2>
+  <div class="process-steps">
+    <div class="step">
+      <h4>Step 1: Quick Consultation</h4>
+      <p>We understand your business needs in a 20-minute call</p>
+    </div>
+    <div class="step">
+      <h4>Step 2: Fast Onboarding</h4>
+      <p>Quick and smooth onboarding in 48 hours</p>
+    </div>
+    <div class="step">
+      <h4>Step 3: Monthly Processing</h4>
+      <p>Regular processing, filings, and compliance tracking</p>
+    </div>
+    <div class="step">
+      <h4>Step 4: Detailed Reporting</h4>
+      <p>Monthly reports and quarterly review meetings</p>
+    </div>
+  </div>
+</section>
+
+<Testimonials /> -->
+
+<LeadMagnet /> -->
+
+</Base>
+
+<section class="home-kpis r">
+  <KPIBand /> -->
+</section>
+<!-- @logo-marquee -->
+<!-- <LogoMarquee logos={[{ src: "/logos/1.png"},{ src: "/logos/2.png"},{ src: "/logos/3.png"}]} /> -->
+<!-- /@logo-marquee -->
+
+<!-- @process-sticky -->
+<ProcessSticky /> -->
+<!-- /@process-sticky -->
+

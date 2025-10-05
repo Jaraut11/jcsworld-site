@@ -1,0 +1,137 @@
+## Base.astro — first 40 lines
+```astro
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWA from '../components/FloatingWA.astro';
+import SchemaLocalBusiness from '../components/SchemaLocalBusiness.astro';
+
+const {
+  title = 'Accounts, Payroll & Compliance for MSMEs | JCS Delhi-NCR',
+  description = 'Zero-penalty compliance. GST/TDS/ITR, payroll PF/ESI, legal coordination via partner advocates.',
+  ogTitle = undefined,
+  ogDescription = undefined,
+} = Astro.props;
+
+const SITE = Astro.site || new URL('https://www.jcsworld.in');
+const CANON = new URL(Astro.url.pathname, SITE).toString();
+
+// GA ID priority: env var GA_MEASUREMENT_ID (optional)
+const GA = import.meta.env.GA_MEASUREMENT_ID || '';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={CANON} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={ogTitle ?? title} />
+  <meta property="og:description" content={ogDescription ?? description} />
+  <meta property="og:url" content={CANON} />
+  <meta property="og:image" content="https://www.jcsworld.in/og-image.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={ogTitle ?? title} />
+  <meta name="twitter:description" content={ogDescription ?? description} />
+  <meta name="twitter:image" content="https://www.jcsworld.in/og-image.jpg" />
+
+  <link rel="icon" href="/favicon.ico" />
+```
+
+## index.astro — <style> + sections inside <Base>
+```astro
+  <style>
+    .hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:120px 20px 60px;text-align:center}
+    .hero h1{font-size:clamp(28px,6.4vw,56px);margin:0 0 14px;font-weight:800}
+    .hero p{font-size:1.15rem;opacity:.95;max-width:720px;margin:0 auto 24px}
+    .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn{display:inline-block;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:600;border:1px solid currentColor}
+    .btn-primary{background:#fff;color:#4f46e5}
+    .btn-secondary{background:transparent;color:#fff}
+    .stats{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;text-align:center}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:28px;max-width:920px;margin:0 auto}
+    .stat strong{display:block;font-size:2.4rem;font-weight:800}
+    .services{background:#fff}
+    .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1120px;margin:0 auto}
+    .service-card{background:#f9fafb;padding:24px;border-radius:12px;border:1px solid #e5e7eb;transition:transform .24s ease,box-shadow .24s ease}
+    .service-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(16,24,40,.08)}
+    .process{background:#f9fafb}
+    .process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;max-width:1120px;margin:0 auto}
+  </style>
+
+  <!-- HERO -->
+  <section class="hero r">
+    <h1>Stop <span data-scramble="Penalties|Interest|Anxiety">Penalties</span> — File On Time.</h1>
+    <p>We handle GST, PF/ESI and payroll so you can grow — not chase filings.</p>
+    <div class="hero-cta">
+      <a href="/contact" class="btn btn-primary mag">Get Free Audit</a>
+      <a href="https://wa.me/918920152372" class="btn btn-secondary mag" rel="noopener">WhatsApp Us</a>
+    </div>
+  </section>
+
+  <!-- KPIs -->
+  <section class="stats r" data-stagger>
+    <div class="stats-grid">
+      <div class="stat">
+        <strong><span class="count" data-target="15">0</span>+</strong>
+        <span>Years Experience</span>
+      </div>
+      <div class="stat">
+        <strong><span class="count" data-target="100">0</span>+</strong>
+        <span>MSMEs Supported</span>
+      </div>
+      <div class="stat">
+        <strong><span class="count" data-target="15">0</span>+</strong>
+        <span>Industries Covered</span>
+      </div>
+      <div class="stat">
+        <strong>Zero</strong>
+        <span>Penalty Guarantee</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services section r">
+    <h2 class="wrap" style="text-align:center;margin:0 0 28px">Our Services</h2>
+    <div class="service-grid wrap">
+      <article class="service-card r">
+        <h3>Accounts & Tax</h3>
+        <p>Bookkeeping, GST/TDS returns, ITR & balance sheets.</p>
+        <a href="/services/accounts">Learn More →</a>
+      </article>
+      <article class="service-card r">
+        <h3>HR, Payroll & PF/ESI</h3>
+        <p>Registrations, payroll processing, PF/ESI filings.</p>
+        <a href="/services/hr">Learn More →</a>
+      </article>
+      <article class="service-card r">
+        <h3>Legal Support</h3>
+        <p>Labour & commercial disputes with our legal partners.</p>
+        <a href="/services/legal">Learn More →</a>
+      </article>
+      <article class="service-card r">
+        <h3>Hospitality Staffing</h3>
+        <p>Canteen, housekeeping & catering staff for offices/industry.</p>
+        <a href="/services/hospitality">Learn More →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process section r" data-stagger>
+    <h2 class="wrap" style="text-align:center;margin:0 0 28px">How We Work</h2>
+    <div class="process-steps wrap">
+      <div class="step r"><h4>Step 1: Quick Consultation</h4><p>Understand needs in a 20-minute call.</p></div>
+      <div class="step r"><h4>Step 2: Fast Onboarding</h4><p>Smooth setup within 48 hours.</p></div>
+      <div class="step r"><h4>Step 3: Monthly Processing</h4><p>Filings & compliance tracking done.</p></div>
+      <div class="step r"><h4>Step 4: Reporting</h4><p>Monthly reports & quarterly reviews.</p></div>
+    </div>
+  </section>
+</Base>
+```
+

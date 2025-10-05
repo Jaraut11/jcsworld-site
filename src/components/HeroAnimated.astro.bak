@@ -1,0 +1,66 @@
+---
+const badge = "JCS — Accounts, HR & Compliance";
+const title = "Accounts, HR & Compliance for MSMEs in Delhi-NCR";
+const lead  = "GST, Payroll, PF/ESI, ITR, Legal Support — handled by one trusted team with 15+ years of experience.";
+---
+<section class="hero hero-anim reveal" style="background-image:url('/images/hero-poster.jpg')">
+  <div class="wrap">
+  <div class="layer l1"></div>
+  <div class="layer l2"></div>
+  <div class="grain"></div>
+  <div class="overlay" style="position:relative;z-index:1;max-width:980px;margin-inline:auto;padding:2.2rem 1rem">
+    <span class="badge">{badge}</span>
+    <h1>{title}</h1>
+    <p class="lead">{lead}</p>
+    <div class="cta">
+      <a href="/contact" class="btn btn-primary btn-magnetic mag">Book a Call</a>
+      <a href="https://wa.me/918920152372" class="btn btn-secondary btn-magnetic mag">WhatsApp Us</a>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- @hero-rotator -->
+<section class="hero r" aria-label="Hero">
+  <div class="wrap">
+  <div class="hero-wrap">
+    <h1 class="hero-title">Stop <span data-scramble="Penalties|Interest|Anxiety">Penalties</span>, File On Time.</h1>
+    <p class="hero-sub">GST, Payroll & Compliance handled — so you don’t stress.</p>
+    <div class="cta-row">
+      <a class="btn mag" href="https://wa.me/918920152372" rel="noopener">WhatsApp Us</a>
+      <a class="btn ghost mag" href="/tools/gst-calculator">Free Audit</a>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span></span></div>
+  </div>
+</section>
+<style>
+  .hero{padding:clamp(36px,8vw,96px) 0;text-align:center;position:relative}
+  .hero-title{font-size:clamp(28px,6.4vw,64px);line-height:1.05}
+  .hero-sub{margin-top:10px;opacity:.8}
+  .cta-row{display:inline-flex;gap:12px;margin-top:16px}
+  .btn{padding:10px 16px;border-radius:10px;border:1px solid currentColor;text-decoration:none}
+  .btn.ghost{background:transparent}
+  .mag{position:relative}
+  .scroll-cue{position:absolute;left:50%;bottom:12px;transform:translateX(-50%)}
+  .scroll-cue span{display:block;width:22px;height:36px;border:2px solid currentColor;border-radius:16px;position:relative;opacity:.6}
+  .scroll-cue span::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:8px;border-radius:2px;transform:translateX(-50%);background:currentColor;animation:cue 1.8s infinite}
+  @keyframes cue{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,10px)}}
+  @media(prefers-reduced-motion:reduce){.scroll-cue span::after{animation:none}}
+</style>
+<script is:inline>
+  const ro=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const words=['Penalties','Interest','Anxiety'];
+  const rot=document.currentScript.parentElement.querySelector('.rotator');
+  if(rot && !ro){let i=0; setInterval(()=>{i=(i+1)%words.length; rot.textContent=words[i];},1800);}
+  const m=document.currentScript.parentElement.querySelector('.mag');
+  if(m && matchMedia('(pointer:fine)').matches){
+    const clamp=(v,l,h)=>Math.max(Math.min(v,h),l);
+    m.addEventListener('mousemove',e=>{const b=m.getBoundingClientRect();
+      const x=clamp((e.clientX-b.left-b.width/2)/10,-20,20);
+      const y=clamp((e.clientY-b.top-b.height/2)/10,-20,20);
+      m.style.transform=`translate(${x}px,${y}px)`;});
+    m.addEventListener('mouseleave',()=>{m.style.transform='';});
+  }
+</script>
+<!-- /@hero-rotator -->

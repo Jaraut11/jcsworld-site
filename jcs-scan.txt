@@ -1,0 +1,27 @@
+#### HEAD
+54:  <link rel="stylesheet" href="/css/motion.css">
+55:  <script defer src="/js/motion.js"></script>
+57:  <link rel="stylesheet" href="/css/layout-basics.css">
+58:  <link rel="stylesheet" href="/css/jcs-tweaks.css">
+#### HERO SCRAMBLE
+src/components/HeroAnimated.astro:    <h1 class="hero-title">Stop <span data-scramble="Penalties|Interest|Anxiety">Penalties</span>, File On Time.</h1>
+src/pages/index.astro:    <h1>Stop <span data-scramble="Penalties|Interest|Anxiety">Penalties</span> — File On Time.</h1>
+#### MAG BUTTONS
+src/components/HeroAnimated.astro:      <a href="/contact" class="btn btn-primary btn-magnetic mag">Book a Call</a>
+src/components/HeroAnimated.astro:      <a href="https://wa.me/918920152372" class="btn btn-secondary btn-magnetic mag">WhatsApp Us</a>
+src/components/HeroAnimated.astro:      <a class="btn mag" href="https://wa.me/918920152372" rel="noopener">WhatsApp Us</a>
+src/components/HeroAnimated.astro:      <a class="btn ghost mag" href="/tools/gst-calculator">Free Audit</a>
+src/components/HeroVideo.astro:      <a href="/contact" class="btn btn-primary btn-magnetic mag">Book a Call</a>
+src/components/HeroVideo.astro:      <a href="https://wa.me/918920152372" class="btn btn-secondary btn-magnetic mag">WhatsApp Us</a>
+src/components/ContactForm.astro:      <a href="https://wa.me/918920152372" class="btn btn-secondary btn-magnetic mag">WhatsApp Us</a></div>
+src/pages/index.astro:      <a href="/contact" class="btn btn-primary mag mag mag">Get Free Audit</a>
+src/pages/index.astro:      <a href="https://wa.me/918920152372" class="btn btn-secondary mag mag mag" rel="noopener">WhatsApp Us</a>
+#### PRICING CHECK
+src/pages/tools/gst-calculator.astro:11:        <label>Tax Payable (₹)<br/><input type="number" id="tax" min="0" step="0.01" required></label><br/>
+src/pages/tools/gst-calculator.astro:25:        const perDay=50; // approx: ₹25+₹25
+src/pages/tools/gst-calculator.astro:29:          `<strong>Late Fee:</strong> ₹${lateFee.toFixed(2)}<br/>
+src/pages/tools/gst-calculator.astro:30:           <strong>Interest:</strong> ₹${interest.toFixed(2)}<br/>
+src/pages/tools/gst-calculator.astro:31:           <strong>Total:</strong> ₹${(lateFee+interest).toFixed(2)}`
+src/pages/tools/price-my-payroll.astro:28:          `<strong>Estimated Monthly:</strong> ₹${monthly.toLocaleString()}<br/>
+src/pages/tools/price-my-payroll.astro:29:           <strong>Estimated Yearly:</strong> ₹${yearly.toLocaleString()}`
+src/pages/about.astro:43:      We're not a faceless corporation. We're a group of professionals—accountants, HR specialists, legal advisors, and hospitality coordinators—who've worked in the trenches. We understand the 11 PM panic when you realize a GST deadline is tomorrow. We've seen businesses get hit with ₹50,000+ penalties for missing PF filings. That's why we exist: to take that stress off your plate.

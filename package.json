@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "link-audit": "bash scripts/link-audit.sh",
+    "link-audit:fast": "LINK_AUDIT_SKIP_BUILD=1 bash scripts/link-audit.sh"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",
@@ -22,5 +24,8 @@
     "@astrojs/mdx": "^4.3.6",
     "@astrojs/sitemap": "^3.6.0",
     "@astrojs/vercel": "^8.2.8"
+  },
+  "engines": {
+    "node": ">=20 <23"
   }
 }

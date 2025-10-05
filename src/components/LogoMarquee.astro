@@ -1,16 +1,15 @@
-<section class="logo-marquee section reveal">
-  <div class="container">
-    <div class="marquee-track">
-      <img src="/logos/1.svg" alt="Client 1" loading="lazy" decoding="async" />
-      <img src="/logos/2.svg" alt="Client 2" loading="lazy" decoding="async" />
-      <img src="/logos/3.svg" alt="Client 3" loading="lazy" decoding="async" />
-      <img src="/logos/4.svg" alt="Client 4" loading="lazy" decoding="async" />
-      <img src="/logos/5.svg" alt="Client 5" loading="lazy" decoding="async" />
-      <img src="/logos/1.svg" alt="Client 1" loading="lazy" decoding="async" />
-      <img src="/logos/2.svg" alt="Client 2" loading="lazy" decoding="async" />
-      <img src="/logos/3.svg" alt="Client 3" loading="lazy" decoding="async" />
-      <img src="/logos/4.svg" alt="Client 4" loading="lazy" decoding="async" />
-      <img src="/logos/5.svg" alt="Client 5" loading="lazy" decoding="async" />
-    </div>
+---
+const { logos = ['/img/logos/1.svg','/img/logos/2.svg','/img/logos/3.svg','/img/logos/4.svg','/img/logos/5.svg','/img/logos/6.svg'] } = Astro.props;
+---
+<div class="logo-marquee">
+  <div class="logos">
+    {logos.map((src: string) => <img src={src} alt="Client logo" />)}
+    {logos.map((src: string) => <img src={src} alt="Client logo" />)}
   </div>
-</section>
+</div>
+<style>
+.logo-marquee { overflow: hidden; padding: 2rem 0; }
+.logos { display: flex; gap: 3rem; animation: scroll 20s linear infinite; }
+.logos img { height: 48px; width: auto; filter: grayscale(1) opacity(0.6); }
+@keyframes scroll { to { transform: translateX(-50%); } }
+</style>

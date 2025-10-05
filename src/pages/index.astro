@@ -1,134 +1,237 @@
 ---
-import Base from '../layouts/Base.astro';
-import Testimonials from '../components/Testimonials.astro';
-import LeadMagnet from '../components/LeadMagnet.astro';
-import KPIBand from '../components/KPIBand.astro';
+import WhatsAppButton from "../components/WhatsAppButton.astro";
 ---
-<Base title="JCS - Accounts, HR & Compliance for MSMEs | Delhi-NCR">
-<style>
-*{box-sizing:border-box}
-.hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:120px 20px 80px;text-align:center}
-.hero h1{font-size:3rem;margin:0 0 20px;font-weight:700}
-.hero p{font-size:1.3rem;opacity:.95;max-width:700px;margin:0 auto 40px}
-.hero-cta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-block;padding:16px 35px;border-radius:8px;text-decoration:none;font-weight:600;font-size:1.1rem;transition:all .3s}
-.btn-primary{background:#fff;color:#667eea}
-.btn-primary:hover{transform:scale(1.05)}
-.btn-secondary{background:transparent;color:#fff;border:2px solid #fff}
-.btn-secondary:hover{background:rgba(255,255,255,.1)}
-.services{background:#fff;padding:80px 20px}
-.services h2{text-align:center;font-size:2rem;margin:0 0 50px;color:#1f2937}
-.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;max-width:1100px;margin:0 auto}
-.service-card{background:#f9fafb;padding:30px;border-radius:12px;border:1px solid #e5e7eb;transition:all .3s;text-align:center}
-.service-card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,.1)}
-.service-card .icon{font-size:2.5rem;margin-bottom:15px}
-.service-card h3{color:#1f2937;margin:0 0 10px;font-size:1.3rem}
-.service-card p{color:#6b7280;margin:0 0 15px;font-size:.95rem}
-.service-card a{color:#667eea;text-decoration:none;font-weight:600}
-.stats{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:60px 20px;text-align:center}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;max-width:900px;margin:0 auto}
-.stat strong{display:block;font-size:2.5rem;font-weight:700;margin-bottom:5px}
-.stat span{opacity:.9;font-size:.95rem}
-.process{background:#f9fafb;padding:80px 20px}
-.process h2{text-align:center;font-size:2rem;margin:0 0 50px;color:#1f2937}
-.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;max-width:1100px;margin:0 auto}
-.step{background:#fff;padding:25px;border-radius:8px;border-left:4px solid #667eea}
-.step h4{color:#667eea;margin:0 0 8px}
-.step p{color:#6b7280;margin:0;font-size:.95rem}
-@media(max-width:768px){.hero h1{font-size:2rem}.service-grid{grid-template-columns:1fr}}
-</style>
+---
+import Base from '../layouts/Base.astro';
+import HomeEnhancements from "../components/HomeEnhancements.astro"
+import LogoMarquee from "../components/LogoMarquee.astro"
+---
+<Base title="JCS – Accounts, HR & Compliance for MSMEs | Delhi-NCR">
+  <style>
+  /* --- JCS theme (brand-matched surfaces) --- */
+  :root{
+    --brand:#5b67e6;        /* matches hero purple */
+    --accent:#7c3aed;       /* secondary purple */
+    --ink:#0f172a;          /* headings */
+    --muted:#64748b;        /* body text */
+    --tint-1:#f5f3ff;       /* light lavender */
+    --tint-2:#eef2ff;       /* light periwinkle */
+  }
 
-<section class="hero">
-  <h1>Stop Paying ₹50,000+ in Compliance Penalties</h1>
-  <p>We handle your GST, PF/ESI, and payroll so you can focus on growing your business—not filing returns</p>
-  <div class="hero-cta">
-    <a href="/contact" class="btn btn-primary">Get Free Audit</a>
-    <a href="https://wa.me/918920152372" class="btn btn-secondary">WhatsApp Us</a>
-  </div>
-</section>
+  /* Sections on a soft brand tint */
+  .services{background:linear-gradient(180deg,var(--tint-1),var(--tint-2));}
+  .process{ background:linear-gradient(180deg,var(--tint-2),var(--tint-1)); }
 
-<section class="stats">
-  <div class="stats-grid">
-    <div class="stat">
-      <strong>15+</strong>
-      <span>Years Experience</span>
-    </div>
-    <div class="stat">
-      <strong>100+</strong>
-      <span>MSMEs Supported</span>
-    </div>
-    <div class="stat">
-      <strong>15+</strong>
-      <span>Industries Covered</span>
-    </div>
-    <div class="stat">
-      <strong>Zero</strong>
-      <span>Penalty Guarantee</span>
-    </div>
-  </div>
-</section>
+  /* Cards with a gentle near-white gradient and tinted borders */
+  .service{
+    background:linear-gradient(180deg,#ffffff 0%,#fbfaff 100%);
+    border-color:#e9d5ff; /* lavender border */
+  }
+  .service h3{color:var(--ink)}
+  .service p{color:var(--muted)}
+  .service a{color:var(--brand)}
+  .service .ic{
+    background:linear-gradient(135deg,#ede9fe,#e9d5ff);
+    color:#4338ca;
+  }
 
-<section class="services">
-  <h2>Our Services</h2>
-  <div class="service-grid">
-    <div class="service-card">
-      <div class="icon">📊</div>
-      <h3>Accounts & Tax</h3>
-      <p>Bookkeeping, GST/TDS returns, ITR & balance sheets.</p>
-      <a href="/services/accounts">Learn More →</a>
-    </div>
-    
-    <div class="service-card">
-      <div class="icon">🧾</div>
-      <h3>HR, Payroll & PF/ESI</h3>
-      <p>Registrations, payroll processing, PF/ESI filings.</p>
-      <a href="/services/hr">Learn More →</a>
-    </div>
-    
-    <div class="service-card">
-      <div class="icon">⚖️</div>
-      <h3>Legal Support</h3>
-      <p>Labour & commercial disputes with our legal partners.</p>
-      <a href="/services/legal">Learn More →</a>
-    </div>
-    
-    <div class="service-card">
-      <div class="icon">🧹</div>
-      <h3>Hospitality Staffing</h3>
-      <p>Canteen, housekeeping, catering staff for offices & industries.</p>
-      <a href="/services/hospitality">Learn More →</a>
-    </div>
-  </div>
-</section>
+  /* Number chips in the process timeline use brand gradient */
+  .n{
+    background:linear-gradient(135deg,#c7d2fe,#a78bfa);
+    color:#111;
+  }
+  .step{border-color:#ddd6fe}  /* softer, brand-tinted outline */
 
-<section class="process">
-  <h2>How We Work</h2>
-  <div class="process-steps">
-    <div class="step">
-      <h4>Step 1: Quick Consultation</h4>
-      <p>We understand your business needs in a 20-minute call</p>
-    </div>
-    <div class="step">
-      <h4>Step 2: Fast Onboarding</h4>
-      <p>Quick and smooth onboarding in 48 hours</p>
-    </div>
-    <div class="step">
-      <h4>Step 3: Monthly Processing</h4>
-      <p>Regular processing, filings, and compliance tracking</p>
-    </div>
-    <div class="step">
-      <h4>Step 4: Detailed Reporting</h4>
-      <p>Monthly reports and quarterly review meetings</p>
-    </div>
-  </div>
-</section>
+  /* Section titles with a subtle underline accent in brand hue */
+  .sec-title{color:var(--ink)}
+  .sec-title .u{ text-decoration: underline 3px rgba(92,62,235,.25); text-underline-offset:6px; }
+  /* --- JCS polish (services + process) --- */
+  .sec-title{font-size:clamp(24px,3.2vw,32px);text-align:center;margin:0 0 28px}
+  .sec-title .u{ text-decoration: underline 3px rgba(124,58,237,.25); text-underline-offset: 6px; }
+  .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:1120px;margin:0 auto}
+  .service{border:1px solid #e7e7ef;border-radius:14px;padding:22px;box-shadow:0 3px 12px rgba(16,24,40,.05);transition:transform .22s ease,box-shadow .22s ease}
+  .service:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(16,24,40,.10)}
+  .service .ic{width:42px;height:42px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ede9fe,#e9d5ff)}
+  .service h3{margin:10px 0 6px}
+  .service p{color:#6b7280;margin:0 0 10px}
+  .service a{color:#4f46e5;font-weight:600;text-decoration:none}
+  .process{background:#f9fafb}
+  .steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;max-width:1120px;margin:0 auto}
+  .step{border:1px solid #e7e7ef;border-radius:12px;padding:18px;position:relative}
+  .n{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#c7d2fe,#a78bfa);color:#111;font-weight:700}
+  .step h4{margin:10px 0 6px;color:#111}
+  .step p{margin:0;color:#6b7280}
+  @media(min-width:900px){ .steps{position:relative} .steps::before{content:"";position:absolute;left:calc(50% - 1px);top:0;bottom:0;width:2px;background:linear-gradient(#e5e7eb,#e5e7eb)} }
+    .hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:120px 20px 60px;text-align:center}
+    .hero h1{font-size:clamp(28px,6.4vw,56px);margin:0 0 14px;font-weight:800}
+    .hero p{font-size:1.15rem;opacity:.95;max-width:720px;margin:0 auto 24px}
+    .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn{display:inline-block;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:600;border:1px solid currentColor}
+    .btn-primary{color:#4f46e5}
+    .btn-secondary{background:transparent;color:#fff}
+    .stats{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;text-align:center}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:28px;max-width:920px;margin:0 auto}
+    .stat strong{display:block;font-size:2.4rem;font-weight:800}
+    .services{background:#fff}
+    .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1120px;margin:0 auto}
+    .service-card{padding:24px;border-radius:12px;border:1px solid #e5e7eb;transition:transform .24s ease,box-shadow .24s ease}
+    .service-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(16,24,40,.08)}
+    .process{background:#f9fafb}
+    .process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;max-width:1120px;margin:0 auto}
+  /* --- JCS brand overrides (services + process) --- */
+  :root{
+    --brand:#5b67e6;      /* primary purple (hero-adjacent) */
+    --accent:#7c3aed;     /* secondary purple */
+    --ink:#0f172a;        /* headings */
+    --muted:#475569;      /* body text */
+    --tint1:#f5f3ff;      /* light lavender */
+    --tint2:#eef2ff;      /* light periwinkle */
+  }
 
-<Testimonials />
+  /* Section surfaces on soft brand tints */
+  .services{ background:linear-gradient(180deg,var(--tint1),var(--tint2)); }
+  .process{  background:linear-gradient(180deg,var(--tint2),var(--tint1)); }
 
-<LeadMagnet />
+  /* Service cards: near-white gradient + lavender border/shadow */
+  .service-card{
+    background:linear-gradient(180deg,#ffffff 0%,#fbfaff 100%);
+    border:1px solid #e9d5ff; /* lavender */
+    box-shadow:0 12px 24px rgba(93,63,211,.06);
+  }
+  .service-card h3{ color:var(--ink); }
+  .service-card p{ color:var(--muted); }
+  .services a{ color:var(--brand); }
 
+  /* Emoji icon gets a brand-tinted badge */
+  .service-card .icon{
+    display:inline-grid; place-items:center;
+    width:44px;height:44px; margin:0 auto 10px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#ede9fe,#e9d5ff);
+    color:#4f46e5; font-size:1.3rem;
+  }
+
+  /* Process steps get soft gradient + tinted border */
+  .process .step{
+    background:linear-gradient(180deg,#fff,#f6f4ff);
+    border-left:4px solid #c4b5fd;
+    box-shadow:0 6px 18px rgba(16,24,40,.06);
+  }
+
+  /* Titles with subtle brand underline */
+  .services h2, .process h2{
+    color:var(--ink);
+    text-decoration:underline 3px rgba(92,62,235,.25);
+    text-underline-offset:6px;
+  }
+
+  </style>
+
+  <!-- HERO -->
+  <section class="hero r">
+    <div class="wrap">
+    <h1>Stop Losing Money Every Year in Payroll Errors</h1>
+    <p>We handle GST, PF/ESI and payroll so you can grow — not chase filings.</p>
+    <div class="hero-cta">
+      <a href="/contact" class="btn btn-primary mag mag mag">Get Free Audit</a>
+      <a href="https://wa.me/918920152372?text=Hi%20JCS%20Team%2C%20I%27d%20like%20a%20free%20audit." class="btn btn-secondary mag mag mag" rel="noopener">WhatsApp Us</a>
+    </div>
+    </div>
+  </section>
+
+  <!-- KPIs -->
+  <section class="stats r" data-stagger>
+    <div class="stats-grid">
+      <div class="stat">
+        <strong><span class="count" data-target="15">0</span>+</strong>
+        <span>Years Experience</span>
+      </div>
+      <div class="stat">
+        <strong><span class="count" data-target="100">0</span>+</strong>
+        <span>MSMEs Supported</span>
+      </div>
+      <div class="stat">
+        <strong><span class="count" data-target="15">0</span>+</strong>
+        <span>Industries Covered</span>
+      </div>
+      <div class="stat">
+        <strong>Zero</strong>
+        <span>Penalty Guarantee</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services section r">
+    <h2 class="wrap" style="text-align:center;margin:0 0 28px">Our Services</h2>
+    <div class="service-grid wrap">
+      <article class="service-card r fade-up">
+        <h3>Accounts & Tax</h3>
+        <p>Bookkeeping, GST/TDS returns, ITR & balance sheets.</p>
+        <a href="/services/accounts">Learn More →</a>
+      </article>
+      <article class="service-card r fade-up">
+        <h3>HR, Payroll & PF/ESI</h3>
+        <p>Registrations, payroll processing, PF/ESI filings.</p>
+        <a href="/services/hr">Learn More →</a>
+      </article>
+      <article class="service-card r fade-up">
+        <h3>Legal Support</h3>
+        <p>Labour & commercial disputes with our legal partners.</p>
+        <a href="/services/legal">Learn More →</a>
+      </article>
+      <article class="service-card r fade-up">
+        <h3>Hospitality Staffing</h3>
+        <p>Canteen, housekeeping & catering staff for offices/industry.</p>
+        <a href="/services/hospitality">Learn More →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process section r" data-stagger>
+    <h2 class="wrap" style="text-align:center;margin:0 0 28px">How We Work</h2>
+    <div class="process-steps wrap">
+      <div class="step r fade-up"><h4>Step 1: Quick Consultation</h4><p>Understand needs in a 20-minute call.</p></div>
+      <div class="step r fade-up"><h4>Step 2: Fast Onboarding</h4><p>Smooth setup within 48 hours.</p></div>
+      <div class="step r fade-up"><h4>Step 3: Monthly Processing</h4><p>Filings & compliance tracking done.</p></div>
+      <div class="step r fade-up"><h4>Step 4: Reporting</h4><p>Monthly reports & quarterly reviews.</p></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials section">
+    <h2 class="wrap" style="text-align:center;margin:0 0 28px">What Our Clients Say</h2>
+    <div class="testimonials-grid wrap">
+      <article class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"JCS saved us over significant amounts last year by catching TDS errors we didn't even know about. Their monthly reports help us make better inventory decisions. Best decision we made for our business."</p>
+        <strong>Rajesh Kumar</strong><br><small>Manufacturing Unit, Mayapuri</small>
+      </article>
+      <article class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Before JCS, we got hit with late PF penalties. Now everything is filed on time, every month. Their payroll service is worth every rupee—we get payslips by WhatsApp in 2 hours."</p>
+        <strong>Priya Sharma</strong><br><small>Coaching Institute, Janakpuri</small>
+      </article>
+      <article class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"We had a labour court case that could have cost us significantly. JCS connected us with an excellent advocate and the case settled favorably. Their legal network is solid."</p>
+        <strong>Amit Verma</strong><br><small>Restaurant Chain, Rohini</small>
+      </article>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="download-cta section">
+    <div class="wrap" style="max-width:700px;text-align:center">
+      <h2>Free Download: 2025 GST & Compliance Calendar</h2>
+      <p>Get our comprehensive compliance calendar with all GST, TDS, PF/ESI due dates for 2025.</p>
+      <a href="/contact" class="btn btn-primary">Download Free Checklist</a>
+    </div>
+  </section>
 </Base>
 
-<section class="home-kpis r">
-  <KPIBand />
-</section>
+
+
+<!-- WhatsApp CTA (auto-added) -->
+<WhatsAppButton />

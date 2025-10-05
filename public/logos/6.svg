@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="48" viewBox="0 0 180 48">
+  <rect x="1.5" y="1.5" width="177" height="45" rx="8" fill="#F1F5F9" stroke="#E2E8F0"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+        font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial"
+        font-size="14" fill="#475569">Client 6</text>
+</svg>

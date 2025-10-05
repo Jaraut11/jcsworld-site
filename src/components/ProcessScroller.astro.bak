@@ -1,0 +1,73 @@
+---
+/* Pinned scrollytelling section: left column sticks, right steps reveal as you scroll */
+---
+<section class="process reveal" aria-label="Our Process">
+  <div class="process__wrap">
+    <aside class="process__left">
+      <p class="kicker">How we work</p>
+      <h2 class="h1" style="font-size:2.2rem;margin:0">Our Process</h2>
+      <p class="lead" style="margin-top:.5rem">Clear steps, tight deadlines, zero surprises.</p>
+    </aside>
+
+    <div class="process__right">
+      <article class="step">
+        <h3>1) Discovery</h3>
+        <p>Understand your entity, locations, current tools and gaps. We gather prior filings & map data flows.</p>
+      </article>
+      <article class="step">
+        <h3>2) Onboarding</h3>
+        <p>Calendarize GST / PF-ESI / ROC due dates, set document cutoffs, define SLAs, and align on formats.</p>
+      </article>
+      <article class="step">
+        <h3>3) Run</h3>
+        <p>Monthly books, payroll, reconciliations, returns & filings—delivered on schedule with MIS to management.</p>
+      </article>
+      <article class="step">
+        <h3>4) Review</h3>
+        <p>Quarterly compliance review, dashboard, and next-steps so you’re always a step ahead.</p>
+      </article>
+    </div>
+  </div>
+
+  <style>
+    .process{padding:6rem 0}
+    .process__wrap{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:2rem}
+    .process__left{position:sticky; top:96px; align-self:start}
+    .process__right{display:grid;gap:8vh}
+    .step{border:1px solid #eee;border-radius:12px;padding:1.25rem;background:#fff}
+    @media (max-width:900px){
+      .process__wrap{grid-template-columns:1fr}
+      .process__left{position:static}
+    }
+  </style>
+
+  <script>
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    gsap.registerPlugin(ScrollTrigger);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      // Reveal each step when it enters
+      document.querySelectorAll('.process .step').forEach((el) => {
+        gsap.fromTo(el, { y: 40, autoAlpha: 0 }, {
+          y: 0, autoAlpha: 1, duration: 0.7, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 80%' }
+        });
+      });
+
+      // Subtle progress pin on the right column
+      const wrap = document.querySelector('.process__right');
+      if (wrap) {
+        ScrollTrigger.create({
+          trigger: wrap,
+          start: 'top top+=120',
+          end: 'bottom bottom-=120',
+          pin: false, // left column is CSS-sticky; we animate right content only
+          onUpdate: (self) => {
+            // optional: could update a progress bar later via self.progress
+          }
+        });
+      }
+    });
+  </script>
+</section>

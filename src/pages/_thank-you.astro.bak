@@ -1,0 +1,44 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+const title = 'Thank you — We’ve got your request';
+---
+<html lang="en">
+  <BaseHead {title} />
+  <body>
+    <main class="wrap r" style="max-width:720px;margin:48px auto;padding:0 16px;">
+      <h1 style="margin:0 0 8px">Thanks — we’ll be in touch shortly</h1>
+      <p id="who" style="opacity:.8;margin:0 0 16px"></p>
+
+      <section class="card" style="border:1px solid rgba(0,0,0,.12);border-radius:12px;padding:16px;margin:16px 0;">
+        <h2 style="margin:0 0 8px;font-size:1.15rem">Next steps</h2>
+        <ol style="margin:0;padding-left:18px;line-height:1.6">
+          <li>We’ll reply from <strong>jcsworld.in@gmail.com</strong> and <strong>+91 8920152372</strong>.</li>
+          <li>Want it faster? Ping us on WhatsApp.</li>
+          <li>Meanwhile, grab our quick checklist PDF.</li>
+        </ol>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+          <a class="btn" href="https://wa.me/918920152372" rel="noopener" style="padding:10px 14px;border:1px solid currentColor;border-radius:10px;text-decoration:none;">WhatsApp Us</a>
+          <a class="btn ghost" href="/checklist-2025.pdf" style="padding:10px 14px;border:1px solid currentColor;border-radius:10px;text-decoration:none;background:transparent;">Download Checklist</a>
+        </div>
+      </section>
+
+      <p style="opacity:.7;font-size:.95rem">If this page was opened by mistake, <a href="/">go back home</a>.</p>
+    </main>
+
+    <script is:inline>
+      // personalize from URL params if present (works for GET forms & 303 redirects that forward params)
+      try {
+        const p = new URLSearchParams(location.search);
+        const name = p.get('name') || p.get('full_name') || p.get('fullname') || p.get('n');
+        const email = p.get('email') || p.get('e');
+        const phone = p.get('phone') || p.get('mobile') || p.get('p');
+        const bits = [];
+        if (name) bits.push(name);
+        if (email) bits.push(`<${email}>`);
+        if (phone) bits.push(phone);
+        const who = document.getElementById('who');
+        if (bits.length && who) who.innerHTML = `We’ve received your details: <strong>${bits.join(' · ')}</strong>`;
+      } catch (_) {}
+    </script>
+  </body>
+</html>

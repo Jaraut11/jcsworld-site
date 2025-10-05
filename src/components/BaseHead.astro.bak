@@ -1,0 +1,61 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL } from '../consts';
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  ogImage = "/og-default.svg",
+  noindex = false
+} = Astro.props;
+
+const canonical = (Astro.site ? new URL(Astro.url.pathname, Astro.site) : new URL(Astro.url.pathname, 'https://jcsworld.in')).toString();
+
+const org = {
+  "@context": "https://schema.org",
+  "@type": ["Organization","LocalBusiness","ProfessionalService"],
+  "name": "Jaraut Consultancy Services (JCS)",
+  "url": "https://jcsworld.in/",
+  "logo": "https://jcsworld.in/favicon.ico",
+  "telephone": "+91-11-41745010",
+  "email": "jcsworld.in@gmail.com",
+  "sameAs": ["https://wa.me/918920152372"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "503, Suneja Tower-2, District Centre, Janakpuri",
+    "addressLocality": "New Delhi",
+    "postalCode": "110058",
+    "addressCountry": "IN"
+  },
+  "areaServed": ["Delhi NCR","India"],
+  "slogan": "Accounts, HR & Compliance for MSMEs in Delhi-NCR"
+};
+---
+<title>{title}</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex,nofollow" />}
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content="JCS" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<link rel="icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/global.css" />
+<link rel="stylesheet" href="/css/layout-basics.css" />
+<link rel="stylesheet" href="/css/motion.css" />
+<link rel="stylesheet" href="/css/jcs-tweaks.css" />
+<script defer src="/js/motion.js"></script>
+
+<script type="application/ld+json">{JSON.stringify(org)}</script>

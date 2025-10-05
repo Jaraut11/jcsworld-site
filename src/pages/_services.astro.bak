@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Base.astro';
+---
+<Layout title="Services — JCS World">
+  <section class="section">
+    <p class="kicker">What we do</p>
+    <h1 class="h1">One team for Accounts, Tax, Payroll & Compliance.</h1>
+    <p class="lead">We run your finance back-office end-to-end—books to filings—so you stay compliant without building a large in-house team.</p>
+  </section>
+
+  <section class="section">
+    <div class="grid cols-3">
+      <article class="card reveal" data-speed="0.6">
+        <h3>Accounting & Bookkeeping</h3>
+        <ul style="margin:0;padding-left:1.2rem;line-height:1.8">
+          <li>Monthly books in Tally/Zoho/QuickBooks</li>
+          <li>Bank, vendor & customer reconciliations</li>
+          <li>Monthly MIS; year-end financials</li>
+          <li>Audit support & schedules</li>
+        </ul>
+      </article>
+      <article class="card reveal" data-speed="0.8">
+        <h3>GST & Direct Tax</h3>
+        <ul style="margin:0;padding-left:1.2rem;line-height:1.8">
+          <li>GST registration & advisory</li>
+          <li>GSTR-1/GSTR-3B filing cadence with reminders</li>
+          <li>E-invoicing, e-way bills, ITC reconciliation</li>
+          <li>TDS challans/returns; ITR & notices</li>
+        </ul>
+      </article>
+      <article class="card reveal" data-speed="1.0">
+        <h3>HR & Payroll (PF/ESI)</h3>
+        <ul style="margin:0;padding-left:1.2rem;line-height:1.8">
+          <li>Payroll processing & payslips</li>
+          <li>PF/ESI registration, monthly returns & payments</li>
+          <li>HR policy/handbook and onboarding docs</li>
+          <li>HR audits & statutory registers</li>
+        </ul>
+      </article>
+      <article class="card reveal" data-speed="1.1">
+        <h3>ROC & Secretarial</h3>
+        <ul style="margin:0;padding-left:1.2rem;line-height:1.8">
+          <li>Annual ROC filings (AOC-4, MGT-7, DIR-3 KYC)</li>
+          <li>Event-based filings & registers</li>
+          <li>Board/AGM documentation</li>
+        </ul>
+      </article>
+      <article class="card reveal" data-speed="1.2">
+        <h3>Registrations & Licenses</h3>
+        <p>Shops & Establishments, Factory Act, FSSAI, Trade License, Fire & Pollution NOCs, MSME/Udyam, IEC, ISO and more.</p>
+      </article>
+      <article class="card reveal" data-speed="1.3">
+        <h3>Legal Support</h3>
+        <p>Guidance and representation for labour, consumer & MSME disputes in coordination with counsel.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section reveal" style="text-align:center">
+    <h2 class="h1" style="font-size:2rem">Not sure what you need?</h2>
+    <p class="lead" style="margin:0 auto 1rem">Book a 20-minute discovery call and we’ll map your calendar and deliverables.</p>
+    <a href="/contact/" class="btn">Talk to an expert</a>
+  </section>
+</Layout>

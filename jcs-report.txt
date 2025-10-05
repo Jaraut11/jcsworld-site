@@ -1,0 +1,1081 @@
+# JCS Site Diagnostics — 2025-10-04 19:18:04 IST
+
+────────────────────────────────────────────────────────
+## SYSTEM
+node: v18.20.8
+npm : 10.8.2
+astro: 
+   astro  v5.14.1
+
+────────────────────────────────────────────────────────
+## TREE (top 2 levels)
+```
+total 704
+drwxr-xr-x    5 hardikjaraut  staff     160  2 Oct 16:41 __backup
+drwxr-xr-x    3 hardikjaraut  staff      96 29 Sep 18:08 _backup_mdxfiles
+drwxr-xr-x   11 hardikjaraut  staff     352  4 Oct 16:38 _backups
+drwxr-xr-x   49 hardikjaraut  staff    1568  4 Oct 19:15 _bak
+drwxr-xr-x   31 hardikjaraut  staff     992  4 Oct 19:18 .
+drwxr-xr-x    3 hardikjaraut  staff      96 28 Sep 17:01 ..
+drwxr-xr-x    9 hardikjaraut  staff     288  4 Oct 19:15 .astro
+-rw-r--r--@   1 hardikjaraut  staff    6148 28 Sep 17:36 .DS_Store
+-rw-r--r--    1 hardikjaraut  staff    1808  2 Oct 23:29 .env
+-rw-r--r--    1 hardikjaraut  staff      40  2 Oct 23:05 .env.backup
+drwxr-xr-x   15 hardikjaraut  staff     480  4 Oct 17:41 .git
+-rw-r--r--    1 hardikjaraut  staff    2228  4 Oct 17:14 .gitignore
+drwxr-xr-x    4 hardikjaraut  staff     128 30 Sep 21:39 .netlify
+drwxr-xr-x    4 hardikjaraut  staff     128  4 Oct 17:39 .vercel
+-rw-r--r--    1 hardikjaraut  staff     184  3 Oct 17:40 astro.config.mjs
+drwxr-xr-x   35 hardikjaraut  staff    1120  4 Oct 19:15 dist
+-rw-r--r--    1 hardikjaraut  staff   28261  4 Oct 16:27 index.html
+-rw-r--r--    1 hardikjaraut  staff   27189  3 Oct 17:28 index.html.bak
+-rw-r--r--    1 hardikjaraut  staff     482  4 Oct 19:18 jcs-report.txt
+-rw-r--r--    1 hardikjaraut  staff    1065 28 Sep 17:01 LICENSE
+-rw-r--r--    1 hardikjaraut  staff     942 30 Sep 14:53 netlify.toml
+drwxr-xr-x  363 hardikjaraut  staff   11616  2 Oct 23:13 node_modules
+-rw-r--r--    1 hardikjaraut  staff  245904  3 Oct 17:40 package-lock.json
+-rw-r--r--    1 hardikjaraut  staff     555  2 Oct 23:14 package.json
+drwxr-xr-x    6 hardikjaraut  staff     192  3 Oct 16:27 partials
+drwxr-xr-x   17 hardikjaraut  staff     544  4 Oct 16:36 public
+-rw-r--r--    1 hardikjaraut  staff    3084  2 Oct 16:50 README.md
+drwxr-xr-x    6 hardikjaraut  staff     192  4 Oct 18:19 scripts
+drwxr-xr-x   12 hardikjaraut  staff     384 29 Sep 23:16 src
+-rw-r--r--    1 hardikjaraut  staff     166 28 Sep 17:01 tsconfig.json
+-rw-r--r--    1 hardikjaraut  staff      67  4 Oct 17:44 vercel.json
+
+src/src
+src/src/content
+src/src/content/blog
+src/src/styles
+src/src/components
+src/src/layouts
+src/src/scripts
+src/src/lib
+src/src/assets
+src/src/pages
+src/src/pages/tools
+src/src/pages/blog
+src/src/pages/api
+src/src/pages/services
+```
+
+────────────────────────────────────────────────────────
+
+### FILE: package.json
+```
+{
+  "name": "@example/blog",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.12",
+    "@studio-freight/lenis": "^1.0.42",
+    "astro": "^5.14.1",
+    "gsap": "^3.13.0",
+    "pdfkit": "^0.17.2",
+    "resend": "^6.1.2",
+    "sharp": "^0.34.3"
+  },
+  "devDependencies": {
+    "@astrojs/mdx": "^4.3.6",
+    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/vercel": "^8.2.8"
+  }
+}
+```
+
+### FILE: astro.config.mjs
+```
+import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
+
+export default defineConfig({
+  site: 'https://www.jcsworld.in',
+  integrations: [sitemap()],
+});
+```
+
+### FILE: vercel.json
+```
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist"
+}
+```
+
+### FILE: netlify.toml
+```
+[build]
+  command = "npm run build"
+  publish = "dist"
+  [build.environment]
+    NODE_VERSION = "18"
+
+# www → apex (http + https)
+[[redirects]]
+  from = "http://www.jcsworld.in/*"
+  to = "https://jcsworld.in/:splat"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://www.jcsworld.in/*"
+  to = "https://jcsworld.in/:splat"
+  status = 301
+  force = true
+
+# Cache rules
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/global.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/scripts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+```
+
+### MISSING: vite.config.*
+
+────────────────────────────────────────────────────────
+
+### FILE: src/components/BaseHead.astro
+```
+---
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL } from '../consts';
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  ogImage = "/og-default.svg",
+  noindex = false
+} = Astro.props;
+const canonical = `${SITE_URL}${Astro.url.pathname}`;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Jaraut Consultancy Services (JCS)",
+  "url": SITE_URL,
+  "logo": "/favicon.ico",
+  "sameAs": ["https://wa.me/918920152372"]
+};
+---
+<title>{title}</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex,nofollow" />}
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content="JCS" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<link rel="icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/global.css" />
+
+<script type="application/ld+json">
+{JSON.stringify(jsonLd)}
+</script>
+
+<!-- Schema.org: Organization & LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Organization","LocalBusiness","ProfessionalService"],
+  "name": "Jaraut Consultancy Services (JCS)",
+  "url": "https://jcsworld.in/",
+  "logo": "https://jcsworld.in/favicon.ico",
+  "telephone": "+91-11-41745010",
+  "email": "Jcsworld.in@gmail.com",
+  "sameAs": [
+    "https://wa.me/918920152372"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "503, Suneja Tower-2, District Centre, Janakpuri",
+    "addressLocality": "New Delhi",
+    "postalCode": "110058",
+    "addressCountry": "IN"
+  },
+  "areaServed": ["Delhi NCR","India"],
+  "founder": "Jaraut Consultancy Services",
+  "slogan": "Accounts, HR & Compliance for MSMEs in Delhi-NCR"
+}
+</script>
+
+<!-- Schema.org: Organization & LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Organization","LocalBusiness","ProfessionalService"],
+  "name": "Jaraut Consultancy Services (JCS)",
+  "url": "https://jcsworld.in/",
+  "logo": "https://jcsworld.in/favicon.ico",
+  "telephone": "+91-11-41745010",
+  "email": "Jcsworld.in@gmail.com",
+  "sameAs": [
+    "https://wa.me/918920152372"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "503, Suneja Tower-2, District Centre, Janakpuri",
+    "addressLocality": "New Delhi",
+    "postalCode": "110058",
+    "addressCountry": "IN"
+  },
+  "areaServed": ["Delhi NCR", "India"],
+  "founder": "Jaraut Consultancy Services",
+  "slogan": "Accounts, HR & Compliance for MSMEs in Delhi-NCR"
+}
+</script>
+
+<!-- Schema.org: Organization & LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Organization","LocalBusiness","ProfessionalService"],
+  "name": "Jaraut Consultancy Services (JCS)",
+  "url": "https://jcsworld.in/",
+  "logo": "https://jcsworld.in/favicon.ico",
+  "telephone": "+91-11-41745010",
+  "email": "Jcsworld.in@gmail.com",
+  "sameAs": [
+    "https://wa.me/918920152372"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "503, Suneja Tower-2, District Centre, Janakpuri",
+    "addressLocality": "New Delhi",
+    "postalCode": "110058",
+    "addressCountry": "IN"
+  },
+  "areaServed": ["Delhi NCR","India"],
+  "founder": "Jaraut Consultancy Services",
+  "slogan": "Accounts, HR & Compliance for MSMEs in Delhi-NCR"
+}
+</script>
+<!-- Schema.org: Organization & LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Organization","LocalBusiness","ProfessionalService"],
+  "name": "Jaraut Consultancy Services (JCS)",
+  "url": "https://jcsworld.in/",
+  "logo": "https://jcsworld.in/favicon.ico",
+  "telephone": "+91-11-41745010",
+  "email": "Jcsworld.in@gmail.com",
+  "sameAs": ["https://wa.me/918920152372"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "503, Suneja Tower-2, District Centre, Janakpuri",
+    "addressLocality": "New Delhi",
+    "postalCode": "110058",
+    "addressCountry": "IN"
+  },
+  "areaServed": ["Delhi NCR","India"],
+  "slogan": "Accounts, HR & Compliance for MSMEs in Delhi-NCR"
+}
+</script>
+</script>
+```
+
+### FILE: src/layouts/Base.astro
+```
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWA from '../components/FloatingWA.astro';
+import SchemaLocalBusiness from '../components/SchemaLocalBusiness.astro';
+
+const {
+  title = 'Accounts, Payroll & Compliance for MSMEs | JCS Delhi-NCR',
+  description = 'Zero-penalty compliance. GST/TDS/ITR, payroll PF/ESI, legal coordination via partner advocates.',
+  ogTitle = undefined,
+  ogDescription = undefined,
+} = Astro.props;
+
+const SITE = Astro.site || new URL('https://www.jcsworld.in');
+const CANON = new URL(Astro.url.pathname, SITE).toString();
+
+// GA ID priority: env var GA_MEASUREMENT_ID (optional)
+const GA = import.meta.env.GA_MEASUREMENT_ID || '';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={CANON} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={ogTitle ?? title} />
+  <meta property="og:description" content={ogDescription ?? description} />
+  <meta property="og:url" content={CANON} />
+  <meta property="og:image" content="https://www.jcsworld.in/og-image.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={ogTitle ?? title} />
+  <meta name="twitter:description" content={ogDescription ?? description} />
+  <meta name="twitter:image" content="https://www.jcsworld.in/og-image.jpg" />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <SchemaLocalBusiness />
+
+  {GA && (
+    <>
+      <script async src={"https://www.googletagmanager.com/gtag/js?id="+GA}></script>
+      <script>
+        {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date()); gtag('config','${GA}');`}
+      </script>
+    </>
+  )}
+  <!-- @motion-assets -->
+  <link rel="stylesheet" href="/css/motion.css">
+  <script defer src="/js/motion.js"></script>
+  <!-- @layout-basics -->
+  <link rel="stylesheet" href="/css/layout-basics.css">
+</head>
+<body>
+  <Header />
+  <main>
+      <slot />
+  </main>
+  <Footer />
+  <FloatingWA />
+</body>
+</html>
+```
+
+### FILE: src/layouts/BlogPost.astro
+```
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			main {
+				width: calc(100% - 2em);
+				max-width: 100%;
+				margin: 0;
+			}
+			.hero-image {
+				width: 100%;
+			}
+			.hero-image img {
+				display: block;
+				margin: 0 auto;
+				border-radius: 12px;
+				box-shadow: var(--box-shadow);
+			}
+			.prose {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 1em;
+				color: rgb(var(--gray-dark));
+			}
+			.title {
+				margin-bottom: 1em;
+				padding: 1em 0;
+				text-align: center;
+				line-height: 1;
+			}
+			.title h1 {
+				margin: 0 0 0.5em 0;
+			}
+			.date {
+				margin-bottom: 0.5em;
+				color: rgb(var(--gray));
+			}
+			.last-updated-on {
+				font-style: italic;
+			}
+		</style>
+  <!-- @motion-assets -->
+  <link rel="stylesheet" href="/css/motion.css">
+  <script defer src="/js/motion.js"></script>
+  <!-- @layout-basics -->
+  <link rel="stylesheet" href="/css/layout-basics.css">
+	</head>
+
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="hero-image">
+					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+				</div>
+				<div class="prose">
+					<div class="title">
+						<div class="date">
+							<FormattedDate date={pubDate} />
+							{
+								updatedDate && (
+									<div class="last-updated-on">
+										Last updated on <FormattedDate date={updatedDate} />
+									</div>
+								)
+							}
+						</div>
+						<h1>{title}</h1>
+						<hr />
+					</div>
+					<slot />
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
+```
+
+────────────────────────────────────────────────────────
+
+### FILE: src/components/HeroAnimated.astro
+```
+---
+const badge = "JCS — Accounts, HR & Compliance";
+const title = "Accounts, HR & Compliance for MSMEs in Delhi-NCR";
+const lead  = "GST, Payroll, PF/ESI, ITR, Legal Support — handled by one trusted team with 15+ years of experience.";
+---
+<section class="hero hero-anim reveal" style="background-image:url('/images/hero-poster.jpg')">
+  <div class="wrap">
+  <div class="layer l1"></div>
+  <div class="layer l2"></div>
+  <div class="grain"></div>
+  <div class="overlay" style="position:relative;z-index:1;max-width:980px;margin-inline:auto;padding:2.2rem 1rem">
+    <span class="badge">{badge}</span>
+    <h1>{title}</h1>
+    <p class="lead">{lead}</p>
+    <div class="cta">
+      <a href="/contact" class="btn btn-primary btn-magnetic">Book a Call</a>
+      <a href="https://wa.me/918920152372" class="btn btn-secondary btn-magnetic">WhatsApp Us</a>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- @hero-rotator -->
+<section class="hero r" aria-label="Hero">
+  <div class="wrap">
+  <div class="hero-wrap">
+    <h1 class="hero-title">Stop <span data-scramble="Penalties|Interest|Anxiety">Penalties</span>, File On Time.</h1>
+    <p class="hero-sub">GST, Payroll & Compliance handled — so you don’t stress.</p>
+    <div class="cta-row">
+      <a class="btn mag" href="https://wa.me/918920152372" rel="noopener">WhatsApp Us</a>
+      <a class="btn ghost" href="/tools/gst-calculator">Free Audit</a>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span></span></div>
+  </div>
+</section>
+<style>
+  .hero{padding:clamp(36px,8vw,96px) 0;text-align:center;position:relative}
+  .hero-title{font-size:clamp(28px,6.4vw,64px);line-height:1.05}
+  .hero-sub{margin-top:10px;opacity:.8}
+  .cta-row{display:inline-flex;gap:12px;margin-top:16px}
+  .btn{padding:10px 16px;border-radius:10px;border:1px solid currentColor;text-decoration:none}
+  .btn.ghost{background:transparent}
+  .mag{position:relative}
+  .scroll-cue{position:absolute;left:50%;bottom:12px;transform:translateX(-50%)}
+  .scroll-cue span{display:block;width:22px;height:36px;border:2px solid currentColor;border-radius:16px;position:relative;opacity:.6}
+  .scroll-cue span::after{content:"";position:absolute;left:50%;top:6px;width:4px;height:8px;border-radius:2px;transform:translateX(-50%);background:currentColor;animation:cue 1.8s infinite}
+  @keyframes cue{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,10px)}}
+  @media(prefers-reduced-motion:reduce){.scroll-cue span::after{animation:none}}
+</style>
+<script is:inline>
+  const ro=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const words=['Penalties','Interest','Anxiety'];
+  const rot=document.currentScript.parentElement.querySelector('.rotator');
+  if(rot && !ro){let i=0; setInterval(()=>{i=(i+1)%words.length; rot.textContent=words[i];},1800);}
+  const m=document.currentScript.parentElement.querySelector('.mag');
+  if(m && matchMedia('(pointer:fine)').matches){
+    const clamp=(v,l,h)=>Math.max(Math.min(v,h),l);
+    m.addEventListener('mousemove',e=>{const b=m.getBoundingClientRect();
+      const x=clamp((e.clientX-b.left-b.width/2)/10,-20,20);
+      const y=clamp((e.clientY-b.top-b.height/2)/10,-20,20);
+      m.style.transform=`translate(${x}px,${y}px)`;});
+    m.addEventListener('mouseleave',()=>{m.style.transform='';});
+  }
+</script>
+<!-- /@hero-rotator -->
+```
+
+### FILE: src/pages/index.astro
+```
+---
+import LogoMarquee from "../components/LogoMarquee.astro";
+import ProcessSticky from "../components/ProcessSticky.astro";
+import Base from '../layouts/Base.astro';
+import Testimonials from '../components/Testimonials.astro';
+import LeadMagnet from '../components/LeadMagnet.astro';
+import KPIBand from '../components/KPIBand.astro';
+---
+---
+---
+<Base title="JCS - Accounts, HR & Compliance for MSMEs | Delhi-NCR">
+<style>
+*{box-sizing:border-box}
+.hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:120px 20px 80px;text-align:center}
+.hero h1{font-size:3rem;margin:0 0 20px;font-weight:700}
+.hero p{font-size:1.3rem;opacity:.95;max-width:700px;margin:0 auto 40px}
+.hero-cta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:16px 35px;border-radius:8px;text-decoration:none;font-weight:600;font-size:1.1rem;transition:all .3s}
+.btn-primary{background:#fff;color:#667eea}
+.btn-primary:hover{transform:scale(1.05)}
+.btn-secondary{background:transparent;color:#fff;border:2px solid #fff}
+.btn-secondary:hover{background:rgba(255,255,255,.1)}
+.services{background:#fff;padding:80px 20px}
+.services h2{text-align:center;font-size:2rem;margin:0 0 50px;color:#1f2937}
+.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;max-width:1100px;margin:0 auto}
+.service-card{background:#f9fafb;padding:30px;border-radius:12px;border:1px solid #e5e7eb;transition:all .3s;text-align:center}
+.service-card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,.1)}
+.service-card .icon{font-size:2.5rem;margin-bottom:15px}
+.service-card h3{color:#1f2937;margin:0 0 10px;font-size:1.3rem}
+.service-card p{color:#6b7280;margin:0 0 15px;font-size:.95rem}
+.service-card a{color:#667eea;text-decoration:none;font-weight:600}
+.stats{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:60px 20px;text-align:center}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;max-width:900px;margin:0 auto}
+.stat strong{display:block;font-size:2.5rem;font-weight:700;margin-bottom:5px}
+.stat span{opacity:.9;font-size:.95rem}
+.process{background:#f9fafb;padding:80px 20px}
+.process h2{text-align:center;font-size:2rem;margin:0 0 50px;color:#1f2937}
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+.step{background:#fff;padding:25px;border-radius:8px;border-left:4px solid #667eea}
+.step h4{color:#667eea;margin:0 0 8px}
+.step p{color:#6b7280;margin:0;font-size:.95rem}
+@media(max-width:768px){.hero h1{font-size:2rem}.service-grid{grid-template-columns:1fr}}
+</style>
+
+<section class="hero">
+  <h1>Stop Paying ₹50,000+ in Compliance Penalties</h1>
+  <p>We handle your GST, PF/ESI, and payroll so you can focus on growing your business—not filing returns</p>
+  <div class="hero-cta">
+    <a href="/contact" class="btn btn-primary">Get Free Audit</a>
+    <a href="https://wa.me/918920152372" class="btn btn-secondary">WhatsApp Us</a>
+  </div>
+</section>
+
+<section data-stagger class="stats">
+  <div class="stats-grid">
+    <div class="stat">
+      <strong>15+</strong>
+      <span>Years Experience</span>
+    </div>
+    <div class="stat">
+      <strong>100+</strong>
+      <span>MSMEs Supported</span>
+    </div>
+    <div class="stat">
+      <strong>15+</strong>
+      <span>Industries Covered</span>
+    </div>
+    <div class="stat">
+      <strong>Zero</strong>
+      <span>Penalty Guarantee</span>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <h2>Our Services</h2>
+  <div class="service-grid">
+    <div class="service-card">
+      <div class="icon">📊</div>
+      <h3>Accounts & Tax</h3>
+      <p>Bookkeeping, GST/TDS returns, ITR & balance sheets.</p>
+      <a href="/services/accounts">Learn More →</a>
+    </div>
+    
+    <div class="service-card">
+      <div class="icon">🧾</div>
+      <h3>HR, Payroll & PF/ESI</h3>
+      <p>Registrations, payroll processing, PF/ESI filings.</p>
+      <a href="/services/hr">Learn More →</a>
+    </div>
+    
+    <div class="service-card">
+      <div class="icon">⚖️</div>
+      <h3>Legal Support</h3>
+      <p>Labour & commercial disputes with our legal partners.</p>
+      <a href="/services/legal">Learn More →</a>
+    </div>
+    
+    <div class="service-card">
+      <div class="icon">🧹</div>
+      <h3>Hospitality Staffing</h3>
+      <p>Canteen, housekeeping, catering staff for offices & industries.</p>
+      <a href="/services/hospitality">Learn More →</a>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <h2>How We Work</h2>
+  <div class="process-steps">
+    <div class="step">
+      <h4>Step 1: Quick Consultation</h4>
+      <p>We understand your business needs in a 20-minute call</p>
+    </div>
+    <div class="step">
+      <h4>Step 2: Fast Onboarding</h4>
+      <p>Quick and smooth onboarding in 48 hours</p>
+    </div>
+    <div class="step">
+      <h4>Step 3: Monthly Processing</h4>
+      <p>Regular processing, filings, and compliance tracking</p>
+    </div>
+    <div class="step">
+      <h4>Step 4: Detailed Reporting</h4>
+      <p>Monthly reports and quarterly review meetings</p>
+    </div>
+  </div>
+</section>
+
+<Testimonials /> -->
+
+<LeadMagnet /> -->
+
+</Base>
+
+<section class="home-kpis r">
+  <KPIBand /> -->
+</section>
+<!-- @logo-marquee -->
+<!-- <LogoMarquee logos={[{ src: "/logos/1.png"},{ src: "/logos/2.png"},{ src: "/logos/3.png"}]} /> -->
+<!-- /@logo-marquee -->
+
+<!-- @process-sticky -->
+<ProcessSticky /> -->
+<!-- /@process-sticky -->
+
+```
+
+### FILE: src/pages/thank-you.astro
+```
+---
+import BaseHead from '../components/BaseHead.astro';
+const title = 'Thank you — We’ve got your request';
+---
+<html lang="en">
+  <BaseHead {title} />
+  <body>
+    <main class="wrap r" style="max-width:720px;margin:48px auto;padding:0 16px;">
+      <h1 style="margin:0 0 8px">Thanks — we’ll be in touch shortly</h1>
+      <p id="who" style="opacity:.8;margin:0 0 16px"></p>
+
+      <section class="card" style="border:1px solid rgba(0,0,0,.12);border-radius:12px;padding:16px;margin:16px 0;">
+        <h2 style="margin:0 0 8px;font-size:1.15rem">Next steps</h2>
+        <ol style="margin:0;padding-left:18px;line-height:1.6">
+          <li>We’ll reply from <strong>jcsworld.in@gmail.com</strong> and <strong>+91 8920152372</strong>.</li>
+          <li>Want it faster? Ping us on WhatsApp.</li>
+          <li>Meanwhile, grab our quick checklist PDF.</li>
+        </ol>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+          <a class="btn" href="https://wa.me/918920152372" rel="noopener" style="padding:10px 14px;border:1px solid currentColor;border-radius:10px;text-decoration:none;">WhatsApp Us</a>
+          <a class="btn ghost" href="/checklist-2025.pdf" style="padding:10px 14px;border:1px solid currentColor;border-radius:10px;text-decoration:none;background:transparent;">Download Checklist</a>
+        </div>
+      </section>
+
+      <p style="opacity:.7;font-size:.95rem">If this page was opened by mistake, <a href="/">go back home</a>.</p>
+    </main>
+
+    <script is:inline>
+      // personalize from URL params if present (works for GET forms & 303 redirects that forward params)
+      try {
+        const p = new URLSearchParams(location.search);
+        const name = p.get('name') || p.get('full_name') || p.get('fullname') || p.get('n');
+        const email = p.get('email') || p.get('e');
+        const phone = p.get('phone') || p.get('mobile') || p.get('p');
+        const bits = [];
+        if (name) bits.push(name);
+        if (email) bits.push(`<${email}>`);
+        if (phone) bits.push(phone);
+        const who = document.getElementById('who');
+        if (bits.length && who) who.innerHTML = `We’ve received your details: <strong>${bits.join(' · ')}</strong>`;
+      } catch (_) {}
+    </script>
+  </body>
+</html>
+```
+
+### FILE: src/pages/net.astro
+```
+---
+const now = new Date().toISOString();
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Net Check</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <style>
+      :root { color-scheme: light dark; }
+      body{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;padding:24px;line-height:1.5}
+      code{background:#f5f5f7;padding:2px 6px;border-radius:6px}
+      .card{border:1px solid #e5e7eb;border-radius:12px;padding:16px;margin:12px 0}
+      a.btn{display:inline-block;border:1px solid currentColor;border-radius:10px;padding:8px 12px;text-decoration:none}
+    </style>
+  </head>
+  <body>
+    <h1>Network / Deploy Check</h1>
+    <div class="card"><div><strong>Build time (UTC):</strong> <code>{now}</code></div></div>
+    <div class="card">
+      <div><strong>Location:</strong> <code id="cl-url"></code></div>
+      <div><strong>Host:</strong> <code id="cl-host"></code></div>
+      <div><strong>User-Agent:</strong> <code id="cl-ua"></code></div>
+    </div>
+    <p><a class="btn" href="/thank-you?name=Test&email=test%40example.com&phone=9999999999">Test /thank-you with params</a></p>
+    <script is:inline>
+      document.getElementById('cl-url').textContent = location.href;
+      document.getElementById('cl-host').textContent = location.host || '—';
+      document.getElementById('cl-ua').textContent = navigator.userAgent || '—';
+    </script>
+  </body>
+</html>
+```
+
+────────────────────────────────────────────────────────
+
+### FILE: public/js/motion.js
+```
+(()=>{const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const on=(t,e,f,o)=>t&&t.addEventListener(e,f,o);
+// 2.1 Reveal
+if(!reduce){
+  const io=new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){
+    const el=e.target; if(el.hasAttribute('data-stagger')){[...el.children].forEach((c,i)=>c.style.setProperty('--i',i))}
+    el.classList.add('in'); o.unobserve(el);
+  })}},{rootMargin:'0px 0px -10% 0px',threshold:.15});
+  document.querySelectorAll('.r').forEach(el=>io.observe(el));
+}else{document.querySelectorAll('.r').forEach(n=>n.classList.add('in'));}
+
+// 2.2 Text scramble rotator — <span data-scramble="Penalties|Interest|Anxiety">
+const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$%*+#";
+function scramble(el, next){const s=el.textContent; const len=Math.max(s.length,next.length);
+  const frames=[...Array(len)].map((_,i)=>({from:s[i]||"",to:next[i]||"",ch:""}));
+  let c=0; const end=18;
+  function tick(){let out=""; let done=true;
+    frames.forEach((f,i)=>{ if(c<3||Math.random()<.28){ f.ch=chars[(Math.random()*chars.length)|0]; done=false; out+=f.ch; }
+      else{ out+= (i<next.length?next[i]:""); }
+    });
+    el.textContent=out; if(!done && c++<end) requestAnimationFrame(tick); else el.textContent=next;
+  } tick();
+}
+document.querySelectorAll('[data-scramble]').forEach(el=>{
+  const words=(el.dataset.scramble||"").split('|').map(s=>s.trim()).filter(Boolean);
+  if(words.length<2 || reduce) return;
+  let i=0; setInterval(()=>{i=(i+1)%words.length; scramble(el, words[i]);}, 1800);
+});
+
+// 2.3 Smooth anchor scroll (internal hashes)
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  on(a,'click',e=>{
+    const id=a.getAttribute('href').slice(1);
+    const el=document.getElementById(id); if(!el) return;
+    e.preventDefault(); el.scrollIntoView({behavior: reduce?'auto':'smooth', block:'start'});
+  });
+});
+
+// 2.4 Counters — <span class="count" data-target="1234">
+function countUp(el){const tgt=+el.dataset.target||0; if(reduce){el.textContent=tgt.toLocaleString(); return;}
+  let s, dur=Math.min(1600,Math.max(600,tgt*10)); const ease=t=>1-Math.pow(1-t,3);
+  function step(t){if(!s) s=t; const p=Math.min(1,(t-s)/dur); el.textContent=Math.floor(ease(p)*tgt).toLocaleString(); if(p<1) requestAnimationFrame(step); else el.textContent=tgt.toLocaleString();}
+  requestAnimationFrame(step);
+}
+(()=>{
+  const io=new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){countUp(e.target);o.unobserve(e.target)}}),{threshold:.3});
+  document.querySelectorAll('.count[data-target]').forEach(n=>io.observe(n));
+})();
+
+// 2.5 Magnetic hover (any .btn.mag)
+if(matchMedia('(pointer:fine)').matches){
+  document.querySelectorAll('.btn.mag').forEach(m=>{
+    const clamp=(v,l,h)=>Math.max(Math.min(v,h),l);
+    on(m,'mousemove',e=>{const b=m.getBoundingClientRect(); const x=clamp((e.clientX-b.left-b.width/2)/10,-20,20); const y=clamp((e.clientY-b.top-b.height/2)/10,-20,20); m.style.transform=`translate(${x}px,${y}px)`;});
+    on(m,'mouseleave',()=>{m.style.transform='';});
+  });
+}
+
+// 2.6 Top progress bar
+if(!reduce){
+  const bar=document.createElement('div'); bar.className='progressbar'; document.body.appendChild(bar);
+  const upd=()=>{const h=document.documentElement; const p=h.scrollTop/(h.scrollHeight-h.clientHeight); bar.style.width=(p*100).toFixed(2)+'%';};
+  on(window,'scroll',upd,{passive:true}); upd();
+}
+
+// 2.7 Sticky process left-rail highlight (works with your ProcessSticky markup)
+(()=>{
+  const arts=[...document.querySelectorAll('.process .stage')]; if(!arts.length) return;
+  const io=new IntersectionObserver((es)=>{const v=es.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+    if(!v) return; const id=v.target.id;
+    document.querySelectorAll('.process .rail li').forEach(li=>{
+      li.classList.toggle('active', li.querySelector('a')?.getAttribute('href')==='#'+id);
+    });
+  },{rootMargin:'-30% 0px -60% 0px',threshold:[0,.25,.5,.75,1]});
+  arts.forEach(n=>io.observe(n));
+})();
+
+// 2.8 Marquee: no JS needed if CSS .marq .track runs; this keeps CPU down
+
+// 2.9 Projects filter fade/scale (requires .card.show toggle — your component already does)
+
+// 2.10 Tiny parallax for .parallax [data-depth]
+if(!reduce && matchMedia('(pointer:fine)').matches){
+  on(window,'scroll',()=>{document.querySelectorAll('.parallax [data-depth]').forEach(el=>{
+    const d=parseFloat(el.dataset.depth||'0.1'); el.style.transform=`translateY(${(window.scrollY*d).toFixed(1)}px)`;
+  })},{passive:true});
+}
+
+// 2.11 Floating WhatsApp bubble (optional, auto if not present)
+if(!document.querySelector('.wa-float')){
+  const wrap=document.createElement('div'); wrap.className='wa-float';
+  wrap.innerHTML='<a href="https://wa.me/918920152372" aria-label="WhatsApp"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.1 17.5c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 .9-.2 0-.5 0-1.2-.6-.6-.6-1.1-1.2-1.2-1.4-.1-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.6-1.5c-.1-.4-.3-.4-.5-.4h-.4c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.3.5 1.7.6.7.2 1.3.2 1.7.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M26.3 5.7A13 13 0 0 0 5.6 26.4l-1.9 6 6.2-1.9A13 13 0 1 0 26.3 5.7zM9.4 27.3l.4.2a11 11 0 1 1 4.6 1.1h-.1l-.3-.1-3.6 1.1.9-3.6z"/></svg></a>';
+  document.body.appendChild(wrap);
+}
+})();
+```
+
+### FILE: public/css/motion.css
+```
+:root{
+  --r:16px;
+  --e: cubic-bezier(.22,.61,.36,1);
+  --brand: currentColor;
+  --mask-w: 56px;
+}
+/* edge masks for marquees / scrollers */
+.mask-lr{
+  -webkit-mask: linear-gradient(90deg, transparent, #000 var(--mask-w), #000 calc(100% - var(--mask-w)), transparent);
+          mask: linear-gradient(90deg, transparent, #000 var(--mask-w), #000 calc(100% - var(--mask-w)), transparent);
+}
+/* page top progress */
+.progressbar{position:fixed;left:0;top:0;height:3px;width:0;background:currentColor;z-index:9999;transform:translateZ(0)}
+/* magnetic buttons */
+.btn.mag{will-change: transform; transition: transform .18s var(--e)}
+/* scroll-snap slider (for testimonials) */
+.snap{scroll-snap-type:x mandatory;display:flex;overflow:auto;gap:16px;padding-bottom:6px}
+.snap>*{scroll-snap-align:center;min-width:min(86%,560px)}
+/* float WhatsApp bubble */
+.wa-float{position:fixed;right:16px;bottom:16px;z-index:9998}
+.wa-float a{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;background:#25D366;color:#fff;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.15)}
+.wa-float a svg{width:26px;height:26px}
+/* subtle parallax container */
+.parallax{position:relative;overflow:hidden;perspective:1000px}
+.parallax>[data-depth]{will-change: transform}
+/* gradient marquee track */
+.marq{overflow:hidden}
+.marq .track{display:flex;gap:clamp(28px,6vw,56px);width:max-content;animation:marq 24s linear infinite}
+.marq:hover .track{animation-play-state:paused}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* reveal utility (pairs with JS) */
+.r{opacity:0;transform:translateY(16px);transition:opacity .55s var(--e),transform .55s var(--e)}
+.r.in{opacity:1;transform:none}
+.r[data-stagger]>*{opacity:0;transform:translateY(16px);transition:opacity .55s var(--e),transform .55s var(--e);transition-delay:calc(var(--i,0)*60ms)}
+.r.in[data-stagger]>*{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){
+  .progressbar{display:none}
+  .marq .track{animation:none}
+  .btn.mag{transition:none}
+  .r,.r[data-stagger]>*{transition:none!important;opacity:1!important;transform:none!important}
+}
+```
+
+### FILE: public/css/jcs-tweaks.css
+```
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* Layout polish */
+:root {
+  --wrap: min(1120px, 92vw);
+}
+.container, .wrap { width: var(--wrap); margin-inline: auto; }
+
+/* Hero → next section spacing (kills the big white gap) */
+section.hero { padding-block-end: clamp(24px, 4vw, 56px); }
+section.hero + section { margin-block-start: 0 !important; }
+
+/* General section rhythm */
+section { margin-block: clamp(40px, 6vw, 80px); }
+
+/* KPI band (if it has class .stats) */
+section.stats { margin-block-start: 0; }
+
+/* Buttons get subtle lift */
+a.btn, .btn { transition: transform .2s ease, box-shadow .2s ease; will-change: transform; }
+a.btn:hover, .btn:hover { transform: translateY(-2px); }
+
+/* Cards in “Our Services” */
+.cards, .grid { gap: clamp(16px, 2.4vw, 28px); }
+.card { transition: transform .25s ease, box-shadow .25s ease; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(16,24,40,.08); }
+
+/* Reveal utility (.r) looks a touch softer */
+.r { opacity: 0; transform: translateY(12px); }
+.r.in { opacity: 1; transform: none; transition: opacity .55s ease, transform .55s ease; }
+
+/* Underline accent (Upstartic vibe) */
+.u-acc { text-decoration: underline 2px rgba(124,58,237,.25); text-underline-offset: 4px; }
+```
+
+### FILE: public/css/layout-basics.css
+```
+html, body { height: 100%; }
+body { min-height: 100vh; display: flex; flex-direction: column; }
+main { flex: 1 0 auto; }
+```
+
+### FILE: public/css/tidy.css
+```
+/* ---- TIDY (safe) ---- */
+:root{
+  --space-1: 12px;
+  --space-2: clamp(16px, 2.5vw, 24px);
+  --space-3: clamp(28px, 4vw, 40px);
+  --space-4: clamp(40px, 6vw, 72px);
+  --page-w: 1120px;
+}
+html{min-height:100%}
+body{margin:0;min-height:100%;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+
+.wrap{max-width:var(--page-w);margin-inline:auto;padding-inline:var(--space-2)}
+.section{padding-block:var(--space-4)}
+.section .wrap > :first-child{margin-top:0}
+.section .wrap > :last-child{margin-bottom:0}
+
+/* gentle hero compaction only (don’t touch positioning) */
+.hero{padding-block:clamp(48px,9vw,108px)!important}
+.hero .hero-title{margin:0}
+.hero .cta-row{margin-top:16px}
+
+/* keep global section rhythm reasonable */
+main > section{padding-block:var(--space-4)}
+
+/* no special footer rules (avoid hiding anything, avoid gaps) */
+footer{padding-block:var(--space-2)}
+```
+
+────────────────────────────────────────────────────────
+## GREP: motion hooks in src/pages/index.astro
+```
+2:import LogoMarquee from "../components/LogoMarquee.astro";
+54:<section data-stagger class="stats">
+140:<!-- <LogoMarquee logos={[{ src: "/logos/1.png"},{ src: "/logos/2.png"},{ src: "/logos/3.png"}]} /> -->
+```
+
+────────────────────────────────────────────────────────
+## ASSETS quick look
+```
+total 48
+drwxr-xr-x   8 hardikjaraut  staff  256  4 Oct 19:15 .
+drwxr-xr-x  17 hardikjaraut  staff  544  4 Oct 16:36 ..
+-rw-r--r--   1 hardikjaraut  staff  391  4 Oct 19:15 1.svg
+-rw-r--r--   1 hardikjaraut  staff  391  4 Oct 19:15 2.svg
+-rw-r--r--   1 hardikjaraut  staff  391  4 Oct 19:15 3.svg
+-rw-r--r--   1 hardikjaraut  staff  391  4 Oct 19:15 4.svg
+-rw-r--r--   1 hardikjaraut  staff  391  4 Oct 19:15 5.svg
+-rw-r--r--   1 hardikjaraut  staff  391  4 Oct 19:15 6.svg
+
+total 160
+-rw-r--r--   1 hardikjaraut  staff    244  3 Oct 17:40 _headers
+-rw-r--r--   1 hardikjaraut  staff    115  3 Oct 17:40 _redirects
+drwxr-xr-x  17 hardikjaraut  staff    544  4 Oct 16:36 .
+drwxr-xr-x  31 hardikjaraut  staff    992  4 Oct 19:18 ..
+-rw-r--r--   1 hardikjaraut  staff  14135  4 Oct 16:27 checklist-2025.pdf
+drwxr-xr-x  10 hardikjaraut  staff    320  4 Oct 19:15 css
+-rw-r--r--   1 hardikjaraut  staff    191  2 Oct 16:41 favicon.svg
+drwxr-xr-x   4 hardikjaraut  staff    128 28 Sep 17:01 fonts
+-rw-r--r--   1 hardikjaraut  staff   6952  2 Oct 16:41 global.css
+-rw-r--r--   1 hardikjaraut  staff  34890  2 Oct 16:41 hero.jpg
+drwxr-xr-x   3 hardikjaraut  staff     96 29 Sep 22:50 images
+drwxr-xr-x   5 hardikjaraut  staff    160  4 Oct 18:19 js
+drwxr-xr-x   8 hardikjaraut  staff    256  4 Oct 19:15 logos
+-rw-r--r--   1 hardikjaraut  staff     74  3 Oct 17:40 robots.txt
+drwxr-xr-x   4 hardikjaraut  staff    128  2 Oct 16:41 scripts
+-rw-r--r--   1 hardikjaraut  staff    565 29 Sep 22:16 theme-jcs.css
+drwxr-xr-x   2 hardikjaraut  staff     64 29 Sep 22:21 videos
+```
+
+────────────────────────────────────────────────────────
+## PAGES present
+```
+src/pages/_index.astro.standalone-backup
+src/pages/404.astro
+src/pages/about.astro
+src/pages/api/lead.ts
+src/pages/blog/[...slug].astro
+src/pages/blog/index.astro
+src/pages/contact.astro
+src/pages/faq.astro
+src/pages/index.astro
+src/pages/net.astro
+src/pages/pricing.astro
+src/pages/privacy.astro
+src/pages/rss.xml.js
+src/pages/services.astro
+src/pages/services/accounts.astro
+src/pages/services/hospitality.astro
+src/pages/services/hr.astro
+src/pages/services/legal.astro
+src/pages/terms.astro
+src/pages/thank-you.astro
+src/pages/thanks.astro
+src/pages/tools/compliance-calendar.astro
+src/pages/tools/gst-calculator.astro
+src/pages/tools/index.astro
+src/pages/tools/price-my-payroll.astro
+```

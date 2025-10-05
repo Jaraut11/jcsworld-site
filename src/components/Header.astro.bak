@@ -1,0 +1,43 @@
+---
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/services/accounts', label: 'Accounts & Tax' },
+  { href: '/services/hr', label: 'HR & Payroll' },
+  { href: '/services/legal', label: 'Legal' },
+  { href: '/services/hospitality', label: 'Hospitality' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+<style>
+.header{position:sticky;top:0;z-index:50;background:#0f172a;color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.container{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 16px}
+.brand a{color:#fff;text-decoration:none;font-weight:800;letter-spacing:.2px}
+.nav{display:flex;gap:18px;align-items:center}
+.nav a{color:#cbd5e1;text-decoration:none;font-weight:600;font-size:.95rem}
+.nav a:hover{color:#fff}
+.wa{background:#22c55e;color:#052e12;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700}
+.hamb{display:none;background:transparent;border:0;color:#fff;font-size:1.6rem}
+@media(max-width:900px){
+  .nav{display:none;position:absolute;left:0;right:0;top:56px;background:#0f172a;border-bottom:1px solid rgba(255,255,255,.08);flex-direction:column;padding:14px}
+  .nav.show{display:flex}
+  .hamb{display:block}
+}
+</style>
+
+<header class="header">
+  <div class="container">
+    <div class="brand"><a href="/">JCS</a></div>
+    <button class="hamb" aria-label="Toggle menu" id="hamb">☰</button>
+    <nav class="nav" id="nav">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+      <a class="wa" href="https://wa.me/918920152372?text=Hi%20JCS%20Team%2C%20I%27d%20like%20a%20free%20audit." onClick="window.gtag&&gtag('event','wa_click',{location:document.location.pathname,position:'header'});">WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=> {
+  const b=document.getElementById('hamb'); const n=document.getElementById('nav');
+  if(b&&n) b.addEventListener('click', ()=> n.classList.toggle('show'));
+});
+</script>
