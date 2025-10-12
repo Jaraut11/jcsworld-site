@@ -2,55 +2,889 @@
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="Contact Us - JCS" description="Get in touch with JCS for compliance and business services">
-  <main class="wrap">
-    <h1>Request a Compliance Consultation</h1>
-    <p>Tell us a bit about your company. We'll respond within business hours (Mon–Sat, 10:00–19:00 IST).</p>
+<Base title="Contact Us - JCS | Get Expert Compliance Consultation" description="Connect with JCS for professional accounting, HR, payroll and compliance services. Free consultation within 2 hours.">
+  <style>
+    /* ===== 2025 PREMIUM CONTACT PAGE - MARKET LEADER DESIGN ===== */
+    :root {
+      --brand:#5b67e6;
+      --brand-dark:#4338ca;
+      --accent:#7c3aed;
+      --ink:#0f172a;
+      --muted:#64748b;
+      --light:#f8fafc;
+      --success:#10b981;
+      --error:#ef4444;
+      --glow:0 0 40px rgba(91,103,230,0.3);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    /* ===== FLOATING PARTICLES BACKGROUND ===== */
+    .hero-contact{
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      color:#fff;
+      padding:100px 20px 80px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-contact::before{
+      content:'';
+      position:absolute;
+      width:300px;
+      height:300px;
+      background:radial-gradient(circle,rgba(255,255,255,0.1),transparent);
+      border-radius:50%;
+      top:-100px;
+      right:-100px;
+      animation:float 20s infinite;
+    }
+
+    .hero-contact::after{
+      content:'';
+      position:absolute;
+      width:200px;
+      height:200px;
+      background:radial-gradient(circle,rgba(255,255,255,0.08),transparent);
+      border-radius:50%;
+      bottom:-50px;
+      left:-50px;
+      animation:float 15s infinite reverse;
+    }
+
+    @keyframes float{
+      0%,100%{transform:translate(0,0) rotate(0deg)}
+      25%{transform:translate(30px,-30px) rotate(90deg)}
+      50%{transform:translate(-20px,-60px) rotate(180deg)}
+      75%{transform:translate(-40px,-30px) rotate(270deg)}
+    }
+
+    .hero-contact h1{
+      font-size:clamp(2.5rem,6vw,4rem);
+      font-weight:900;
+      margin:0 0 20px;
+      position:relative;
+      z-index:2;
+      animation:slideDown 0.8s ease;
+      letter-spacing:-1px;
+    }
+
+    .hero-contact p{
+      font-size:1.25rem;
+      opacity:0.95;
+      max-width:650px;
+      margin:0 auto 30px;
+      position:relative;
+      z-index:2;
+      animation:slideDown 1s ease;
+    }
+
+    @keyframes slideDown{
+      from{opacity:0;transform:translateY(-40px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    /* ===== TRUST INDICATORS ===== */
+    .trust-bar{
+      display:flex;
+      justify-content:center;
+      gap:40px;
+      flex-wrap:wrap;
+      position:relative;
+      z-index:2;
+      animation:slideDown 1.2s ease;
+    }
+
+    .trust-item{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 24px;
+      background:rgba(255,255,255,0.15);
+      border-radius:50px;
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,0.2);
+      transition:all 0.3s ease;
+    }
+
+    .trust-item:hover{
+      background:rgba(255,255,255,0.25);
+      transform:translateY(-3px);
+      box-shadow:var(--glow);
+    }
+
+    .trust-icon{
+      width:24px;
+      height:24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.2rem;
+    }
+
+    /* ===== MAIN CONTAINER ===== */
+    .contact-wrapper{
+      max-width:1400px;
+      margin:-60px auto 100px;
+      padding:0 20px;
+      position:relative;
+      z-index:10;
+    }
+
+    .contact-grid{
+      display:grid;
+      grid-template-columns:400px 1fr;
+      gap:30px;
+      align-items:start;
+    }
+
+    @media(max-width:1100px){
+      .contact-grid{grid-template-columns:1fr;gap:30px}
+    }
+
+    /* ===== SIDEBAR WITH CONTACT INFO ===== */
+    .sidebar{
+      position:sticky;
+      top:100px;
+      background:#0f172a;
+      color:#fff;
+      padding:45px;
+      border-radius:24px;
+      box-shadow:0 30px 80px rgba(15,23,42,0.5);
+      animation:slideInLeft 0.8s ease;
+    }
+
+    @keyframes slideInLeft{
+      from{opacity:0;transform:translateX(-60px)}
+      to{opacity:1;transform:translateX(0)}
+    }
+
+    .sidebar h2{
+      font-size:2rem;
+      margin:0 0 30px;
+      background:linear-gradient(135deg,#fff,#a78bfa);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+
+    .contact-method{
+      display:flex;
+      align-items:flex-start;
+      gap:18px;
+      margin-bottom:28px;
+      padding-bottom:28px;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      transition:all 0.3s ease;
+      cursor:pointer;
+    }
+
+    .contact-method:last-child{
+      border-bottom:none;
+      margin-bottom:0;
+      padding-bottom:0;
+    }
+
+    .contact-method:hover{
+      transform:translateX(5px);
+      padding-left:5px;
+    }
+
+    .method-icon{
+      width:54px;
+      height:54px;
+      background:linear-gradient(135deg,var(--brand),var(--accent));
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.6rem;
+      flex-shrink:0;
+      box-shadow:var(--glow);
+      transition:all 0.3s ease;
+    }
+
+    .contact-method:hover .method-icon{
+      transform:scale(1.1) rotate(5deg);
+      box-shadow:0 0 50px rgba(91,103,230,0.5);
+    }
+
+    .method-info h3{
+      margin:0 0 8px;
+      font-size:0.95rem;
+      color:rgba(255,255,255,0.6);
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+    }
+
+    .method-info p{
+      margin:0;
+      font-size:1.1rem;
+      color:#fff;
+      font-weight:500;
+    }
+
+    .method-info a{
+      color:#fff;
+      text-decoration:none;
+      transition:color 0.3s;
+    }
+
+    .method-info a:hover{
+      color:var(--brand);
+    }
+
+    /* ===== RESPONSE TIME BADGE ===== */
+    .response-badge{
+      background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(16,185,129,0.05));
+      border:2px solid rgba(16,185,129,0.3);
+      border-radius:16px;
+      padding:20px;
+      margin-top:30px;
+      text-align:center;
+    }
+
+    .response-badge strong{
+      display:block;
+      font-size:1.8rem;
+      color:#10b981;
+      margin-bottom:6px;
+    }
+
+    .response-badge p{
+      margin:0;
+      font-size:0.9rem;
+      color:rgba(255,255,255,0.7);
+    }
+
+    /* ===== MAIN FORM CARD ===== */
+    .form-card{
+      background:#fff;
+      padding:55px;
+      border-radius:24px;
+      box-shadow:0 30px 80px rgba(15,23,42,0.12);
+      animation:slideInRight 0.8s ease;
+    }
+
+    @keyframes slideInRight{
+      from{opacity:0;transform:translateX(60px)}
+      to{opacity:1;transform:translateX(0)}
+    }
+
+    .form-card h2{
+      font-size:2.2rem;
+      margin:0 0 12px;
+      color:var(--ink);
+      font-weight:900;
+    }
+
+    .form-card>p{
+      color:var(--muted);
+      margin:0 0 40px;
+      font-size:1.05rem;
+    }
+
+    /* ===== FORM PROGRESS BAR ===== */
+    .form-progress{
+      height:4px;
+      background:#e2e8f0;
+      border-radius:10px;
+      margin-bottom:35px;
+      overflow:hidden;
+    }
+
+    .form-progress-bar{
+      height:100%;
+      background:linear-gradient(90deg,var(--brand),var(--accent));
+      width:0%;
+      transition:width 0.5s cubic-bezier(0.4,0,0.2,1);
+      box-shadow:var(--glow);
+    }
+
+    /* ===== FORM FIELDS WITH MICRO-INTERACTIONS ===== */
+    .form-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+      margin-bottom:24px;
+    }
+
+    @media(max-width:700px){
+      .form-row{grid-template-columns:1fr}
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .field.full{
+      grid-column:1/-1;
+    }
+
+    .field label{
+      font-weight:700;
+      color:var(--ink);
+      font-size:0.95rem;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .field label .required{
+      color:var(--error);
+      font-size:1.2rem;
+    }
+
+    .field input,
+    .field select,
+    .field textarea{
+      padding:16px 20px;
+      border:2px solid #e2e8f0;
+      border-radius:12px;
+      font-size:1rem;
+      transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+      font-family:inherit;
+      background:#fff;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus{
+      outline:none;
+      border-color:var(--brand);
+      box-shadow:0 0 0 5px rgba(91,103,230,0.1);
+      transform:translateY(-2px);
+    }
+
+    .field input.valid{
+      border-color:var(--success);
+      background:rgba(16,185,129,0.02);
+    }
+
+    .field input.invalid{
+      border-color:var(--error);
+      background:rgba(239,68,68,0.02);
+    }
+
+    .field textarea{
+      resize:vertical;
+      min-height:140px;
+    }
+
+    /* ===== VALIDATION FEEDBACK ===== */
+    .field-feedback{
+      font-size:0.85rem;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      margin-top:4px;
+      opacity:0;
+      transform:translateY(-5px);
+      transition:all 0.3s ease;
+    }
+
+    .field-feedback.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .field-feedback.success{
+      color:var(--success);
+    }
+
+    .field-feedback.error{
+      color:var(--error);
+    }
+
+    /* ===== CHARACTER COUNTER ===== */
+    .char-counter{
+      font-size:0.85rem;
+      color:var(--muted);
+      text-align:right;
+      margin-top:4px;
+    }
+
+    /* ===== PREMIUM SUBMIT BUTTON ===== */
+    .submit-section{
+      margin-top:35px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .submit-btn{
+      background:linear-gradient(135deg,var(--brand),var(--accent));
+      color:#fff;
+      padding:18px 45px;
+      border:none;
+      border-radius:12px;
+      font-size:1.15rem;
+      font-weight:800;
+      cursor:pointer;
+      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(91,103,230,0.3);
+    }
+
+    .submit-btn::before{
+      content:'';
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:0;
+      height:0;
+      border-radius:50%;
+      background:rgba(255,255,255,0.3);
+      transform:translate(-50%,-50%);
+      transition:width 0.6s,height 0.6s;
+    }
+
+    .submit-btn:hover::before{
+      width:300px;
+      height:300px;
+    }
+
+    .submit-btn:hover{
+      transform:translateY(-4px);
+      box-shadow:0 15px 40px rgba(91,103,230,0.4);
+    }
+
+    .submit-btn:active{
+      transform:translateY(-2px);
+    }
+
+    .submit-btn:disabled{
+      opacity:0.6;
+      cursor:not-allowed;
+      transform:none;
+    }
+
+    .btn-text{
+      position:relative;
+      z-index:2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+    }
+
+    /* ===== PRIVACY NOTICE ===== */
+    .privacy-note{
+      font-size:0.85rem;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    .privacy-note a{
+      color:var(--brand);
+      text-decoration:none;
+    }
+
+    /* ===== SUCCESS MESSAGE ===== */
+    .success-message{
+      background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(16,185,129,0.05));
+      border:2px solid var(--success);
+      border-radius:16px;
+      padding:24px;
+      margin-bottom:24px;
+      display:none;
+      align-items:start;
+      gap:16px;
+    }
+
+    .success-message.show{
+      display:flex;
+      animation:slideDown 0.5s ease;
+    }
+
+    .success-icon{
+      width:44px;
+      height:44px;
+      background:var(--success);
+      color:#fff;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.5rem;
+      flex-shrink:0;
+    }
+
+    .success-content h3{
+      margin:0 0 6px;
+      color:var(--success);
+      font-size:1.1rem;
+    }
+
+    .success-content p{
+      margin:0;
+      color:var(--ink);
+    }
+
+    /* ===== HONEYPOT ===== */
+    .hp{
+      position:absolute;
+      left:-9999px;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    /* ===== LOADING SPINNER ===== */
+    @keyframes spin{
+      to{transform:rotate(360deg)}
+    }
+
+    .spinner{
+      display:inline-block;
+      width:18px;
+      height:18px;
+      border:3px solid rgba(255,255,255,0.3);
+      border-top-color:#fff;
+      border-radius:50%;
+      animation:spin 0.8s linear infinite;
+    }
+  </style>
+
+  <!-- HERO SECTION -->
+  <div class="hero-contact">
+    <h1>Let's Transform Your Business</h1>
+    <p>Expert compliance support that helps you grow faster. Get a response within 2 business hours.</p>
     
-    <form method="post" action="/api/lead" enctype="application/x-www-form-urlencoded">
-      <input type="text" name="bot-field" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;">
-      
-      <div class="grid">
-        <label>Full name
-          <input name="name" required>
-        </label>
-        
-        <label>Email
-          <input type="email" name="email" required>
-        </label>
-        
-        <label>Phone
-          <input type="tel" name="phone" required>
-        </label>
-        
-        <label>Company
-          <input name="company">
-        </label>
-        
-        <label>Service
-          <select name="service">
-            <option value="Accounts">Accounts & Tax</option>
-            <option value="HR">HR & Payroll</option>
-            <option value="Legal">Legal Support</option>
-            <option value="Hospitality">Hospitality Staffing</option>
-          </select>
-        </label>
-        
-        <label>Employees
-          <select name="employees">
-            <option>1-10</option>
-            <option>11-50</option>
-            <option>51-200</option>
-            <option>200+</option>
-          </select>
-        </label>
+    <div class="trust-bar">
+      <div class="trust-item">
+        <div class="trust-icon">⚡</div>
+        <span>2-Hour Response</span>
       </div>
+      <div class="trust-item">
+        <div class="trust-icon">✓</div>
+        <span>500+ Happy Clients</span>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🔒</div>
+        <span>100% Confidential</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTACT SECTION -->
+  <div class="contact-wrapper">
+    <div class="contact-grid">
       
-      <label>Message
-        <textarea name="message" rows="5" placeholder="Tell us what you need help with…"></textarea>
-      </label>
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <h2>Get In Touch</h2>
+        
+        <div class="contact-method" onclick="window.location.href='tel:+918920152372'">
+          <div class="method-icon">📞</div>
+          <div class="method-info">
+            <h3>Call Us Directly</h3>
+            <p><a href="tel:+918920152372">+91 8920152372</a></p>
+          </div>
+        </div>
+
+        <div class="contact-method" onclick="window.location.href='mailto:jcsworld.in@gmail.com'">
+          <div class="method-icon">✉️</div>
+          <div class="method-info">
+            <h3>Email Us</h3>
+            <p><a href="mailto:jcsworld.in@gmail.com">jcsworld.in@gmail.com</a></p>
+          </div>
+        </div>
+
+        <div class="contact-method" onclick="window.open('https://wa.me/918920152372','_blank')">
+          <div class="method-icon">💬</div>
+          <div class="method-info">
+            <h3>WhatsApp</h3>
+            <p><a href="https://wa.me/918920152372" target="_blank" rel="noopener">Chat with us instantly</a></p>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <div class="method-icon">📍</div>
+          <div class="method-info">
+            <h3>Visit Our Office</h3>
+            <p>328, Vishal Tower<br>Janakpuri, New Delhi - 110058</p>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <div class="method-icon">⏰</div>
+          <div class="method-info">
+            <h3>Business Hours</h3>
+            <p>Mon - Sat: 10:00 AM - 7:00 PM<br>Sunday: Closed</p>
+          </div>
+        </div>
+
+        <div class="response-badge">
+          <strong>&lt; 2 Hours</strong>
+          <p>Average Response Time</p>
+        </div>
+      </div>
+
+      <!-- MAIN FORM -->
+      <div class="form-card">
+        <h2>Request a Free Consultation</h2>
+        <p>Fill out the form below and our team will reach out within 2 business hours.</p>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMsg">
+          <div class="success-icon">✓</div>
+          <div class="success-content">
+            <h3>Message Sent Successfully!</h3>
+            <p>Thank you for contacting us. Our team will get back to you within 2 business hours.</p>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="form-progress">
+          <div class="form-progress-bar" id="formProgress"></div>
+        </div>
+
+        <form method="post" action="/api/lead" enctype="application/x-www-form-urlencoded" id="contactForm">
+          <!-- Honeypot -->
+          <input type="text" name="bot-field" class="hp" autocomplete="off" tabindex="-1" aria-hidden="true">
+          
+          <!-- Row 1 -->
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Full Name <span class="required">*</span></label>
+              <input type="text" id="name" name="name" required placeholder="John Doe" autocomplete="name">
+              <div class="field-feedback" id="nameFeedback"></div>
+            </div>
+            
+            <div class="field">
+              <label for="email">Email Address <span class="required">*</span></label>
+              <input type="email" id="email" name="email" required placeholder="john@company.com" autocomplete="email">
+              <div class="field-feedback" id="emailFeedback"></div>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="form-row">
+            <div class="field">
+              <label for="phone">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210" autocomplete="tel">
+              <div class="field-feedback" id="phoneFeedback"></div>
+            </div>
+            
+            <div class="field">
+              <label for="company">Company Name</label>
+              <input type="text" id="company" name="company" placeholder="Your Company Pvt Ltd" autocomplete="organization">
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="form-row">
+            <div class="field">
+              <label for="service">Service Interested In <span class="required">*</span></label>
+              <select id="service" name="service" required>
+                <option value="">Select a service</option>
+                <option value="Accounts">Accounts & Tax</option>
+                <option value="HR">HR & Payroll</option>
+                <option value="Legal">Legal Support</option>
+                <option value="Hospitality">Hospitality Staffing</option>
+                <option value="Multiple">Multiple Services</option>
+              </select>
+            </div>
+            
+            <div class="field">
+              <label for="employees">Company Size</label>
+              <select id="employees" name="employees">
+                <option value="">Select size</option>
+                <option value="1-10">1-10 employees</option>
+                <option value="11-50">11-50 employees</option>
+                <option value="51-200">51-200 employees</option>
+                <option value="200+">200+ employees</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="field full">
+            <label for="message">How Can We Help You? <span class="required">*</span></label>
+            <textarea id="message" name="message" required placeholder="Tell us about your compliance needs..." maxlength="1000"></textarea>
+            <div class="char-counter"><span id="charCount">0</span>/1000</div>
+          </div>
+
+          <!-- Submit -->
+          <div class="submit-section">
+            <button type="submit" class="submit-btn" id="submitBtn">
+              <span class="btn-text">
+                <span id="btnText">Send Message</span>
+                <span id="btnIcon">→</span>
+              </span>
+            </button>
+            <p class="privacy-note">
+              We respect your privacy. Your information is secure and will never be shared. <a href="/privacy">Privacy Policy</a>
+            </p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Form validation and progress
+    const form = document.getElementById('contactForm');
+    const progressBar = document.getElementById('formProgress');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnIcon = document.getElementById('btnIcon');
+    const successMsg = document.getElementById('successMsg');
+    
+    // Required fields for progress tracking
+    const requiredFields = ['name', 'email', 'phone', 'service', 'message'];
+    
+    // Real-time validation
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const messageInput = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    
+    // Validate name
+    nameInput.addEventListener('input', (e) => {
+      const value = e.target.value.trim();
+      const feedback = document.getElementById('nameFeedback');
       
-      <button type="submit">Send</button>
-    </form>
-  </main>
+      if (value.length >= 2) {
+        e.target.classList.remove('invalid');
+        e.target.classList.add('valid');
+        feedback.textContent = '✓ Looks good!';
+        feedback.className = 'field-feedback success show';
+      } else if (value.length > 0) {
+        e.target.classList.add('invalid');
+        e.target.classList.remove('valid');
+        feedback.textContent = '✗ Name too short';
+        feedback.className = 'field-feedback error show';
+      } else {
+        e.target.classList.remove('invalid', 'valid');
+        feedback.className = 'field-feedback';
+      }
+      updateProgress();
+    });
+    
+    // Validate email
+    emailInput.addEventListener('input', (e) => {
+      const value = e.target.value.trim();
+      const feedback = document.getElementById('emailFeedback');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if (emailRegex.test(value)) {
+        e.target.classList.remove('invalid');
+        e.target.classList.add('valid');
+        feedback.textContent = '✓ Valid email';
+        feedback.className = 'field-feedback success show';
+      } else if (value.length > 0) {
+        e.target.classList.add('invalid');
+        e.target.classList.remove('valid');
+        feedback.textContent = '✗ Invalid email format';
+        feedback.className = 'field-feedback error show';
+      } else {
+        e.target.classList.remove('invalid', 'valid');
+        feedback.className = 'field-feedback';
+      }
+      updateProgress();
+    });
+    
+    // Validate phone
+    phoneInput.addEventListener('input', (e) => {
+      const value = e.target.value.trim();
+      const feedback = document.getElementById('phoneFeedback');
+      const phoneRegex = /^[+]?[\d\s-]{10,}$/;
+      
+      if (phoneRegex.test(value)) {
+        e.target.classList.remove('invalid');
+        e.target.classList.add('valid');
+        feedback.textContent = '✓ Valid phone number';
+        feedback.className = 'field-feedback success show';
+      } else if (value.length > 0) {
+        e.target.classList.add('invalid');
+        e.target.classList.remove('valid');
+        feedback.textContent = '✗ Invalid phone format';
+        feedback.className = 'field-feedback error show';
+      } else {
+        e.target.classList.remove('invalid', 'valid');
+        feedback.className = 'field-feedback';
+      }
+      updateProgress();
+    });
+    
+    // Character counter
+    messageInput.addEventListener('input', (e) => {
+      charCount.textContent = e.target.value.length;
+      updateProgress();
+    });
+    
+    // Update progress bar
+    function updateProgress() {
+      let filled = 0;
+      requiredFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field && field.value.trim() !== '') {
+          filled++;
+        }
+      });
+      const progress = (filled / requiredFields.length) * 100;
+      progressBar.style.width = progress + '%';
+    }
+    
+    // Track all fields for progress
+    requiredFields.forEach(fieldId => {
+      const field = document.getElementById(fieldId);
+      if (field) {
+        field.addEventListener('input', updateProgress);
+      }
+    });
+    
+    // Form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Disable button and show loading
+      submitBtn.disabled = true;
+      btnText.textContent = 'Sending...';
+      btnIcon.innerHTML = '<span class="spinner"></span>';
+      
+      // Submit form
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new URLSearchParams(formData)
+        });
+        
+        if (response.ok) {
+          // Show success message
+          successMsg.classList.add('show');
+          form.reset();
+          progressBar.style.width = '0%';
+          
+          // Reset button
+          btnText.textContent = 'Message Sent!';
+          btnIcon.textContent = '✓';
+          
+          // Scroll to success message
+          successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          
+          // Reset after 3 seconds
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            btnText.textContent = 'Send Message';
+            btnIcon.textContent = '→';
+          }, 3000);
+        }
+      } catch (error) {
+        alert('Error sending message. Please try again or contact us directly.');
+        submitBtn.disabled = false;
+        btnText.textContent = 'Send Message';
+        btnIcon.textContent = '→';
+      }
+    });
+  </script>
 </Base>
