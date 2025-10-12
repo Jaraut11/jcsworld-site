@@ -1,0 +1,4 @@
+http://jcsworld.in/* https://www.jcsworld.in/:splat 301!
+https://jcsworld.in/* https://www.jcsworld.in/:splat 301!
+/pricing /contact 308!
+/pricing /contact 308

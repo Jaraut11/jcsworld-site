@@ -191,3 +191,192 @@ section.hero > * {
   color: white;
   font-weight: 600;
 }
+
+/* WhatsApp floating button */
+.fab-whatsapp{
+  position:fixed; right:18px; bottom:18px; z-index:9999;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:54px; height:54px; border-radius:50%;
+  background:#25D366; color:#fff; text-decoration:none;
+  box-shadow:0 6px 18px rgba(0,0,0,.18);
+}
+.fab-whatsapp:hover{ transform:translateY(-1px); }
+@media (max-width:480px){ .fab-whatsapp{ right:14px; bottom:14px; width:50px; height:50px; } }
+/* Place WA FAB on the left */
+.fab-whatsapp { left:18px; right:auto; }
+.whatsapp-float{display:none!important}
+.whatsapp-float{display:none!important}
+
+/* ========== JCS PROFESSIONAL ANIMATIONS ========== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scroll-reveal:nth-child(1) { transition-delay: 0.1s; }
+.scroll-reveal:nth-child(2) { transition-delay: 0.2s; }
+.scroll-reveal:nth-child(3) { transition-delay: 0.3s; }
+.scroll-reveal:nth-child(4) { transition-delay: 0.4s; }
+
+.btn-professional {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-professional::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+.btn-professional:hover::before {
+  width: 300px;
+  height: 300px;
+}
+.btn-professional:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.service-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(147, 51, 234, 0.05));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+.service-card:hover::after {
+  opacity: 1;
+}
+
+.gradient-animated {
+  background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.float-icon {
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.pulse-cta {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; transform: scale(1.02); }
+}
+
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+.section-divider {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  margin: 0 auto 2rem;
+  border-radius: 2px;
+  animation: expandWidth 0.8s ease-out;
+}
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 60px; }
+}
+
+.input-field {
+  transition: all 0.3s ease;
+}
+.input-field:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+  border-color: #3b82f6;
+}
+
+.page-transition {
+  animation: pageEnter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #f3f4f6;
+  border-bottom-color: #3b82f6;
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 1s linear infinite;
+}
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+.tilt-3d{transform-style:preserve-3d;transition:transform 0.1s ease;will-change:transform}.explode-text{display:inline-block;position:relative;cursor:pointer}.glitch{position:relative;transition:all 0.05s ease}.glass-card{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2);box-shadow:0 8px 32px rgba(0,0,0,0.1)}.neon-glow{text-shadow:0 0 10px rgba(59,130,246,0.8),0 0 20px rgba(59,130,246,0.6),0 0 30px rgba(59,130,246,0.4);animation:neon-pulse 2s ease-in-out infinite}@keyframes neon-pulse{0%,100%{opacity:1}50%{opacity:0.7}}
+
+/* --- JCS footer tidy (non-destructive) --- */
+footer .footer__inner { max-width: 1100px; margin: 0 auto; padding: 1.25rem; }
+footer p { margin: .25rem 0; }
+footer nav, footer .footer__nav { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
+footer nav a { white-space: nowrap; }
+footer a { text-decoration: none; }
+/* prevent triple-stacked WhatsApp lines if multiple anchors are present */
+footer a[href*="wa.me"], footer a[href*="whatsapp"] { display: inline-block; margin-top: .25rem; }

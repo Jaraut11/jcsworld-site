@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://jcsworld.in/</loc><priority>1.0</priority></url>
-  <url><loc>https://jcsworld.in/about</loc></url>
-  <url><loc>https://jcsworld.in/services</loc></url>
-  <url><loc>https://jcsworld.in/services/accounts</loc></url>
-  <url><loc>https://jcsworld.in/services/hr</loc></url>
-  <url><loc>https://jcsworld.in/services/legal</loc></url>
-  <url><loc>https://jcsworld.in/services/hospitality</loc></url>
-  <url><loc>https://jcsworld.in/contact</loc></url>
-  <url><loc>https://jcsworld.in/blog</loc></url>
+  <url><loc>https://www.jcsworld.in/</loc></url>
+  <url><loc>https://www.jcsworld.in/contact</loc></url>
+  <url><loc>https://www.jcsworld.in/pricing</loc></url>
+  <url><loc>https://www.jcsworld.in/thank-you</loc></url>
 </urlset>

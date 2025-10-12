@@ -1,4 +1,0 @@
----
-import schema from '../../partials/schema-service-hrpayroll.html?raw';
----
-<script type="application/ld+json" set:html={schema}></script>

@@ -30,7 +30,7 @@ scan_files() {
 }
 
 # 1) Bare wa.me **anchors** (missing ?text=)  — ignore JSON-LD etc.
-bare_files="$(scan_files '<a[^>]+href="https://wa\.me/918920152372(?!\?text=)[^"]*"')"
+bare_files="$(scan_files '<a[^>]+href="https://wa\.me/+91 98211 01440(?!\?text=)[^"]*"')"
 if [ -n "$bare_files" ]; then
   red "❌ Bare wa.me anchors (missing ?text=) found in:"
   printf '   • %s\n' $bare_files
@@ -40,7 +40,7 @@ else
 fi
 
 # 2) wa.me anchors missing rel="noopener"
-norel_files="$(scan_files '<a[^>]+href="https://wa\.me/918920152372[^"]*"(?![^>]*\brel=)')"
+norel_files="$(scan_files '<a[^>]+href="https://wa\.me/+91 98211 01440[^"]*"(?![^>]*\brel=)')"
 if [ -n "$norel_files" ]; then
   red "❌ wa.me anchors missing rel=\"noopener\" in:"
   printf '   • %s\n' $norel_files

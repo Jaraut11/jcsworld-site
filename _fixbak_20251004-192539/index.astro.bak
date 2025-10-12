@@ -47,7 +47,7 @@ import KPIBand from '../components/KPIBand.astro';
   <p>We handle your GST, PF/ESI, and payroll so you can focus on growing your business—not filing returns</p>
   <div class="hero-cta">
     <a href="/contact" class="btn btn-primary">Get Free Audit</a>
-    <a href="https://wa.me/918920152372" class="btn btn-secondary">WhatsApp Us</a>
+    <a href="https://wa.me/+91 98211 01440" class="btn btn-secondary">WhatsApp Us</a>
   </div>
 </section>
 

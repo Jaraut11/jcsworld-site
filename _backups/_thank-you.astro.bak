@@ -17,7 +17,7 @@ const title = 'Thank you — We’ve got your request';
           <li>Meanwhile, grab our quick checklist PDF.</li>
         </ol>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-          <a class="btn" href="https://wa.me/918920152372" rel="noopener" style="padding:10px 14px;border:1px solid currentColor;border-radius:10px;text-decoration:none;">WhatsApp Us</a>
+          <a class="btn" href="https://wa.me/+91 98211 01440" rel="noopener" style="padding:10px 14px;border:1px solid currentColor;border-radius:10px;text-decoration:none;">WhatsApp Us</a>
           <a class="btn ghost" href="/checklist-2025.pdf" style="padding:10px 14px;border:1px solid currentColor;border-radius:10px;text-decoration:none;background:transparent;">Download Checklist</a>
         </div>
       </section>

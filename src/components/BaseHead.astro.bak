@@ -15,12 +15,12 @@ const org = {
   "name": "Jaraut Consultancy Services (JCS)",
   "url": "https://jcsworld.in/",
   "logo": "https://jcsworld.in/favicon.ico",
-  "telephone": "+91-11-41745010",
+  "telephone": "+91 98211 01440",
   "email": "jcsworld.in@gmail.com",
-  "sameAs": ["https://wa.me/918920152372"],
+  "sameAs": ["https://wa.me/919821101440"],
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "503, Suneja Tower-2, District Centre, Janakpuri",
+    "streetAddress": "328, Vishal Tower, Distt. Centre, Janakpuri",
     "addressLocality": "New Delhi",
     "postalCode": "110058",
     "addressCountry": "IN"
@@ -34,6 +34,7 @@ const org = {
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
+  <link rel="preload" as="image" href="/img/hero-bg.jpg" fetchpriority="high">
 {noindex && <meta name="robots" content="noindex,nofollow" />}
 
 <meta property="og:type" content="website" />
@@ -41,7 +42,7 @@ const org = {
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={ogImage} />
-<meta property="og:site_name" content="JCS" />
+  <meta property="og:site_name" content="JCS — Accounts, HR & Compliance" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
@@ -59,3 +60,7 @@ const org = {
 <script defer src="/js/motion.js"></script>
 
 <script type="application/ld+json">{JSON.stringify(org)}</script>
+<link rel="stylesheet" href="/css/reveal.css" />
+<script src="/js/reveal.js" defer></script>
+<script src="/js/honeypot-hide.js" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"JCS World","email":"jcsworld.in@gmail.com","telephone":"+91 98211 01440","address":{"@type":"PostalAddress","streetAddress":"328, Vishal Tower, Distt. Centre, Janakpuri","addressLocality":"Delhi","postalCode":"110058","addressCountry":"IN"},"sameAs":["https://wa.me/919821101440"]}</script>

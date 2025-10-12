@@ -149,3 +149,4 @@ _bak/
 _backups/
 *.bak
 *.bak.*
+.env*.local

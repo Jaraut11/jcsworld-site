@@ -112,3 +112,91 @@ const fadeObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
 fadeUps.forEach(el => fadeObserver.observe(el));
+
+/* === JCS patch: resilient counter init (idempotent) === */
+(function () {
+  function animateCount(el) {
+    if (el.dataset.animated === '1') return;
+    el.dataset.animated = '1';
+    var target = parseInt(el.getAttribute('data-target') || '0', 10);
+    if (!isFinite(target)) target = 0;
+    var start = performance.now();
+    var duration = Math.max(900, Math.min(2500, target * 12));
+    var startVal = 0;
+    function ease(t){ return t*t*(3-2*t); }
+    function tick(now) {
+      var p = Math.min(1, (now - start) / duration);
+      var val = Math.floor(startVal + (target - startVal) * ease(p));
+      el.textContent = String(val);
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  function initCounters() {
+    var els = document.querySelectorAll('.count');
+    if (!els.length) return;
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) animateCount(e.target); });
+      }, { threshold: 0.2 });
+      els.forEach(function (el) { io.observe(el); });
+    } else {
+      els.forEach(animateCount);
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCounters, { once: true });
+  } else {
+    initCounters();
+  }
+})();
+
+// --- JCS hotfix: dedupe identical CTA cards by heading text ---
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    const tiles = Array.from(document.querySelectorAll(
+      '.card, .tile, .feature, .cta, [class*="card"], [class*="tile"]'
+    ));
+    if (!tiles.length) return;
+
+    const seen = new Set();
+    for (const el of tiles) {
+      const h = el.querySelector('h3, h2, .title, [data-title]');
+      if (!h) continue;
+      const title = (h.getAttribute('data-title') || h.textContent || '')
+        .trim().toLowerCase();
+
+      // only target our problematic "FREE Compliance Audit" cards
+      if (!title || !/free\s+compliance\s+audit/i.test(title)) continue;
+
+      if (seen.has(title)) {
+        el.parentNode && el.parentNode.removeChild(el);
+      } else {
+        seen.add(title);
+      }
+    }
+  } catch {}
+});
+
+// --- JCS footer dedupe (safe/idempotent) ---
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+
+    // Keep only the first WhatsApp link
+    const waLinks = Array.from(footer.querySelectorAll('a')).filter(a =>
+      /wa\.me|whatsapp/i.test(a.getAttribute('href') || '')
+    );
+    waLinks.slice(1).forEach(a => a.remove());
+
+    // Remove consecutive empty paragraphs
+    const paras = Array.from(footer.querySelectorAll('p'));
+    let prevEmpty = false;
+    paras.forEach(p => {
+      const isEmpty = (p.textContent || '').trim() === '' && p.querySelectorAll('a').length === 0;
+      if (isEmpty && prevEmpty) p.remove();
+      prevEmpty = isEmpty;
+    });
+  } catch {}
+});

@@ -9,12 +9,13 @@
     "preview": "astro preview",
     "astro": "astro",
     "link-audit": "bash scripts/link-audit.sh",
-    "link-audit:fast": "LINK_AUDIT_SKIP_BUILD=1 bash scripts/link-audit.sh"
+    "link-audit:fast": "LINK_AUDIT_SKIP_BUILD=1 bash scripts/link-audit.sh",
+    "ci:verify": "LINK_AUDIT_SKIP_BUILD=1 bash scripts/link-audit.sh && npm run -s build",
+    "postbuild": "node scripts/patch-vercel-config.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",
     "@studio-freight/lenis": "^1.0.42",
-    "astro": "^5.14.1",
     "gsap": "^3.13.0",
     "pdfkit": "^0.17.2",
     "resend": "^6.1.2",
@@ -23,9 +24,10 @@
   "devDependencies": {
     "@astrojs/mdx": "^4.3.6",
     "@astrojs/sitemap": "^3.6.0",
-    "@astrojs/vercel": "^8.2.8"
+    "@astrojs/vercel": "^8.2.9",
+    "astro": "^5.14.4"
   },
   "engines": {
-    "node": ">=20 <23"
+    "node": "20.x"
   }
 }

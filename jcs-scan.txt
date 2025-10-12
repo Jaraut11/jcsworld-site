@@ -8,14 +8,14 @@ src/components/HeroAnimated.astro:    <h1 class="hero-title">Stop <span data-scr
 src/pages/index.astro:    <h1>Stop <span data-scramble="Penalties|Interest|Anxiety">Penalties</span> — File On Time.</h1>
 #### MAG BUTTONS
 src/components/HeroAnimated.astro:      <a href="/contact" class="btn btn-primary btn-magnetic mag">Book a Call</a>
-src/components/HeroAnimated.astro:      <a href="https://wa.me/918920152372" class="btn btn-secondary btn-magnetic mag">WhatsApp Us</a>
-src/components/HeroAnimated.astro:      <a class="btn mag" href="https://wa.me/918920152372" rel="noopener">WhatsApp Us</a>
+src/components/HeroAnimated.astro:      <a href="https://wa.me/+91 98211 01440" class="btn btn-secondary btn-magnetic mag">WhatsApp Us</a>
+src/components/HeroAnimated.astro:      <a class="btn mag" href="https://wa.me/+91 98211 01440" rel="noopener">WhatsApp Us</a>
 src/components/HeroAnimated.astro:      <a class="btn ghost mag" href="/tools/gst-calculator">Free Audit</a>
 src/components/HeroVideo.astro:      <a href="/contact" class="btn btn-primary btn-magnetic mag">Book a Call</a>
-src/components/HeroVideo.astro:      <a href="https://wa.me/918920152372" class="btn btn-secondary btn-magnetic mag">WhatsApp Us</a>
-src/components/ContactForm.astro:      <a href="https://wa.me/918920152372" class="btn btn-secondary btn-magnetic mag">WhatsApp Us</a></div>
+src/components/HeroVideo.astro:      <a href="https://wa.me/+91 98211 01440" class="btn btn-secondary btn-magnetic mag">WhatsApp Us</a>
+src/components/ContactForm.astro:      <a href="https://wa.me/+91 98211 01440" class="btn btn-secondary btn-magnetic mag">WhatsApp Us</a></div>
 src/pages/index.astro:      <a href="/contact" class="btn btn-primary mag mag mag">Get Free Audit</a>
-src/pages/index.astro:      <a href="https://wa.me/918920152372" class="btn btn-secondary mag mag mag" rel="noopener">WhatsApp Us</a>
+src/pages/index.astro:      <a href="https://wa.me/+91 98211 01440" class="btn btn-secondary mag mag mag" rel="noopener">WhatsApp Us</a>
 #### PRICING CHECK
 src/pages/tools/gst-calculator.astro:11:        <label>Tax Payable (₹)<br/><input type="number" id="tax" min="0" step="0.01" required></label><br/>
 src/pages/tools/gst-calculator.astro:25:        const perDay=50; // approx: ₹25+₹25

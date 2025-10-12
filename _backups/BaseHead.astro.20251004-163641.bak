@@ -13,7 +13,7 @@ const jsonLd = {
   "name": "Jaraut Consultancy Services (JCS)",
   "url": SITE_URL,
   "logo": "/favicon.ico",
-  "sameAs": ["https://wa.me/918920152372"]
+  "sameAs": ["https://wa.me/+91 98211 01440"]
 };
 ---
 <title>{title}</title>
@@ -58,7 +58,7 @@ const jsonLd = {
   "telephone": "+91-11-41745010",
   "email": "Jcsworld.in@gmail.com",
   "sameAs": [
-    "https://wa.me/918920152372"
+    "https://wa.me/+91 98211 01440"
   ],
   "address": {
     "@type": "PostalAddress",
@@ -84,7 +84,7 @@ const jsonLd = {
   "telephone": "+91-11-41745010",
   "email": "Jcsworld.in@gmail.com",
   "sameAs": [
-    "https://wa.me/918920152372"
+    "https://wa.me/+91 98211 01440"
   ],
   "address": {
     "@type": "PostalAddress",
@@ -110,7 +110,7 @@ const jsonLd = {
   "telephone": "+91-11-41745010",
   "email": "Jcsworld.in@gmail.com",
   "sameAs": [
-    "https://wa.me/918920152372"
+    "https://wa.me/+91 98211 01440"
   ],
   "address": {
     "@type": "PostalAddress",
@@ -134,7 +134,7 @@ const jsonLd = {
   "logo": "https://jcsworld.in/favicon.ico",
   "telephone": "+91-11-41745010",
   "email": "Jcsworld.in@gmail.com",
-  "sameAs": ["https://wa.me/918920152372"],
+  "sameAs": ["https://wa.me/+91 98211 01440"],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "503, Suneja Tower-2, District Centre, Janakpuri",

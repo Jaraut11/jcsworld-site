@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="ROI Calculator - JCS">
+<style>
+.calc-container{max-width:800px;margin:4rem auto;padding:2rem}
+.calc-header{text-align:center;margin-bottom:3rem}
+.calc-header h1{font-size:2.5rem;font-weight:800;color:#10b981}
+.calc-card{background:white;border-radius:16px;padding:3rem;box-shadow:0 10px 40px rgba(0,0,0,0.1)}
+.form-group{margin-bottom:2rem}
+.form-group label{display:block;font-weight:600;margin-bottom:0.5rem}
+.form-group input{width:100%;padding:1rem;border:2px solid #e2e8f0;border-radius:8px}
+.calc-btn{width:100%;padding:1.2rem;background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;border-radius:8px;font-size:1.1rem;font-weight:700;cursor:pointer}
+.result-box{background:#f0fdf4;padding:2rem;margin-top:2rem;border-radius:12px;display:none}
+.result-box.show{display:block}
+.result-item{display:flex;justify-content:space-between;padding:1rem 0}
+.highlight-result{background:linear-gradient(135deg,#10b981,#059669);color:white;padding:2rem;border-radius:8px;text-align:center;margin-top:1rem}
+.highlight-result .value{font-size:3rem;font-weight:900}
+</style>
+
+<div class="calc-container">
+<div class="calc-header">
+<h1>ROI Calculator</h1>
+<p>See your savings with JCS</p>
+</div>
+
+<div class="calc-card">
+<form id="roiForm">
+<div class="form-group">
+<label>Number of Employees</label>
+<input type="number" id="employees" placeholder="50" required>
+</div>
+<div class="form-group">
+<label>Current Monthly Cost</label>
+<input type="number" id="currentCost" placeholder="40000" required>
+</div>
+<button type="submit" class="calc-btn">Calculate Savings</button>
+</form>
+
+<div id="resultBox" class="result-box">
+<div class="result-item">
+<span>Current Annual Cost</span>
+<span id="annualCurrent">0</span>
+</div>
+<div class="result-item">
+<span>JCS Annual Cost</span>
+<span id="annualJCS">0</span>
+</div>
+<div class="highlight-result">
+<div>Your Annual Savings</div>
+<div class="value" id="savings">0</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+document.getElementById('roiForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const employees = parseInt(document.getElementById('employees').value) || 0;
+const current = parseFloat(document.getElementById('currentCost').value) || 0;
+const currentAnnual = current * 12;
+const jcsAnnual = employees * 500 * 12;
+const savings = currentAnnual - jcsAnnual;
+document.getElementById('annualCurrent').textContent = '₹' + currentAnnual.toLocaleString();
+document.getElementById('annualJCS').textContent = '₹' + jcsAnnual.toLocaleString();
+document.getElementById('savings').textContent = '₹' + savings.toLocaleString();
+document.getElementById('resultBox').classList.add('show');
+});
+</script>
+</Base>

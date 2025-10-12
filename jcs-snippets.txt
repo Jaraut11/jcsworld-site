@@ -69,7 +69,7 @@ const GA = import.meta.env.GA_MEASUREMENT_ID || '';
     <p>We handle GST, PF/ESI and payroll so you can grow — not chase filings.</p>
     <div class="hero-cta">
       <a href="/contact" class="btn btn-primary mag">Get Free Audit</a>
-      <a href="https://wa.me/918920152372" class="btn btn-secondary mag" rel="noopener">WhatsApp Us</a>
+      <a href="https://wa.me/+91 98211 01440" class="btn btn-secondary mag" rel="noopener">WhatsApp Us</a>
     </div>
   </section>
 

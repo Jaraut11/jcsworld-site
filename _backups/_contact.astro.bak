@@ -103,7 +103,7 @@ import Base from '../layouts/Base.astro';
         <h3>Phone</h3>
         <p>
           <a href="tel:+911141745010">011-41745010</a><br>
-          <a href="tel:+918920152372">+91 8920152372</a><br>
+          <a href="tel:+91 98211 01440">+91 8920152372</a><br>
           <a href="tel:+917827680615">+91 7827680615</a>
         </p>
       </div>
@@ -150,7 +150,7 @@ import Base from '../layouts/Base.astro';
   <div class="cta">
     <h2>Prefer WhatsApp?</h2>
     <p>Send us a message and we'll respond within 15 minutes during business hours</p>
-    <a href="https://wa.me/918920152372?text=Hi%2C%20I%27d%20like%20to%20discuss%20JCS%20services" class="btn">Chat on WhatsApp</a>
+    <a href="https://wa.me/+91 98211 01440?text=Hi%2C%20I%27d%20like%20to%20discuss%20JCS%20services" class="btn">Chat on WhatsApp</a>
   </div>
 </div>
 </Base>

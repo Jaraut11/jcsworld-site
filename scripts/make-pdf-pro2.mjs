@@ -160,8 +160,8 @@ doc.moveDown(1.0);
 h2(doc, W, M, 'Need Help?');
 doc.x = M;
 doc.fillColor(brand.primary).font('Helvetica-Bold').fontSize(13)
-  .text('Free Compliance Audit → https://wa.me/918920152372',
-        M, doc.y, { width: W - M*2, link: 'https://wa.me/918920152372' });
+  .text('Free Compliance Audit → https://wa.me/+91 98211 01440',
+        M, doc.y, { width: W - M*2, link: 'https://wa.me/+91 98211 01440' });
 doc.moveDown(0.3);
 p(doc, W, M, 'We manage GST, TDS, Payroll (PF/ESI), and more for 100+ MSMEs in Delhi-NCR. Zero-penalty guarantee.');
 

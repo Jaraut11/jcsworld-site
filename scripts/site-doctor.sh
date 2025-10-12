@@ -136,18 +136,18 @@ fix_hero(){
 }
 
 fix_phones(){
-  say "Normalizing WhatsApp links & JSON-LD to +918920152372"
+  say "Normalizing WhatsApp links & JSON-LD to +91 98211 01440"
   # wa.me
   grep -RIl "https://wa\.me/" src public 2>/dev/null | while read -r f; do
-    bkp "$f"; sed -i '' -E 's#https://wa\.me/[0-9]+#https://wa.me/918920152372#g' "$f"
+    bkp "$f"; sed -i '' -E 's#https://wa\.me/[0-9]+#https://wa.me/+91 98211 01440#g' "$f"
   done
   # telephone
   grep -RIl '"telephone"' src public 2>/dev/null | while read -r f; do
-    bkp "$f"; sed -i '' -E 's/"telephone"\s*:\s*"\+?91[0-9]{10}"/"telephone": "+918920152372"/g' "$f"
+    bkp "$f"; sed -i '' -E 's/"telephone"\s*:\s*"\+?91[0-9]{10}"/"telephone": "+91 98211 01440"/g' "$f"
   done
   # sameAs WA
   grep -RIl '"sameAs"' src public 2>/dev/null | while read -r f; do
-    bkp "$f"; sed -i '' -E 's#https://wa\.me/[0-9]+#https://wa.me/918920152372#g' "$f"
+    bkp "$f"; sed -i '' -E 's#https://wa\.me/[0-9]+#https://wa.me/+91 98211 01440#g' "$f"
   done
   ok "Numbers normalized"
 }
