@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import schema from '../../partials/schema-faq.html?raw';
+---
+<Base title="FAQs — Compliance, Payroll & PF/ESI | JCS">
+<style>
+.wrap{max-width:900px;margin:0 auto;padding:60px 16px}
+h1{color:#111827}
+details{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:16px;margin:12px 0}
+summary{font-weight:700;cursor:pointer}
+</style>
+
+<div class="wrap">
+  <h1>Frequently Asked Questions</h1>
+  <details><summary>How fast can you get our books audit-ready?</summary><div>Typically within 48 hours for standard MSME scopes.</div></details>
+  <details><summary>Do you handle PF/ESI end-to-end?</summary><div>Yes — registration, monthly filings, challans, and compliance audit.</div></details>
+  <details><summary>What’s your penalty-avoidance guarantee?</summary><div>We commit to on-time filings for engaged scopes; if we miss a deadline that’s on us, we cover the statutory late fee up to a cap in the agreement.</div></details>
+</div>
+
+<script type="application/ld+json" set:html={schema}></script>
+</Base>

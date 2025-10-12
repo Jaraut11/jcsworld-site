@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Salary Calculator - JCS">
+<style>
+.calc-container{max-width:800px;margin:4rem auto;padding:2rem}
+.calc-header{text-align:center;margin-bottom:3rem}
+.calc-header h1{font-size:2.5rem;font-weight:800;color:#1e40af;margin-bottom:1rem}
+.calc-card{background:white;border-radius:16px;padding:3rem;box-shadow:0 10px 40px rgba(0,0,0,0.1)}
+.form-group{margin-bottom:2rem}
+.form-group label{display:block;font-weight:600;margin-bottom:0.5rem}
+.form-group input,.form-group select{width:100%;padding:1rem;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem}
+.calc-btn{width:100%;padding:1.2rem;background:linear-gradient(135deg,#3b82f6,#1e40af);color:white;border:none;border-radius:8px;font-size:1.1rem;font-weight:700;cursor:pointer}
+.result-box{background:#f0f9ff;border-radius:12px;padding:2rem;margin-top:2rem;display:none}
+.result-box.show{display:block}
+.result-item{display:flex;justify-content:space-between;padding:1rem 0}
+.highlight-result{background:linear-gradient(135deg,#3b82f6,#1e40af);color:white;padding:1.5rem;border-radius:8px;text-align:center;margin-top:1rem}
+.highlight-result .value{font-size:2.5rem;font-weight:900}
+</style>
+
+<div class="calc-container">
+<div class="calc-header">
+<h1>Salary Calculator</h1>
+<p>Calculate your take-home salary after deductions</p>
+</div>
+
+<div class="calc-card">
+<form id="salaryForm">
+<div class="form-group">
+<label>Monthly Gross Salary</label>
+<input type="number" id="grossSalary" placeholder="50000" required>
+</div>
+<div class="form-group">
+<label>Include PF?</label>
+<select id="includePF">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+</div>
+<button type="submit" class="calc-btn">Calculate</button>
+</form>
+
+<div id="resultBox" class="result-box">
+<div class="result-item">
+<span>Gross Salary</span>
+<span id="resultGross">0</span>
+</div>
+<div class="result-item">
+<span>PF Deduction</span>
+<span id="resultPF">0</span>
+</div>
+<div class="highlight-result">
+<div>Take-Home Salary</div>
+<div class="value" id="resultTakeHome">0</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+document.getElementById('salaryForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const gross = parseFloat(document.getElementById('grossSalary').value) || 0;
+const includePF = document.getElementById('includePF').value === 'yes';
+const pf = includePF ? Math.round(gross * 0.12) : 0;
+const takeHome = gross - pf;
+document.getElementById('resultGross').textContent = '₹' + gross.toLocaleString();
+document.getElementById('resultPF').textContent = '₹' + pf.toLocaleString();
+document.getElementById('resultTakeHome').textContent = '₹' + takeHome.toLocaleString();
+document.getElementById('resultBox').classList.add('show');
+});
+</script>
+</Base>

@@ -1,0 +1,13 @@
+---
+const phone = '919821101440';
+const msg = `Hello JCS Team,
+I’d like to request a compliance and accounts consultation for my business.
+Please let me know the next steps.`;
+const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`;
+---
+<a class="fab-whatsapp" href={waUrl} target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true">
+    <path d="M19.1 17.6c-.3-.2-1.9-1-2.2-1.2-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.3-.7.1-.3-.2-1.3-.5-2.4-1.6-.9-.8-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7.1-.2.3-.4.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.6 0-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3 .2.6 2.4 3c2.3 2.5 4.4 3.2 4.9 3.4.5.2 1 .2 1.4.1.4-.1 1.9-.8 2.2-1.6.3-.8.3-1.5.2-1.6z" fill="currentColor"/>
+    <path d="M27.6 16a11.6 11.6 0 1 1-23.2 0 11.6 11.6 0 0 1 23.2 0zm-2 0A9.6 9.6 0 1 0 8.2 22L7 26.6l4.7-1.2A9.6 9.6 0 0 0 25.6 16z" fill="currentColor"/>
+  </svg>
+</a>

@@ -1,0 +1,42 @@
+/* Global reveals + motion hygiene */
+:root { --reveal-y: 16px; --reveal-dur: .55s; --reveal-ease: cubic-bezier(.22,.61,.36,1); }
+.r { opacity: 0; transform: translateY(var(--reveal-y)); will-change: opacity, transform; }
+.r.in { opacity: 1; transform: translateY(0); transition: opacity var(--reveal-dur) var(--reveal-ease), transform var(--reveal-dur) var(--reveal-ease); }
+
+/* Scroll cue */
+.scroll-cue{--s:18px;display:inline-block;width:var(--s);height:var(--s);border:2px solid currentColor;border-radius:999px;position:absolute;left:0;right:0;margin:auto;bottom:-.75rem;opacity:.7}
+.scroll-cue::after{content:"";display:block;width:2px;height:6px;background:currentColor;border-radius:2px;margin:auto;transform:translateY(4px)}
+@media (prefers-reduced-motion: reduce){ .r{opacity:1;transform:none} .r.in{transition:none} .scroll-cue{display:none} }
+
+/* Logo marquee */
+.logo-marquee{--gap:32px;--spd:26s;overflow:hidden;filter:grayscale(1);opacity:.9}
+.logo-marquee:hover{filter:none;opacity:1}
+.logo-track{display:flex;gap:var(--gap);align-items:center;will-change:transform;animation: marquee var(--spd) linear infinite}
+.logo-track > img{height:36px;max-width:160px;object-fit:contain;opacity:.9;transition:opacity .2s ease, filter .2s ease}
+.logo-track > img:hover{opacity:1;filter:none}
+@keyframes marquee { from{ transform:translateX(0) } to{ transform:translateX(-50%) } }
+
+/* KPI band */
+.kpi-band{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
+.kpi{padding:1rem;border:1px solid rgba(0,0,0,.08);border-radius:12px;text-align:center}
+.kpi strong{font-size:clamp(28px,6vw,44px);line-height:1}
+.kpi span{display:block;opacity:.7;margin-top:.35rem}
+
+/* Sticky process */
+.process{display:grid;grid-template-columns:260px 1fr;gap:1.5rem}
+.process-rail{position:sticky;top:80px;align-self:start}
+.process-step{padding:1rem;border-left:3px solid transparent}
+.process-step.active{border-left-color:currentColor;background:rgba(0,0,0,.03);border-radius:10px}
+
+/* Filtered projects */
+.filter-chips{display:flex;gap:.5rem;flex-wrap:wrap;margin:.75rem 0 1rem}
+.filter-chips button{border:1px solid rgba(0,0,0,.15);background:#fff;border-radius:999px;padding:.4rem .8rem;cursor:pointer}
+.filter-chips button.active{background:#111;color:#fff;border-color:#111}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+.card{border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:1rem;transition:opacity .18s ease, transform .18s ease}
+.card.hide{opacity:0;transform:scale(.97);pointer-events:none}
+
+/* Magnetic (disabled on small) */
+@media (hover:hover) and (pointer:fine){
+  .magnetic{position:relative;transition:transform .12s ease}
+}

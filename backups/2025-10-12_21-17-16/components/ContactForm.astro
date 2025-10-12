@@ -1,0 +1,17 @@
+<section class="section reveal">
+  <div class="container" style="max-width:760px">
+    <h2>Get in touch</h2>
+    <form name="contact" method="POST" netlify netlify-honeypot="bot-field" action="/thanks" class="card card-pad">
+      <input type="hidden" name="form-name" value="contact" />
+      <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <p><label>Your Name<br/><input required name="name" /></label></p>
+        <p><label>Phone / WhatsApp<br/><input required name="phone" /></label></p>
+      </div>
+      <p><label>Email<br/><input type="email" name="email" required /></label></p>
+      <p><label>Message<br/><textarea name="message" rows="4"></textarea></label></p>
+      <div class="cta"><button type="submit" class="btn btn-primary btn-magnetic">Send</button>
+      <a href="https://api.whatsapp.com/send?phone= 919821101440&text={ENC}" rel="noopener" class="btn btn-secondary btn-magnetic mag">WhatsApp Us</a></div>
+    </form>
+  </div>
+</section>

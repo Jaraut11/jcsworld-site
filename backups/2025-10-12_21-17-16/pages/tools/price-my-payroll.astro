@@ -1,0 +1,35 @@
+---
+import BaseHead from '../../components/BaseHead.astro'
+---
+<html lang="en">
+  <head>
+    <BaseHead title="Price My Payroll | JCS World" />
+  </head>
+  <body>
+    <main id="main-content" style="padding:2rem 1rem;max-width:900px;margin:auto">
+      <h1 class="r">Price My Payroll</h1>
+      <p class="r" style="opacity:.8">Estimate a monthly payroll processing fee based on headcount & complexity.</p>
+      <form class="r" onsubmit="return false" style="display:grid;gap:1rem;margin:1rem 0">
+        <label>Employees <input type="number" id="emp" min="1" value="10" /></label>
+        <label>PF/ESI Setup? <select id="pf"><option value="0">No</option><option value="1">Yes</option></select></label>
+        <label>Pay Cycles / month <input type="number" id="cycles" min="1" value="1" /></label>
+        <div class="r" id="res" style="padding:1rem;border:1px solid rgba(0,0,0,.1);border-radius:10px">—</div>
+      </form>
+    </main>
+    <script>
+      const ru = n => '₹'+Math.round(n).toLocaleString();
+      function calc(){
+        const emp = +(document.getElementById('emp').value||0);
+        const pf = +(document.getElementById('pf').value||0);
+        const cycles = +(document.getElementById('cycles').value||1);
+        const base = 1500;
+        const perEmp = 60;
+        const adder = pf? 750 : 0;
+        const total = base + (emp*perEmp) + adder + (cycles>1? (cycles-1)*400 : 0);
+        document.getElementById('res').innerHTML = `<strong>Estimated Monthly Fee:</strong> ${ru(total)} <br/><em class="r" style="opacity:.7">Final quote depends on scope & SLAs.</em>`;
+      }
+      ['emp','pf','cycles'].forEach(id=>document.getElementById(id).addEventListener('input',calc));
+      calc();
+    </script>
+  </body>
+</html>

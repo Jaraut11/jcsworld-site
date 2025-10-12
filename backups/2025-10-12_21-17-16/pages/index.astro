@@ -1,0 +1,414 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="JCS - Professional Compliance Services | Delhi-NCR">
+<style>
+:root{--primary:#1e40af;--primary-dark:#1e3a8a;--secondary:#3b82f6;--accent:#10b981;--dark:#0f172a;--gray:#64748b;--light:#f8fafc}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--dark);line-height:1.6;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,rgba(30,64,175,0.95),rgba(30,58,138,0.95)),url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=80') center/cover;color:white;padding:8rem 1.5rem 6rem;text-align:center;min-height:85vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at top right,rgba(59,130,246,0.3),transparent);animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.8}}
+.hero-content{max-width:900px;margin:0 auto;animation:fadeInUp 1s ease}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero h1{font-size:clamp(1.75rem,5vw,4rem);font-weight:800;margin-bottom:1rem;line-height:1.1}
+.hero p{font-size:clamp(1rem,2.5vw,1.4rem);margin-bottom:2rem;opacity:0.95}
+.hero-stats{display:flex;justify-content:center;gap:2rem;margin-top:2rem;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:2rem;font-weight:900;display:block}
+.hero-stat-label{font-size:0.9rem;opacity:0.9}
+
+/* Button */
+.btn{display:inline-block;padding:1rem 2rem;min-width:200px;min-height:48px;background:white;color:var(--primary);text-decoration:none;border-radius:8px;font-weight:700;font-size:1.05rem;transition:all 0.3s cubic-bezier(0.4,0,0.2,1);box-shadow:0 8px 20px rgba(0,0,0,0.2);text-align:center;position:relative;overflow:hidden}
+.btn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:rgba(59,130,246,0.3);transform:translate(-50%,-50%);transition:width 0.6s,height 0.6s}
+.btn:hover::before{width:300px;height:300px}
+.btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 30px rgba(0,0,0,0.3)}
+
+/* Trust Bar */
+.trust-bar{background:white;padding:2.5rem 1.5rem;box-shadow:0 -2px 15px rgba(0,0,0,0.08);margin-top:-2rem;position:relative;z-index:10}
+.trust-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:1200px;margin:0 auto;text-align:center}
+.trust-item{opacity:0;transform:translateY(20px);animation:fadeInItem 0.6s ease forwards}
+.trust-item:nth-child(1){animation-delay:0.1s}
+.trust-item:nth-child(2){animation-delay:0.2s}
+.trust-item:nth-child(3){animation-delay:0.3s}
+.trust-item:nth-child(4){animation-delay:0.4s}
+@keyframes fadeInItem{to{opacity:1;transform:translateY(0)}}
+.trust-item h3{font-size:clamp(2rem,6vw,3.5rem);font-weight:900;background:linear-gradient(135deg,var(--secondary),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* Client Logos Section */
+.client-logos{background:var(--light);padding:3rem 1.5rem;text-align:center;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
+.client-logos h3{font-size:0.85rem;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2rem}
+.logos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:2rem;max-width:900px;margin:0 auto;align-items:center}
+.logo-item{padding:1.5rem;background:white;border-radius:8px;display:flex;align-items:center;justify-content:center;height:80px;transition:all 0.3s;border:1px solid #e2e8f0}
+.logo-item:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,0.1)}
+.logo-placeholder{font-weight:700;color:var(--gray);font-size:0.9rem}
+
+/* Free Tools Section */
+.tools-section{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:white;padding:4rem 1.5rem}
+.tools-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;max-width:1200px;margin:3rem auto 0}
+.tool-card{background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);padding:2rem;border-radius:12px;border:1px solid rgba(255,255,255,0.2);transition:all 0.3s;cursor:pointer}
+.tool-card:hover{background:rgba(255,255,255,0.15);transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,0.3)}
+.tool-icon{font-size:2.5rem;margin-bottom:1rem}
+.tool-card h3{font-size:1.3rem;margin-bottom:0.75rem;font-weight:700}
+.tool-card p{opacity:0.9;font-size:0.95rem;margin-bottom:1rem}
+.tool-cta{display:inline-block;padding:0.5rem 1.5rem;background:white;color:var(--primary);border-radius:6px;font-weight:600;text-decoration:none;font-size:0.9rem;transition:transform 0.3s}
+.tool-cta:hover{transform:scale(1.05)}
+
+/* Badge Bar */
+.badge-bar{background:var(--light);padding:1.5rem;text-align:center}
+.badge-bar p{color:var(--gray);font-weight:600;margin-bottom:1rem;text-transform:uppercase;font-size:0.75rem;letter-spacing:0.1em}
+.badges{display:flex;justify-content:center;gap:0.75rem;flex-wrap:wrap}
+.badge{background:white;padding:0.75rem 1.25rem;border-radius:6px;font-weight:700;color:var(--dark);border:2px solid #e2e8f0;font-size:0.8rem;transition:all 0.3s;position:relative;overflow:hidden}
+.badge::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(45deg,transparent,rgba(59,130,246,0.1),transparent);transform:rotate(45deg);transition:all 0.5s}
+.badge:hover{border-color:var(--secondary);transform:translateY(-2px);box-shadow:0 4px 12px rgba(59,130,246,0.2)}
+.badge:hover::before{left:100%}
+
+/* Services */
+.section{padding:3rem 1.5rem}
+.container{max-width:1200px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:3rem;opacity:0;transform:translateY(30px);transition:all 0.8s ease}
+.section-header.visible{opacity:1;transform:translateY(0)}
+.section-header h2{font-size:clamp(1.75rem,5vw,2.75rem);font-weight:800;margin-bottom:0.75rem}
+.section-header p{font-size:clamp(1rem,2.5vw,1.25rem);color:var(--gray);max-width:700px;margin:0 auto}
+.services-grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
+.service{background:white;padding:2rem 1.5rem;border-radius:12px;border:2px solid #e2e8f0;transition:all 0.4s;position:relative;opacity:0;transform:translateY(30px)}
+.service.visible{opacity:1;transform:translateY(0)}
+.service::before{content:'';position:absolute;top:0;left:0;width:4px;height:0;background:linear-gradient(180deg,var(--secondary),var(--primary));transition:height 0.3s}
+.service:hover::before{height:100%}
+.service:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(30,64,175,0.15);border-color:var(--secondary)}
+.service-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--secondary),var(--primary));border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;box-shadow:0 6px 18px rgba(59,130,246,0.3);transition:transform 0.3s}
+.service:hover .service-icon{transform:scale(1.1) rotate(5deg)}
+.service-icon svg{width:30px;height:30px;fill:white}
+.service h3{font-size:1.4rem;margin-bottom:0.75rem;font-weight:700}
+.service p{color:var(--gray);margin-bottom:1.25rem;line-height:1.6;font-size:0.95rem}
+.service-link{color:var(--secondary);text-decoration:none;font-weight:700;display:inline-flex;align-items:center;gap:0.5rem;transition:gap 0.3s}
+.service-link::after{content:'→';transition:transform 0.3s}
+.service-link:hover{gap:1rem}
+.service-link:hover::after{transform:translateX(4px)}
+
+/* Case Studies Section */
+.case-studies{background:var(--light);padding:4rem 1.5rem}
+.case-grid{display:grid;grid-template-columns:1fr;gap:2rem;max-width:1200px;margin:2rem auto 0}
+.case-card{background:white;padding:2rem;border-radius:12px;border:2px solid #e2e8f0;transition:all 0.3s}
+.case-card:hover{transform:translateY(-5px);box-shadow:0 15px 35px rgba(0,0,0,0.1);border-color:var(--accent)}
+.case-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:1rem;flex-wrap:wrap;gap:1rem}
+.case-title{font-size:1.3rem;font-weight:700;color:var(--dark)}
+.case-result{font-size:2rem;font-weight:900;color:var(--accent)}
+.case-desc{color:var(--gray);margin-bottom:1rem;line-height:1.6}
+.case-client{font-size:0.85rem;color:var(--gray);font-style:italic}
+
+/* Why Us */
+.why-us{background:white}
+.features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.feature{text-align:center;opacity:0;transform:scale(0.9);transition:all 0.6s}
+.feature.visible{opacity:1;transform:scale(1)}
+.feature-icon{width:70px;height:70px;background:linear-gradient(135deg,var(--secondary),var(--primary));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 6px 20px rgba(59,130,246,0.25);font-size:2rem;color:white;transition:transform 0.3s}
+.feature:hover .feature-icon{transform:scale(1.1) rotateY(360deg)}
+
+/* Testimonials */
+.testimonials{background:var(--dark);color:white;padding:3rem 1.5rem}
+.testimonial-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;max-width:1200px;margin:2rem auto 0}
+.testimonial{background:rgba(255,255,255,0.05);padding:2rem 1.5rem;border-radius:12px;border:1px solid rgba(255,255,255,0.1);opacity:0;transform:translateY(30px);transition:all 0.6s}
+.testimonial.visible{opacity:1;transform:translateY(0)}
+.testimonial:hover{background:rgba(255,255,255,0.08);transform:translateY(-5px)}
+
+/* CTA */
+.cta-section{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:white;padding:4rem 1.5rem;text-align:center}
+.cta-section h2{font-size:clamp(1.75rem,5vw,2.75rem);margin-bottom:1rem;font-weight:800}
+
+/* WhatsApp Float */
+.whatsapp-float{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(37,211,102,0.4);z-index:1000;animation:floatPulse 2s ease-in-out infinite;transition:transform 0.3s}
+.whatsapp-float:hover{transform:scale(1.1)}
+@keyframes floatPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.whatsapp-float svg{width:30px;height:30px;fill:white}
+
+/* Progress Bar */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--secondary),var(--primary));z-index:1000;transition:width 0.3s}
+
+/* Responsive */
+@media (min-width:768px){
+.hero{padding:10rem 2rem 8rem}
+.section{padding:5rem 2rem}
+.trust-grid{grid-template-columns:repeat(4,1fr)}
+.services-grid{grid-template-columns:repeat(2,1fr)}
+.features-grid{grid-template-columns:repeat(4,1fr)}
+.testimonial-grid{grid-template-columns:repeat(2,1fr)}
+.case-grid{grid-template-columns:repeat(2,1fr)}
+.tools-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (min-width:1024px){
+.services-grid{grid-template-columns:repeat(4,1fr)}
+.testimonial-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<section class="hero">
+<div class="hero-content">
+<h1>Compliance Made Simple for Growing Businesses</h1>
+<p>Expert Accounts, HR & Legal Services helping MSMEs stay compliant and focus on growth</p>
+<div class="hero-stats">
+<div class="hero-stat"><span class="hero-stat-num">500+</span><span class="hero-stat-label">Clients</span></div>
+<div class="hero-stat"><span class="hero-stat-num">15+</span><span class="hero-stat-label">Years</span></div>
+<div class="hero-stat"><span class="hero-stat-num">98%</span><span class="hero-stat-label">Satisfaction</span></div>
+</div>
+<a href="/contact" class="btn">Get Free Consultation</a>
+</div>
+</section>
+
+<section class="client-logos">
+<h3>Trusted by Leading Businesses in Delhi-NCR</h3>
+<div class="logos-grid">
+<div class="logo-item"><span class="logo-placeholder">Client 1</span></div>
+<div class="logo-item"><span class="logo-placeholder">Client 2</span></div>
+<div class="logo-item"><span class="logo-placeholder">Client 3</span></div>
+<div class="logo-item"><span class="logo-placeholder">Client 4</span></div>
+<div class="logo-item"><span class="logo-placeholder">Client 5</span></div>
+<div class="logo-item"><span class="logo-placeholder">Client 6</span></div>
+</div>
+</section>
+
+<section class="tools-section">
+<div class="container">
+<div class="section-header" style="color:white">
+<h2>Free Compliance Tools</h2>
+<p style="color:rgba(255,255,255,0.9)">Calculate your savings and compliance costs instantly</p>
+</div>
+<div class="tools-grid">
+<div class="tool-card">
+<div class="tool-icon">🧮</div>
+<h3>GST Calculator</h3>
+<p>Calculate GST liability and input tax credit instantly</p>
+<a href="/tools/gst-calculator" class="tool-cta">Try Free Tool →</a>
+</div>
+<div class="tool-card">
+<div class="tool-icon">💰</div>
+<h3>Salary Calculator</h3>
+<p>Estimate take-home salary with PF, ESI & tax deductions</p>
+<a href="/tools/salary-calculator" class="tool-cta">Try Free Tool →</a>
+</div>
+<div class="tool-card">
+<div class="tool-icon">📊</div>
+<h3>ROI Calculator</h3>
+<p>See how much you save by outsourcing compliance</p>
+<a href="/tools/roi-calculator" class="tool-cta">Try Free Tool →</a>
+</div>
+<div class="tool-card">
+<div class="tool-icon">🔍</div>
+<h3>FREE Compliance Audit</h3>
+<p>Find your risk score in 2 minutes - Are you compliant?</p>
+<a href="/compliance-audit" class="tool-cta">Take Free Audit →</a>
+</div>
+<div class="tool-card">
+<div class="tool-icon">🔍</div>
+<h3>FREE Compliance Audit</h3>
+<p>Find your risk score in 2 minutes - Are you compliant?</p>
+<a href="/compliance-audit" class="tool-cta">Take Free Audit →</a>
+</div>
+</div>
+</div>
+</section>
+
+<div class="badge-bar">
+<p>Certified & Trusted</p>
+<div class="badges">
+<span class="badge">✓ ISO 9001:2015</span>
+<span class="badge">✓ GST Registered</span>
+<span class="badge">✓ MSME Partner</span>
+<span class="badge">✓ 500+ Clients</span>
+</div>
+</div>
+
+<section class="section">
+<div class="container">
+<div class="section-header">
+<h2>Our Services</h2>
+<p>Comprehensive compliance solutions tailored for your business</p>
+</div>
+<div class="services-grid">
+<div class="service">
+<div class="service-icon">
+<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+</div>
+<h3>Accounts & Tax</h3>
+<p>Professional bookkeeping, GST/TDS compliance, ITR filing</p>
+<a href="/services/accounts" class="service-link">Learn More</a>
+</div>
+<div class="service">
+<div class="service-icon">
+<svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+</div>
+<h3>HR & Payroll</h3>
+<p>Complete payroll processing, PF/ESI management</p>
+<a href="/services/hr" class="service-link">Learn More</a>
+</div>
+<div class="service">
+<div class="service-icon">
+<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+</div>
+<h3>Legal Support</h3>
+<p>Expert assistance for labour disputes</p>
+<a href="/services/legal" class="service-link">Learn More</a>
+</div>
+<div class="service">
+<div class="service-icon">
+<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+</div>
+<h3>Hospitality Staffing</h3>
+<p>Professional staffing solutions</p>
+<a href="/services/hospitality" class="service-link">Learn More</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="case-studies">
+<div class="container">
+<div class="section-header">
+<h2>Real Results from Real Clients</h2>
+<p>See how we've helped businesses like yours</p>
+</div>
+<div class="case-grid">
+<div class="case-card">
+<div class="case-header">
+<h3 class="case-title">Manufacturing Company</h3>
+<div class="case-result">₹5.2L Saved</div>
+</div>
+<p class="case-desc">Reduced compliance costs by 65% and eliminated 100% of late filing penalties through our automated monthly compliance management system.</p>
+<p class="case-client">— 120-employee manufacturing firm, Gurgaon</p>
+</div>
+<div class="case-card">
+<div class="case-header">
+<h3 class="case-title">IT Services Startup</h3>
+<div class="case-result">3 Days Setup</div>
+</div>
+<p class="case-desc">Complete payroll and PF/ESI setup for 45 employees in just 3 business days, enabling them to focus on rapid growth without compliance worries.</p>
+<p class="case-client">— Fast-growing IT startup, Noida</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section why-us">
+<div class="container">
+<div class="section-header">
+<h2>Why Choose JCS?</h2>
+<p>Trusted partner for compliance and business growth</p>
+</div>
+<div class="features-grid">
+<div class="feature">
+<div class="feature-icon">✓</div>
+<h3>Expert Team</h3>
+<p>15+ years experience</p>
+</div>
+<div class="feature">
+<div class="feature-icon">⚡</div>
+<h3>Quick Start</h3>
+<p>2-3 business days</p>
+</div>
+<div class="feature">
+<div class="feature-icon">🔒</div>
+<h3>100% Compliant</h3>
+<p>Latest regulations</p>
+</div>
+<div class="feature">
+<div class="feature-icon">💼</div>
+<h3>Dedicated Support</h3>
+<p>Personal manager</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="testimonials">
+<div class="container">
+<div class="section-header" style="color:white">
+<h2>What Our Clients Say</h2>
+<p style="color:rgba(255,255,255,0.8)">Trusted by businesses across Delhi-NCR</p>
+</div>
+<div class="testimonial-grid">
+<div class="testimonial">
+<div class="testimonial-text">"JCS has been handling our compliance for 3 years. Professional and responsive team."</div>
+<div class="testimonial-author">Rajesh Kumar</div>
+<div class="testimonial-company">Manufacturing, Gurgaon</div>
+</div>
+<div class="testimonial">
+<div class="testimonial-text">"Switching to JCS simplified our payroll. Highly recommend their services!"</div>
+<div class="testimonial-author">Priya Sharma</div>
+<div class="testimonial-company">IT Services, Noida</div>
+</div>
+<div class="testimonial">
+<div class="testimonial-text">"Professional team that understands MSME challenges. Saved us time and money."</div>
+<div class="testimonial-author">Amit Verma</div>
+<div class="testimonial-company">Retail, Delhi</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cta-section">
+<h2>Ready to Simplify Your Compliance?</h2>
+<p>Get a free consultation and customized proposal</p>
+<a href="/contact" class="btn">Schedule Free Consultation</a>
+</section>
+
+<a href="https://wa.me/+91 98211 01440" target="_blank" class="whatsapp-float" aria-label="Contact on WhatsApp">
+<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+// Progress Bar
+window.addEventListener('scroll', () => {
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById('progressBar').style.width = scrolled + '%';
+});
+
+// Intersection Observer
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.section-header, .service, .feature, .testimonial').forEach(el => {
+  observer.observe(el);
+});
+
+// Staggered animation for services
+document.querySelectorAll('.service').forEach((el, index) => {
+  el.style.transitionDelay = `${index * 0.1}s`;
+});
+</script>
+</Base>
+
+<link rel="stylesheet" href="/css/audit-promo.css">
+
+<script>
+// Highlight the compliance audit card
+document.addEventListener('DOMContentLoaded', function() {
+  const auditCards = document.querySelectorAll('.tool-card');
+  auditCards.forEach(card => {
+    if (card.textContent.includes('Compliance Audit')) {
+      card.classList.add('audit-highlight');
+      const badge = document.createElement('div');
+      badge.className = 'new-badge';
+      badge.textContent = '🔥 MOST POPULAR';
+      card.style.position = 'relative';
+      card.appendChild(badge);
+    }
+  });
+});
+</script>

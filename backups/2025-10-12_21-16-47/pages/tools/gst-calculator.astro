@@ -1,0 +1,43 @@
+---
+import BaseHead from '../../components/BaseHead.astro'
+---
+<html lang="en">
+  <head>
+    <BaseHead title="GST Late Fee & Interest Calculator | JCS World" />
+  </head>
+  <body>
+    <main id="main-content" style="padding:2rem 1rem;max-width:900px;margin:auto">
+      <h1 class="r">GST Late Fee & Interest Calculator</h1>
+      <p class="r" style="opacity:.8">Quick estimate. Rates can vary by period and return type. Adjust fields as needed.</p>
+      <form class="r" onsubmit="return false" style="display:grid;gap:1rem;margin:1rem 0">
+        <label>Tax Due (₹)
+          <input type="number" id="tax" min="0" step="0.01" value="10000" required />
+        </label>
+        <label>Days Late
+          <input type="number" id="days" min="0" step="1" value="30" required />
+        </label>
+        <label>Interest Rate (% p.a.)
+          <input type="number" id="rate" min="0" step="0.1" value="18" />
+        </label>
+        <div class="r" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem">
+          <label>Late Fee (₹/day) <input type="number" id="late" min="0" step="1" value="50" /></label>
+          <label>Cap (₹) <input type="number" id="cap" min="0" step="1" value="5000" /></label>
+        </div>
+        <div class="r" id="out" style="padding:1rem;border:1px solid rgba(0,0,0,.1);border-radius:10px">—</div>
+      </form>
+    </main>
+    <script>
+      const $ = id => document.getElementById(id);
+      function calc(){
+        const P = +$('tax').value||0, days=+$('days').value||0, r=(+$('rate').value||0)/100;
+        const late = (+$('late').value||0)*days;
+        const cap = +$('cap').value||Infinity;
+        const interest = Math.round(P * r * (days/365));
+        const fee = Math.min(late, cap);
+        $('out').innerHTML = `<strong>Estimated Interest:</strong> ₹\${interest.toLocaleString()}<br/><strong>Estimated Late Fee:</strong> ₹\${fee.toLocaleString()}<br/><em class="r" style="opacity:.7">Check latest CBIC circulars for exact rates.</em>`;
+      }
+      ['tax','days','rate','late','cap'].forEach(id=>$(id).addEventListener('input',calc));
+      calc();
+    </script>
+  </body>
+</html>

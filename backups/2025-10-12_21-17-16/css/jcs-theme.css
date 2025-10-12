@@ -1,0 +1,54 @@
+:root{
+  --indigo:#4f46e5; /* hero left */
+  --violet:#7c3aed; /* hero right */
+  --surface: linear-gradient(180deg, rgba(79,70,229,.10), rgba(124,58,237,.06));
+  --surface-strong: linear-gradient(180deg, rgba(79,70,229,.16), rgba(124,58,237,.10));
+  --bdr: rgba(79,70,229,.22);
+}
+
+/* Sections pick up a soft brand wash */
+.services{
+  background: linear-gradient(180deg, rgba(79,70,229,.06), rgba(124,58,237,.04)) !important;
+}
+.process{
+  background: linear-gradient(180deg, rgba(79,70,229,.06), rgba(124,58,237,.04)) !important;
+}
+
+/* Service cards */
+.services .service-card{
+  background: var(--surface) !important;
+  border: 1px solid var(--bdr) !important;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(79,70,229,.12);
+  backdrop-filter: saturate(120%) blur(2px);
+}
+.services .service-card:hover{
+  background: var(--surface-strong) !important;
+  transform: translateY(-6px);
+  box-shadow: 0 16px 42px rgba(79,70,229,.18);
+}
+.services .service-card a{ color: var(--indigo); }
+
+/* Process steps */
+.process .step{
+  background: var(--surface) !important;
+  border: 1px solid var(--bdr) !important;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(79,70,229,.10);
+  position: relative;
+}
+.process .step::before{
+  content:""; position:absolute; inset:0; border-left:4px solid var(--indigo);
+  border-radius:14px; opacity:.7; pointer-events:none;
+}
+.process h4{ color: var(--indigo); margin: 0 0 8px; }
+
+/* Testimonials (make cards match) */
+.testimonials .card,
+.card.testimonial, .testimonial{
+  background: var(--surface) !important;
+  border: 1px solid var(--bdr) !important;
+}
+
+/* KPI numbers pop slightly on the gradient band */
+.stats .stat strong{ text-shadow: 0 1px 0 rgba(0,0,0,.08); }

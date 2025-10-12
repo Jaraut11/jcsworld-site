@@ -1,0 +1,15 @@
+---
+const { logos = ['/img/logos/1.svg','/img/logos/2.svg','/img/logos/3.svg','/img/logos/4.svg','/img/logos/5.svg','/img/logos/6.svg'] } = Astro.props;
+---
+<div class="logo-marquee">
+  <div class="logos">
+    {logos.map((src: string) => <img src={src} alt="Client logo" />)}
+    {logos.map((src: string) => <img src={src} alt="Client logo" />)}
+  </div>
+</div>
+<style>
+.logo-marquee { overflow: hidden; padding: 2rem 0; }
+.logos { display: flex; gap: 3rem; animation: scroll 20s linear infinite; }
+.logos img { height: 48px; width: auto; filter: grayscale(1) opacity(0.6); }
+@keyframes scroll { to { transform: translateX(-50%); } }
+</style>

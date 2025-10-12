@@ -1,0 +1,28 @@
+---
+const chips = [
+  { key: 'all', label: 'All' },
+  { key: 'gst', label: 'GST' },
+  { key: 'itr', label: 'ITR' },
+  { key: 'payroll', label: 'Payroll' }
+];
+const cards = [
+  { title:'SMB GST Cleanup', tags:'gst' },
+  { title:'ITR for Founders', tags:'itr' },
+  { title:'Payroll Rollout', tags:'payroll' },
+  { title:'GST + Payroll Stack', tags:'gst,payroll' },
+];
+---
+<section class="r" aria-label="Caseboards">
+  <div class="filter-chips">
+    {chips.map(c => <button type="button" data-filter={c.key}>{c.label}</button>)}
+  </div>
+  <div class="cards">
+    {cards.map(c => (
+      <article class="card r" data-tags={c.tags}>
+        <h4 style="margin:0 0 .35rem 0">{c.title}</h4>
+        <p style="opacity:.75;margin:0">Tags: {c.tags}</p>
+        <a class="magnetic" href="https://api.whatsapp.com/send?phone= 919821101440&text={ENC}" target="_blank" rel="noopener" style="display:inline-block;margin-top:.75rem">WhatsApp Us</a>
+      </article>
+    ))}
+  </div>
+</section>

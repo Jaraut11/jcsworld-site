@@ -1,0 +1,39 @@
+---
+const tools = [
+  { href: '/tools/gst-calculator', title: 'GST Late Fee & Interest Calculator', desc: 'Estimate late fees and interest for GSTR-3B / GSTR-1.' },
+  { href: '/tools/price-my-payroll', title: 'Price My Payroll', desc: 'Transparent payroll quote by employee count & compliances.' },
+  { href: '/tools/compliance-calendar', title: 'Compliance Calendar (ICS)', desc: 'Generate a personalized deadline calendar and download .ics.' },
+];
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tools | JCS</title>
+    <meta name="description" content="Free MSME tools: GST calculator, payroll estimator, and compliance calendar." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; color:#111; }
+      header, main { max-width: 920px; margin: 0 auto; padding: 1.25rem; }
+      .grid { display:grid; gap:1rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+      .card { border:1px solid #eee; border-radius:12px; padding:1rem; background:#fff; }
+      .card a { text-decoration:none; color:inherit; display:block }
+      .card h2 { margin:.25rem 0 .25rem; font-size:1.1rem }
+      .card p { margin:.25rem 0 0; opacity:.85; line-height:1.3 }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Free MSME Toolbelt</h1>
+      <p>Quick calculators and generators to cut penalties and guesswork.</p>
+    </header>
+    <main>
+      <div class="grid">
+        {tools.map(t => (
+          <div class="card">
+            <a href={t.href}><h2>{t.title}</h2><p>{t.desc}</p></a>
+          </div>
+        ))}
+      </div>
+    </main>
+  </body>
+</html>

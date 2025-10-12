@@ -1,0 +1,23 @@
+---
+const steps = [
+  { id:'step1', title:'Discovery', text:'Understand your entity, turnover, and compliance cadence.' },
+  { id:'step2', title:'Setup', text:'GST/ITR/PF/ESI credentials, books and templates.' },
+  { id:'step3', title:'Run', text:'Monthly filings & payroll with reminders.' },
+  { id:'step4', title:'Support', text:'Quarterly reviews and year-end returns.' }
+];
+---
+<section class="process r" aria-label="Our process">
+  <aside class="process-rail">
+    {steps.map(s => (
+      <a class="process-step" href={`#${s.id}`}><strong>{s.title}</strong></a>
+    ))}
+  </aside>
+  <div>
+    {steps.map(s => (
+      <section id={s.id} class="process-section r" style="padding:1rem 0 2rem">
+        <h3>{s.title}</h3>
+        <p style="opacity:.8">{s.text}</p>
+      </section>
+    ))}
+  </div>
+</section>

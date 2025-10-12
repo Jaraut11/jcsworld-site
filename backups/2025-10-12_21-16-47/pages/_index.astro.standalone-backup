@@ -1,0 +1,478 @@
+---
+// Standalone HTML page - no layout needed
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCS — Accounts, HR & Compliance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9fafb;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .services {
+            padding: 60px 20px;
+            background: white;
+        }
+        
+        .services h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #1f2937;
+        }
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background: #f9fafb;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .service-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+        
+        .service-card p {
+            color: #6b7280;
+            margin-bottom: 15px;
+        }
+        
+        .service-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .process {
+            padding: 60px 20px;
+            background: #f9fafb;
+        }
+        
+        .process h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #1f2937;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .step h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .stats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .stat h3 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .stat p {
+            opacity: 0.9;
+        }
+        
+        .pricing {
+            padding: 60px 20px;
+            background: white;
+        }
+        
+        .pricing h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #1f2937;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: #f9fafb;
+            padding: 35px;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #1f2937;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        .pricing-card li {
+            padding: 8px 0;
+            color: #6b7280;
+        }
+        
+        .pricing-card li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+        }
+        
+        .faq {
+            padding: 60px 20px;
+            background: #f9fafb;
+        }
+        
+        .faq h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #1f2937;
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .faq-item h4 {
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+        
+        .faq-item p {
+            color: #6b7280;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .service-grid, .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>JCS — Accounts, HR & Compliance</h1>
+            <p>Your trusted partner for business compliance & growth</p>
+        </div>
+    </header>
+
+    <section class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="icon">📊</div>
+                    <h3>Accounts & Tax</h3>
+                    <p>Bookkeeping, GST/TDS returns, ITR & balance sheets.</p>
+                    <a href="/services/accounts">Learn More →</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="icon">🧾</div>
+                    <h3>HR, Payroll & PF/ESI</h3>
+                    <p>Registrations, payroll processing, PF/ESI filings.</p>
+                    <a href="/services/hr">Learn More →</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="icon">⚖️</div>
+                    <h3>Legal Support</h3>
+                    <p>Labour & commercial disputes with our legal partners.</p>
+                    <a href="/services/legal">Learn More →</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="icon">🧹</div>
+                    <h3>Hospitality Staffing</h3>
+                    <p>Canteen, housekeeping, catering staff for offices & industries.</p>
+                    <a href="/services/hospitality">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process">
+        <div class="container">
+            <h2>Our Process</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <h4>Step 1: Discovery & Consultation</h4>
+                    <p>We understand your business needs</p>
+                </div>
+                <div class="step">
+                    <h4>Step 2: Onboarding & Setup</h4>
+                    <p>Quick and smooth onboarding process</p>
+                </div>
+                <div class="step">
+                    <h4>Step 3: Monthly Compliance & Payroll</h4>
+                    <p>Regular processing and filings</p>
+                </div>
+                <div class="step">
+                    <h4>Step 4: Review & Reports</h4>
+                    <p>Detailed reporting and review meetings</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat">
+                    <h3>15+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat">
+                    <h3>100+</h3>
+                    <p>MSMEs Supported</p>
+                </div>
+                <div class="stat">
+                    <h3>15+</h3>
+                    <p>Industries Covered</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing">
+        <div class="container">
+            <h2>Plans that fit MSMEs</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Compliance Starter</h3>
+                    <ul>
+                        <li>GST monthly + reminders</li>
+                        <li>Basic bookkeeping</li>
+                        <li>Email & WhatsApp support</li>
+                    </ul>
+                    <a href="/contact/" class="btn">Get Started</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Payroll & PF/ESI</h3>
+                    <ul>
+                        <li>Payroll processing</li>
+                        <li>PF/ESI filings</li>
+                        <li>Records & payslips</li>
+                    </ul>
+                    <a href="/contact/" class="btn">Request Quote</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Accounts & ITR Plus</h3>
+                    <ul>
+                        <li>Bookkeeping, GST & TDS</li>
+                        <li>Quarterly review</li>
+                        <li>Annual ITR & Balance Sheet</li>
+                    </ul>
+                    <a href="/contact/" class="btn">Talk to Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2>FAQ</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h4>How fast can you start?</h4>
+                    <p>Usually within 2–3 business days once documents are received.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>Do you work outside Delhi-NCR?</h4>
+                    <p>Yes—remote filings and support PAN-India. On-site visits by request.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>Are legal services in-house?</h4>
+                    <p>We work with qualified legal partners. Scope is defined in the engagement letter.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to streamline your compliance?</h2>
+            <p>Let's discuss how we can support your business growth</p>
+            <a href="/contact/" class="btn">Get Proposal</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 JCS — Accounts, HR & Compliance. All rights reserved.</p>
+    </footer>
+
+    <a href="https://wa.me/918920152372" class="whatsapp-float" target="_blank">💬 WhatsApp</a>
+</body>
+</html>

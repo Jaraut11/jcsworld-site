@@ -1,0 +1,15 @@
+---
+const { items = [
+  { label: 'Returns Filed', value: 1200 },
+  { label: 'Happy Clients', value: 350 },
+  { label: 'Years Experience', value: 12 }
+] } = Astro.props;
+---
+<section class="kpi-band r" aria-label="Key performance indicators">
+  {items.map((it) => (
+    <div class="kpi r">
+      <strong data-count={it.value}>0</strong>
+      <span>{it.label}</span>
+    </div>
+  ))}
+</section>

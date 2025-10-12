@@ -1,0 +1,30 @@
+---
+interface Props {
+  phone?: string;          // E.164 without '+'
+  service?: string | null; // e.g. "HR & Payroll" | "Accounts" | "Legal"
+  message?: string | null; // optional full custom message
+  label?: string;          // button text
+}
+
+const {
+  phone = '919821101440',   // ← YOUR number (country code + number, no '+')
+  service = null,
+  message = null,
+  label = 'WhatsApp Us',
+} = Astro.props as Props;
+
+const baseMsg = `Hello JCS Team,
+I’d like to request a compliance and accounts consultation for my business.
+Please let me know the next steps.`;
+
+const msg = message ?? (
+  service
+    ? `Hello JCS Team,
+I’d like to request a ${service} consultation for my business.
+Please let me know the next steps.`
+    : baseMsg
+);
+
+const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`;
+---
+<a href={waUrl} class="btn btn-whatsapp" target="_blank" rel="noopener">{label}</a>

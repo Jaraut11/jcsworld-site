@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Animation Test">
+  <div style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;">
+    
+    <h1 class="scroll-reveal">Scroll Reveal Animation</h1>
+    <div class="section-divider"></div>
+    
+    <div style="display: grid; gap: 2rem; margin: 3rem 0;">
+      
+      <div class="service-card scroll-reveal" style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <div class="float-icon" style="font-size: 3rem;">📊</div>
+        <h3>Hover Over Me</h3>
+        <p>This card has hover effects</p>
+      </div>
+      
+      <div class="scroll-reveal" style="text-align: center;">
+        <div class="stat-number" data-count="500" style="font-size: 3rem; font-weight: bold; color: #3b82f6;">0</div>
+        <p>This counter animates</p>
+      </div>
+      
+      <a href="#" class="btn-professional pulse-cta" style="display: inline-block; padding: 1rem 2rem; background: #3b82f6; color: white; border-radius: 8px; text-decoration: none;">
+        Button with Pulse + Hover
+      </a>
+      
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,15 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+---
+<html lang="en">
+  <head>
+    <BaseHead />
+    <link rel="stylesheet" href="/global.css" />
+  <!-- @motion-assets -->
+  <link rel="stylesheet" href="/css/motion.css">
+  <script defer src="/js/motion.js"></script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
