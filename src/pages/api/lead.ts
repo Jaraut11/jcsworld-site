@@ -3,37 +3,11 @@ import { Resend } from 'resend';
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
-// Allow your own domain(s) only
-const ALLOWED_ORIGINS = new Set([
-  'http://localhost:4321',
-  'http://localhost:4000',
-  'https://www.jcsworld.in',
-  'https://jcsworld.in',
-]);
-
 export async function GET() {
   return new Response('OK', { status: 200 });
 }
 
 export async function POST(ctx: APIContext) {
-  const origin = ctx.request.headers.get('origin') || '';
-  const referer = ctx.request.headers.get('referer') || '';
-  
-  // Allow if:
-  // 1. Origin is in allowed list
-  // 2. No origin header (same-origin/direct requests) BUT referer is from allowed domain
-  // 3. No origin AND no referer (for direct API calls/curl from same domain)
-  const isOriginAllowed = origin && ALLOWED_ORIGINS.has(origin);
-  const isRefererAllowed = referer && Array.from(ALLOWED_ORIGINS).some(allowed => 
-    referer.startsWith(allowed)
-  );
-  const isSameOrigin = !origin && (!referer || isRefererAllowed);
-  
-  if (!isOriginAllowed && !isSameOrigin) {
-    console.log('Blocked request - Origin:', origin, 'Referer:', referer);
-    return new Response('Cross-site POST form submissions are forbidden', { status: 403 });
-  }
-
   let fields: Record<string, string> = {};
   try {
     const ct = ctx.request.headers.get('content-type') || '';
@@ -44,12 +18,11 @@ export async function POST(ctx: APIContext) {
       fields = await ctx.request.json();
     }
   } catch {
-    // ignore – fields stays empty
+    // ignore
   }
 
-  // Simple honeypot
   if (fields['bot-field']) {
-    console.log('Honeypot hit, dropping submission.');
+    console.log('Honeypot hit');
     return new Response(null, { status: 204 });
   }
 
@@ -61,10 +34,8 @@ export async function POST(ctx: APIContext) {
   const employees = fields.employees || '';
   const message = fields.message || '';
 
-  // Validate required fields
   if (!name || !email || !phone) {
-    console.log('Missing required fields');
-    return new Response('Missing required fields: name, email, phone', { status: 400 });
+    return new Response('Missing required fields', { status: 400 });
   }
 
   const html = `
@@ -84,21 +55,15 @@ export async function POST(ctx: APIContext) {
     const from = import.meta.env.FROM || 'JCS Leads <onboarding@resend.dev>';
     const to = [import.meta.env.TO || 'jcsworld.in@gmail.com'];
 
-    const res = await resend.emails.send({
+    await resend.emails.send({
       from,
       to,
       replyTo: email,
       subject: `New Lead: ${name} (${service || 'General Inquiry'})`,
       html,
     });
-
-    console.log('Resend response:', res);
-
-    if (res.error) {
-      console.error('Resend error:', res.error);
-    }
   } catch (err) {
-    console.error('Resend send error:', err);
+    console.error('Email error:', err);
   }
 
   return ctx.redirect('/thank-you', 303);
