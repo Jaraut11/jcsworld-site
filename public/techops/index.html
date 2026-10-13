@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JCS TechOps — Cloud & SRE Engineering | Delhi NCR</title>
+<meta name="description" content="Production-grade DevOps, SRE and Cloud infrastructure for Indian startups. AWS cost audits, Kubernetes, CI/CD, Terraform, Linux, disaster recovery. Available for freelance and contract work. Based in New Delhi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #080A0D;
+  --ink2: #0D1117;
+  --ink3: #161C25;
+  --wire: rgba(255,255,255,0.06);
+  --wire2: rgba(255,255,255,0.1);
+  --text: #E2EBF5;
+  --text2: #7A8FA8;
+  --text3: #3A4F62;
+  --gold: #C8A96E;
+  --gold2: #E8C87A;
+  --green: #2EFFA0;
+  --cyan: #00D4FF;
+  --red: #FF4D6A;
+  --blue: #4D9FFF;
+  --purple: #A855F7;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;cursor:none}
+
+/* GRAIN */
+body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.02;mix-blend-mode:overlay}
+
+/* CURSOR */
+#cur-dot{position:fixed;width:7px;height:7px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 10px rgba(200,169,110,0.6);transition:transform .1s}
+#cur-ring{position:fixed;width:30px;height:30px;border:1px solid rgba(200,169,110,0.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .12s ease}
+
+/* CANVAS */
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.7}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 4%;border-bottom:1px solid var(--wire);background:rgba(8,10,13,0.88);backdrop-filter:blur(24px)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.logo-sq{width:28px;height:28px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;position:relative}
+.logo-sq::after{content:'';position:absolute;inset:4px;background:var(--gold);opacity:.1}
+.logo-sq-inner{width:7px;height:7px;background:var(--gold);box-shadow:0 0 8px rgba(200,169,110,0.6);animation:gpulse 3s ease infinite}
+@keyframes gpulse{0%,100%{opacity:1;box-shadow:0 0 8px rgba(200,169,110,0.6)}50%{opacity:.5;box-shadow:0 0 4px rgba(200,169,110,0.2)}}
+.logo-wm{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.08em;color:var(--text)}
+.logo-wm em{font-style:normal;color:var(--gold)}
+.nav-pill{display:flex;align-items:center;gap:6px;background:rgba(46,255,160,0.07);border:1px solid rgba(46,255,160,0.18);padding:.28rem .8rem;border-radius:20px;font-family:'DM Mono',monospace;font-size:.6rem;color:var(--green);letter-spacing:.06em}
+.gpulse2{width:5px;height:5px;border-radius:50%;background:var(--green);animation:ring 2s ease infinite}
+@keyframes ring{0%,100%{box-shadow:0 0 0 0 rgba(46,255,160,0.4)}70%{box-shadow:0 0 0 5px rgba(46,255,160,0)}}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-family:'DM Mono',monospace;font-size:.67rem;color:var(--text2);text-decoration:none;letter-spacing:.08em;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-actions{display:flex;align-items:center;gap:.8rem}
+.nav-wa{width:32px;height:32px;border:1px solid rgba(46,255,160,0.25);display:flex;align-items:center;justify-content:center;font-size:.95rem;text-decoration:none;transition:all .2s;color:var(--green)}
+.nav-wa:hover{border-color:var(--green);box-shadow:0 0 12px rgba(46,255,160,0.2)}
+.nav-cta{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;background:var(--gold);color:var(--ink);padding:.48rem 1.25rem;border-radius:2px;text-decoration:none;letter-spacing:.04em;transition:all .2s}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 6px 24px rgba(200,169,110,0.25)}
+
+/* HERO */
+.hero{position:relative;z-index:2;min-height:100vh;display:grid;grid-template-columns:1fr 400px;gap:3rem;align-items:center;padding:8rem 4% 5rem;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;right:20%;width:1px;height:100%;background:linear-gradient(180deg,transparent,rgba(200,169,110,0.08) 30%,rgba(200,169,110,0.08) 70%,transparent);z-index:0}
+
+.hero-left{position:relative;z-index:1}
+.hero-eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem;opacity:0;animation:up .6s ease forwards .1s}
+.eyebrow-tag{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.16em;color:var(--gold);text-transform:uppercase}
+.eyebrow-line{flex:1;max-width:50px;height:1px;background:var(--gold);opacity:.4}
+
+.hero-hl{max-width:800px;margin-bottom:2.5rem;opacity:0;animation:up .7s ease forwards .2s}
+.hl-top{font-family:'Syne',sans-serif;font-size:clamp(3.2rem,7.5vw,7rem);font-weight:800;line-height:.92;letter-spacing:-.04em;color:var(--text);display:block}
+.hl-outline{font-family:'Syne',sans-serif;font-size:clamp(3.2rem,7.5vw,7rem);font-weight:800;line-height:.92;letter-spacing:-.04em;display:block;-webkit-text-stroke:1.5px rgba(200,169,110,0.5);color:transparent;margin-top:.15em}
+.hl-sub{font-family:'DM Mono',monospace;font-size:clamp(.6rem,1vw,.8rem);color:var(--text3);letter-spacing:.14em;margin-top:1.4rem;display:block;text-transform:uppercase}
+
+.hero-body{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;max-width:780px;margin-bottom:3rem;opacity:0;animation:up .7s ease forwards .35s}
+.hero-desc{font-size:1rem;color:var(--text2);line-height:1.85;font-weight:300}
+.hero-desc strong{color:var(--text);font-weight:500}
+.hero-diff{border-left:2px solid var(--gold);padding:.7rem 1.1rem;background:rgba(200,169,110,0.04)}
+.diff-label{font-family:'DM Mono',monospace;font-size:.55rem;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.4rem}
+.diff-text{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:600;color:var(--text);line-height:1.5}
+
+.hero-actions{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;opacity:0;animation:up .7s ease forwards .45s;margin-bottom:3.5rem}
+.btn-primary{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;background:var(--gold);color:var(--ink);padding:.9rem 2rem;text-decoration:none;letter-spacing:.04em;border-radius:2px;transition:all .2s;display:inline-flex;align-items:center;gap:.6rem;position:relative;overflow:hidden}
+.btn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent);transform:translateX(-100%);transition:transform .4s}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(200,169,110,0.3)}
+.btn-primary:hover::after{transform:translateX(100%)}
+.btn-wa-hero{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--green);text-decoration:none;letter-spacing:.08em;display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(46,255,160,0.2);padding:.5rem 1rem;transition:all .2s}
+.btn-wa-hero:hover{border-color:var(--green);box-shadow:0 0 16px rgba(46,255,160,0.15)}
+.btn-secondary{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text2);text-decoration:none;letter-spacing:.06em;display:inline-flex;align-items:center;gap:.5rem;transition:color .2s;border-bottom:1px solid var(--wire2);padding-bottom:2px}
+.btn-secondary:hover{color:var(--text)}
+
+/* STATS */
+.hero-stats{display:flex;gap:0;border:1px solid var(--wire);max-width:680px;opacity:0;animation:up .7s ease forwards .55s}
+.hstat{flex:1;padding:1.3rem 1.5rem;border-right:1px solid var(--wire);position:relative;overflow:hidden}
+.hstat:last-child{border-right:none}
+.hstat::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.hstat:hover::after{transform:scaleX(1)}
+.hstat-num{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;color:var(--text);display:block;line-height:1;margin-bottom:.3rem}
+.hstat-lbl{font-family:'DM Mono',monospace;font-size:.56rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase}
+
+/* HERO RIGHT — LIVE DASHBOARD */
+.hero-right{position:relative;z-index:1;opacity:0;animation:fadeIn .8s ease forwards .6s}
+.dashboard{background:rgba(13,17,23,0.95);border:1px solid rgba(200,169,110,0.15);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 0 1px rgba(200,169,110,0.05)}
+.dash-head{padding:.75rem 1rem;border-bottom:1px solid var(--wire);display:flex;align-items:center;gap:.6rem;background:rgba(200,169,110,0.03)}
+.ddots{display:flex;gap:.35rem}
+.dd{width:9px;height:9px;border-radius:50%}
+.dd.r{background:#FF5F57}.dd.y{background:#FEBC2E}.dd.g{background:#28C840}
+.dash-title{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text3);letter-spacing:.08em;margin-left:.4rem}
+.dash-live{margin-left:auto;font-family:'DM Mono',monospace;font-size:.55rem;color:var(--green);display:flex;align-items:center;gap:.35rem}
+.dash-body{padding:1.1rem}
+.met{display:flex;align-items:center;gap:.7rem;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+.met:last-of-type{border-bottom:none;margin-bottom:.6rem}
+.met-i{font-size:.85rem;width:22px;flex-shrink:0}
+.met-info{flex:1}
+.met-name{font-family:'DM Mono',monospace;font-size:.56rem;color:var(--text3);letter-spacing:.08em;margin-bottom:.25rem}
+.met-bar{height:2px;background:rgba(255,255,255,0.06);border-radius:1px;overflow:hidden}
+.met-fill{height:100%;border-radius:1px;animation:barFill 1.8s ease forwards}
+@keyframes barFill{from{width:0}to{width:var(--w)}}
+.f1{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.f2{background:linear-gradient(90deg,var(--cyan),var(--blue))}
+.f3{background:linear-gradient(90deg,var(--green),var(--cyan))}
+.f4{background:linear-gradient(90deg,var(--purple),var(--blue))}
+.met-val{font-family:'DM Mono',monospace;font-size:.67rem;font-weight:500;color:var(--gold);white-space:nowrap;min-width:48px;text-align:right}
+.dash-sep{height:1px;background:var(--wire);margin:.6rem 0}
+.dash-log{font-family:'DM Mono',monospace;font-size:.58rem;line-height:1.9}
+.dlog{display:flex;gap:.5rem;opacity:0;animation:fadeIn .4s ease forwards}
+.dt{color:rgba(200,169,110,0.3)}
+.dok{color:var(--green)}
+.dinf{color:var(--cyan)}
+.dwarn{color:#FFB800}
+.dmsg{color:var(--text3)}
+.dcur{display:inline-block;width:5px;height:9px;background:var(--gold);animation:blink 1s step-end infinite;vertical-align:middle}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* SECTIONS */
+section{position:relative;z-index:2;padding:6.5rem 4%}
+.sdiv{height:1px;background:linear-gradient(90deg,transparent,var(--wire2),transparent);margin:0 4%}
+.sec-tag{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase;display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+.sec-tag::before{content:'';width:20px;height:1px;background:var(--gold);opacity:.5}
+h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;letter-spacing:-.025em;line-height:1.05;margin-bottom:.8rem}
+.sec-sub{font-size:.95rem;color:var(--text2);line-height:1.8;max-width:520px;margin-bottom:3.5rem;font-weight:300}
+
+/* SERVICES */
+#services{background:var(--ink2)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--wire)}
+.svc{background:var(--ink2);padding:2.2rem;position:relative;overflow:hidden;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s,background .25s}
+.svc.vis{opacity:1;transform:translateY(0)}
+.svc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.svc:hover{background:rgba(200,169,110,0.03)}
+.svc:hover::before{transform:scaleX(1)}
+.svc-num{font-family:'DM Mono',monospace;font-size:.56rem;color:var(--text3);letter-spacing:.16em;margin-bottom:1.2rem}
+.svc-icon-wrap{width:38px;height:38px;border:1px solid var(--wire2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:1.2rem;position:relative}
+.svc-icon-wrap::before{content:'';position:absolute;inset:-1px;background:linear-gradient(135deg,rgba(200,169,110,0.1),transparent);opacity:0;transition:opacity .3s}
+.svc:hover .svc-icon-wrap::before{opacity:1}
+.svc-title{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.7rem}
+.svc-desc{font-size:.84rem;color:var(--text2);line-height:1.75;margin-bottom:1.2rem;font-weight:300}
+.svc-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.stag{font-family:'DM Mono',monospace;font-size:.54rem;color:var(--text3);border:1px solid var(--wire);padding:.18rem .5rem;letter-spacing:.04em;transition:all .2s}
+.svc:hover .stag{border-color:rgba(200,169,110,0.18);color:var(--gold)}
+
+/* PROCESS */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.steps::after{content:'';position:absolute;top:26px;left:calc(12.5% + 12px);right:calc(12.5% + 12px);height:1px;background:linear-gradient(90deg,var(--gold),var(--cyan),var(--purple));opacity:.2}
+.step{padding:2rem 1.5rem;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}
+.step.vis{opacity:1;transform:translateY(0)}
+.step-num{width:26px;height:26px;border:1px solid var(--wire2);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--gold);margin-bottom:1.5rem;background:var(--ink);position:relative;z-index:1}
+.step-title{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
+.step-desc{font-size:.82rem;color:var(--text2);line-height:1.7;font-weight:300}
+
+/* STACK */
+#stack{background:var(--ink2);border-top:1px solid var(--wire);border-bottom:1px solid var(--wire)}
+.stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--wire)}
+.stack-col{background:var(--ink2);padding:2rem}
+.sct{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;color:var(--text);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid var(--wire);display:flex;align-items:center;gap:.6rem}
+.sct::before{content:'';width:3px;height:12px;background:linear-gradient(180deg,var(--gold),var(--cyan))}
+.si{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--text2);display:flex;align-items:center;gap:.5rem;padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,0.03);transition:color .2s;font-weight:300}
+.si:last-child{border-bottom:none}
+.si:hover{color:var(--text)}
+.si::before{content:'·';color:var(--gold);font-size:1rem;line-height:1}
+
+/* PROOF */
+.proof-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.proof-card{border:1px solid var(--wire);padding:2.5rem;background:var(--ink2);opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s,border-color .25s;position:relative;overflow:hidden}
+.proof-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;transition:height .4s ease}
+.proof-card.p1::before{background:linear-gradient(180deg,var(--green),var(--cyan))}
+.proof-card.p2::before{background:linear-gradient(180deg,var(--gold),var(--gold2))}
+.proof-card.p3::before{background:linear-gradient(180deg,var(--blue),var(--purple))}
+.proof-card.p4::before{background:linear-gradient(180deg,var(--red),var(--purple))}
+.proof-card:hover{border-color:rgba(200,169,110,0.2)}
+.proof-card:hover::before{height:100%}
+.proof-card.vis{opacity:1;transform:translateY(0)}
+.proof-client{font-family:'DM Mono',monospace;font-size:.56rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}
+.proof-num{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;margin-bottom:.6rem;line-height:1}
+.proof-num.g1{color:var(--green)}.proof-num.g2{color:var(--gold)}.proof-num.g3{color:var(--blue)}.proof-num.g4{color:var(--red)}
+.proof-desc{font-size:.84rem;color:var(--text2);line-height:1.75;margin-bottom:1.2rem;font-weight:300}
+.proof-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.ptag{font-family:'DM Mono',monospace;font-size:.54rem;color:var(--text3);border:1px solid var(--wire);padding:.15rem .45rem;letter-spacing:.04em}
+
+/* CTA */
+.cta-block{position:relative;z-index:2;margin:0 4% 6rem;border:1px solid var(--wire2);padding:5rem 4rem;background:var(--ink2);overflow:hidden;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center}
+.cta-block::before{content:'';position:absolute;top:-80px;right:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(200,169,110,0.06),transparent 70%)}
+.cta-block::after{content:'';position:absolute;bottom:-60px;left:30%;width:250px;height:250px;background:radial-gradient(circle,rgba(0,212,255,0.04),transparent 70%)}
+.cta-eyebrow{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text3);letter-spacing:.16em;text-transform:uppercase;margin-bottom:.8rem}
+.cta-block h2{font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:.8rem}
+.cta-block h2 span{color:var(--gold)}
+.cta-block p{font-size:.9rem;color:var(--text2);line-height:1.8;font-weight:300;max-width:440px}
+.cta-side{display:flex;flex-direction:column;gap:1rem;flex-shrink:0}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start}
+.ci-row{display:flex;align-items:flex-start;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--wire);transition:background .2s}
+.ci-row:last-child{border-bottom:none}
+.ci-icon{font-size:.9rem;width:22px;flex-shrink:0;opacity:.7;margin-top:2px}
+.ci-key{font-family:'DM Mono',monospace;font-size:.56rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;width:70px;flex-shrink:0;margin-top:2px}
+.ci-val{font-family:'DM Mono',monospace;font-size:.74rem;color:var(--text);line-height:1.6}
+.ci-val a{color:var(--gold);text-decoration:none;transition:color .2s}
+.ci-val a:hover{color:var(--gold2)}
+
+/* FORM */
+.form-panel{border:1px solid var(--wire);background:var(--ink2)}
+.fp-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--wire)}
+.fp-row .fg:first-child{border-right:1px solid var(--wire)}
+.fg{display:flex;flex-direction:column}
+.fg-full{border-bottom:1px solid var(--wire)}
+.flabel{font-family:'DM Mono',monospace;font-size:.54rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;padding:.55rem 1rem .3rem;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--wire)}
+.finput,.fselect,.ftextarea{background:transparent;border:none;outline:none;padding:.75rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:300;width:100%;transition:background .2s}
+.finput:focus,.fselect:focus,.ftextarea:focus{background:rgba(200,169,110,0.03)}
+.fselect{cursor:pointer}
+.fselect option{background:#0D1117}
+.ftextarea{resize:vertical;min-height:100px}
+.fsub-wrap{padding:1rem 1.2rem;background:rgba(200,169,110,0.03);border-top:1px solid var(--wire);display:flex;align-items:center;justify-content:space-between}
+.fsub{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;background:var(--gold);color:var(--ink);border:none;padding:.75rem 1.8rem;cursor:pointer;letter-spacing:.06em;border-radius:2px;transition:all .2s}
+.fsub:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 4px 20px rgba(200,169,110,0.25)}
+.fsub-note{font-family:'DM Mono',monospace;font-size:.56rem;color:var(--text3)}
+
+/* FOOTER */
+footer{position:relative;z-index:2;border-top:1px solid var(--wire);padding:1.8rem 4%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.foot-l{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text3)}
+.foot-l span{color:var(--gold)}
+.foot-r{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text3);display:flex;gap:2rem}
+.foot-r a{color:var(--text3);text-decoration:none;transition:color .2s}
+.foot-r a:hover{color:var(--gold)}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:300;width:50px;height:50px;background:linear-gradient(135deg,#25D366,#128C7E);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);animation:wafloat 3s ease infinite;transition:transform .2s}
+.wa-float:hover{transform:scale(1.1)!important}
+@keyframes wafloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+/* ANIMATIONS */
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .hero{grid-template-columns:1fr;padding-top:7rem}
+  .hero-right{display:none}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .stack-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr;gap:3rem}
+  .cta-block{grid-template-columns:1fr;gap:2rem}
+  .cta-side{flex-direction:row}
+  .nav-links{display:none}
+  .hero-body{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .svc-grid,.proof-grid{grid-template-columns:1fr}
+  .hero-stats{flex-wrap:wrap}
+  .hstat{min-width:45%}
+  .fp-row{grid-template-columns:1fr}
+  .fp-row .fg:first-child{border-right:none;border-bottom:1px solid var(--wire)}
+  .cta-block{padding:2.5rem 1.5rem;margin:0 0 4rem}
+  section{padding:4.5rem 5%}
+  nav{padding:0 5%}
+  .steps::after{display:none}
+  .wa-float{bottom:1.2rem;right:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<!-- CANVAS BG -->
+<canvas id="bg"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-sq"><div class="logo-sq-inner"></div></div>
+    <div class="logo-wm">JCS/<em>TechOps</em></div>
+  </div>
+  <div class="nav-pill"><div class="gpulse2"></div>all systems nominal</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#proof">Results</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="https://wa.me/918920152372" target="_blank" class="nav-wa" title="WhatsApp">💬</a>
+    <a href="https://calendly.com/jcsworld" target="_blank" class="nav-cta">Book Free Audit</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow" style="flex-wrap:wrap">
+      <span class="eyebrow-tag">DevOps · SRE · FinOps · Platform Engineering</span>
+      <div class="eyebrow-line"></div><span class="eyebrow-tag" style="color:var(--green)">● Open for freelance &amp; contract work</span>
+    </div>
+    <div class="hero-hl">
+      <span class="hl-top">₹3L/month back</span>
+      <span class="hl-outline">in your AWS budget.</span>
+      <span class="hl-sub">// guaranteed findings in 48 hours · free audit · no strings attached</span>
+    </div>
+    <div class="hero-body">
+      <div class="hero-desc">
+        We build, operate, and optimize <strong>production-grade cloud infrastructure</strong> for startups and scaling teams across India — CI/CD, Kubernetes, FinOps, observability. Hands-on, end to end.
+      </div>
+      <div class="hero-diff">
+        <div class="diff-label">Our guarantee</div>
+        <div class="diff-text">No juniors. No PowerPoints. Engineers who've kept 50K+ concurrent users online under real pressure.</div>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="https://calendly.com/jcsworld" target="_blank" class="btn-primary">📅 Book Free Audit Call</a>
+      <a href="https://wa.me/918920152372" target="_blank" class="btn-wa-hero">💬 WhatsApp us</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-num" data-target="25" data-suffix="%">0%</span><span class="hstat-lbl">Cloud cost cut</span></div>
+      <div class="hstat"><span class="hstat-num" data-target="63" data-suffix="%">0%</span><span class="hstat-lbl">Faster deploys</span></div>
+      <div class="hstat"><span class="hstat-num" data-target="67" data-suffix="%">0%</span><span class="hstat-lbl">MTTR improved</span></div>
+      <div class="hstat"><span class="hstat-num" data-target="50" data-suffix="K+">0</span><span class="hstat-lbl">Concurrent users</span></div>
+    </div>
+  </div>
+
+  <!-- LIVE DASHBOARD -->
+  <div class="hero-right">
+    <div class="dashboard">
+      <div class="dash-head">
+        <div class="ddots"><div class="dd r"></div><div class="dd y"></div><div class="dd g"></div></div>
+        <span class="dash-title">prod-cluster · ap-south-1</span>
+        <span class="dash-live"><span class="gpulse2"></span>LIVE</span>
+      </div>
+      <div class="dash-body">
+        <div class="met"><div class="met-i">⚡</div><div class="met-info"><div class="met-name">CPU UTILIZATION</div><div class="met-bar"><div class="met-fill f1" style="--w:38%"></div></div></div><div class="met-val">38%</div></div>
+        <div class="met"><div class="met-i">💾</div><div class="met-info"><div class="met-name">MEMORY USAGE</div><div class="met-bar"><div class="met-fill f2" style="--w:55%"></div></div></div><div class="met-val">55%</div></div>
+        <div class="met"><div class="met-i">🌐</div><div class="met-info"><div class="met-name">NETWORK THROUGHPUT</div><div class="met-bar"><div class="met-fill f3" style="--w:72%"></div></div></div><div class="met-val">1.4 GB/s</div></div>
+        <div class="met"><div class="met-i">💰</div><div class="met-info"><div class="met-name">MONTHLY SAVINGS</div><div class="met-bar"><div class="met-fill f4" style="--w:82%"></div></div></div><div class="met-val">₹3.2L</div></div>
+        <div class="dash-sep"></div>
+        <div class="dash-log">
+          <div class="dlog" style="animation-delay:.4s"><span class="dt">09:14:02</span><span class="dok">[OK]</span><span class="dmsg">Pipeline triggered on main</span></div>
+          <div class="dlog" style="animation-delay:.9s"><span class="dt">09:14:09</span><span class="dok">[OK]</span><span class="dmsg">Tests passed (312/312)</span></div>
+          <div class="dlog" style="animation-delay:1.4s"><span class="dt">09:14:16</span><span class="dinf">[INF]</span><span class="dmsg">Docker build → ECR push</span></div>
+          <div class="dlog" style="animation-delay:1.9s"><span class="dt">09:14:24</span><span class="dok">[OK]</span><span class="dmsg">EKS rolling update done</span></div>
+          <div class="dlog" style="animation-delay:2.4s"><span class="dt">09:14:31</span><span class="dok">[OK]</span><span class="dmsg">Health checks 3/3 passing</span></div>
+          <div class="dlog" style="animation-delay:2.9s"><span class="dt">09:14:32</span><span class="dinf">[INF]</span><span class="dmsg">Deploy: 14m 32s <span class="dcur"></span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sdiv"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="sec-tag">Services</div>
+  <h2>What we operate.</h2>
+  <p class="sec-sub">Full-stack infrastructure engineering — from day-0 setup to ongoing SRE. We cover the whole stack so you don't have to hire 5 people.</p>
+  <div class="svc-grid">
+    <div class="svc"><div class="svc-num">SVC-01</div><div class="svc-icon-wrap">💰</div><div class="svc-title">FinOps & Cost Engineering</div><div class="svc-desc">Systematic cloud spend reduction. We audit your AWS/GCP bill, eliminate waste, implement Reserved Instances, and embed cost guardrails into your pipelines.</div><div class="svc-tags"><span class="stag">AWS Cost Explorer</span><span class="stag">RI Planning</span><span class="stag">Savings Plans</span><span class="stag">Right-sizing</span></div></div>
+    <div class="svc"><div class="svc-num">SVC-02</div><div class="svc-icon-wrap">⚙️</div><div class="svc-title">CI/CD & Release Engineering</div><div class="svc-desc">Automated build, test, deploy, and rollback pipelines. Multi-env promotion, staged rollouts, canary deployments, and automated quality and security gates. Cut deploy time from 40 to 15 minutes.</div><div class="svc-tags"><span class="stag">Jenkins</span><span class="stag">GitHub Actions</span><span class="stag">GitLab CI</span><span class="stag">ArgoCD</span><span class="stag">Docker</span><span class="stag">Groovy</span></div></div>
+    <div class="svc"><div class="svc-num">SVC-03</div><div class="svc-icon-wrap">☸️</div><div class="svc-title">Kubernetes & Container Ops</div><div class="svc-desc">Production EKS clusters with HPA, multi-namespace deployments, Helm charts, OOMKill resolution, CNI networking, cluster troubleshooting under load.</div><div class="svc-tags"><span class="stag">EKS</span><span class="stag">Helm</span><span class="stag">HPA</span><span class="stag">Karpenter</span></div></div>
+    <div class="svc"><div class="svc-num">SVC-04</div><div class="svc-icon-wrap">🏗️</div><div class="svc-title">Infrastructure as Code</div><div class="svc-desc">Version-controlled, reproducible infra. No snowflake servers. Full environment parity across dev, staging, production with drift detection.</div><div class="svc-tags"><span class="stag">Terraform</span><span class="stag">Ansible</span><span class="stag">CloudFormation</span><span class="stag">Pulumi</span></div></div>
+    <div class="svc"><div class="svc-num">SVC-05</div><div class="svc-icon-wrap">📊</div><div class="svc-title">Observability & SRE</div><div class="svc-desc">Full monitoring stack, structured alerting, SLI/SLO/SLA definition and reporting, RCA workflows, runbooks, on-call support. MTTR cut from 60 to 20 minutes.</div><div class="svc-tags"><span class="stag">Prometheus</span><span class="stag">Grafana</span><span class="stag">CloudWatch</span><span class="stag">ELK</span><span class="stag">New Relic</span><span class="stag">Sentry</span></div></div>
+    <div class="svc"><div class="svc-num">SVC-06</div><div class="svc-icon-wrap">🔒</div><div class="svc-title">DevSecOps & Compliance</div><div class="svc-desc">Security from day zero. SIEM integration, CIS hardening, IAM governance, secrets management, RBI IT Framework alignment, plus code and dependency scanning in your pipelines — not an afterthought.</div><div class="svc-tags"><span class="stag">Wazuh</span><span class="stag">CIS Benchmarks</span><span class="stag">Trivy</span><span class="stag">Vault</span><span class="stag">SonarQube</span></div></div>
+    <div class="svc"><div class="svc-num">SVC-07</div><div class="svc-icon-wrap">🛡️</div><div class="svc-title">Disaster Recovery & Resilience</div><div class="svc-desc">Documented DR plans, automated failover and failback, backup verification, and chaos experiments that prove your system survives failure before production does it for you.</div><div class="svc-tags"><span class="stag">Route 53 Failover</span><span class="stag">Multi-AZ</span><span class="stag">RPO/RTO</span><span class="stag">Chaos Testing</span></div></div>
+    <div class="svc"><div class="svc-num">SVC-08</div><div class="svc-icon-wrap">🐧</div><div class="svc-title">Linux Administration & Production Support</div><div class="svc-desc">Server hardening, performance tuning, patching, log rotation and pruning, and hands-on troubleshooting of live Linux systems — at 2 AM if it comes to that.</div><div class="svc-tags"><span class="stag">Ubuntu / RHEL</span><span class="stag">systemd</span><span class="stag">Bash</span><span class="stag">Ansible</span></div></div>
+    <div class="svc"><div class="svc-num">SVC-09</div><div class="svc-icon-wrap">🤖</div><div class="svc-title">Automation & Toil Reduction</div><div class="svc-desc">We replace repetitive manual ops with scripts, internal tools, and small services. Release automation, versioning, branching strategy, and approval gates included.</div><div class="svc-tags"><span class="stag">Python</span><span class="stag">Bash</span><span class="stag">Groovy</span><span class="stag">Node.js</span></div></div>
+    <div class="svc"><div class="svc-num">SVC-10</div><div class="svc-icon-wrap">🚨</div><div class="svc-title">Production Deployments & Incident Response</div><div class="svc-desc">Application releases, live incident handling, root cause analysis, and preventive fixes that bring MTTR down and stop repeat incidents.</div><div class="svc-tags"><span class="stag">Zero-downtime Deploys</span><span class="stag">RCA</span><span class="stag">On-call</span><span class="stag">Runbooks</span></div></div>
+    <div class="svc"><div class="svc-num">SVC-11</div><div class="svc-icon-wrap">🌐</div><div class="svc-title">Networking & Load Balancing</div><div class="svc-desc">DNS, HTTP/HTTPS, TCP/IP, ALB/NLB, VPC design, and CDN setup — plus debugging the latency and connectivity problems that never show up in app logs.</div><div class="svc-tags"><span class="stag">Route 53</span><span class="stag">ALB</span><span class="stag">VPC</span><span class="stag">CloudFront</span></div></div>
+    <div class="svc"><div class="svc-num">SVC-12</div><div class="svc-icon-wrap">☁️</div><div class="svc-title">Multi-Cloud & Migration</div><div class="svc-desc">Provisioning and migrating workloads across AWS, Azure, and GCP with consistent IaC, so you are not locked into a single provider.</div><div class="svc-tags"><span class="stag">AWS</span><span class="stag">Azure</span><span class="stag">GCP</span><span class="stag">Terraform</span></div></div>
+  </div>
+</section>
+
+<div class="sdiv"></div>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="sec-tag">Process</div>
+  <h2>How we engage.</h2>
+  <p class="sec-sub">No 6-week discovery. We assess fast, align on scope, and start delivering value in week one.</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><div class="step-title">Assess</div><div class="step-desc">Infrastructure audit — cloud spend, pipelines, monitoring, security. Written findings in 48 hours. Free for AWS cost audits.</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title">Align</div><div class="step-desc">Define scope, SLAs, measurable outcomes. Retainer, fixed-scope project, or embedded contract engineer. No lock-ins on first engagements.</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-title">Build</div><div class="step-desc">Our engineers work in your environment directly. Same people who assessed build the solution. No outsourcing, no juniors.</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-title">Operate</div><div class="step-desc">Monitoring, incident response, RCA reports, optimization. Monthly reviews with real numbers — uptime, cost, MTTR.</div></div>
+  </div>
+</section>
+
+<div class="sdiv"></div>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="sec-tag">Tech Stack</div>
+  <h2>What we run in production.</h2>
+  <p class="sec-sub">Not certifications on a wall. Tools we've operated under real load, real incidents, real SLAs.</p>
+  <div class="stack-grid">
+    <div class="stack-col"><div class="sct">Cloud & Infra</div><div class="stack-items"><span class="si">AWS (EC2, EKS, RDS, ALB, Lambda)</span><span class="si">GCP (GCE, GCS, CloudSQL, VPC)</span><span class="si">DigitalOcean</span><span class="si">Terraform / CloudFormation</span><span class="si">Ansible</span><span class="si">VPC, Route 53, CloudFront</span><span class="si">Azure</span></div></div>
+    <div class="stack-col"><div class="sct">Containers & CI/CD</div><div class="stack-items"><span class="si">Kubernetes / EKS</span><span class="si">Docker / Helm</span><span class="si">Jenkins</span><span class="si">GitHub Actions</span><span class="si">ArgoCD</span><span class="si">SonarQube</span><span class="si">GitLab CI</span><span class="si">Git</span></div></div>
+    <div class="stack-col"><div class="sct">Observability</div><div class="stack-items"><span class="si">Prometheus + Grafana</span><span class="si">CloudWatch</span><span class="si">ELK Stack</span><span class="si">Datadog</span><span class="si">PagerDuty</span><span class="si">OpenTelemetry</span><span class="si">New Relic</span><span class="si">Sentry</span></div></div>
+    <div class="stack-col"><div class="sct">Security & DB</div><div class="stack-items"><span class="si">Wazuh SIEM</span><span class="si">CIS Benchmarks</span><span class="si">Vault / AWS KMS</span><span class="si">PostgreSQL / MySQL</span><span class="si">Amazon RDS / Aurora</span><span class="si">Redis / ElastiCache</span></div></div>
+    <div class="stack-col"><div class="sct">Languages & Scripting</div><div class="stack-items"><span class="si">Python</span><span class="si">Bash</span><span class="si">Groovy (Jenkins)</span><span class="si">Node.js</span><span class="si">Git workflows</span></div></div>
+    <div class="stack-col"><div class="sct">Linux & Networking</div><div class="stack-items"><span class="si">Linux (Ubuntu / RHEL)</span><span class="si">systemd / cron</span><span class="si">DNS, HTTP/S, TCP/IP</span><span class="si">Load balancers (ALB / NLB)</span><span class="si">Log rotation & pruning</span></div></div>
+  </div>
+</section>
+
+<div class="sdiv"></div>
+
+<!-- PROOF -->
+<section id="proof">
+  <div class="sec-tag">Proof of Work</div>
+  <h2>Production results.</h2>
+  <p class="sec-sub">Numbers from real engagements. Not case study theater.</p>
+  <div class="proof-grid">
+    <div class="proof-card p1"><div class="proof-client">[ Online Exam Platform · Delhi NCR ]</div><div class="proof-num g1">50,000+ concurrent users</div><div class="proof-desc">Designed and operated AWS infrastructure for a high-stakes online exam platform. Zero unplanned downtime through peak exam windows. Burst capacity runbooks aligned to RPO/RTO targets.</div><div class="proof-tags"><span class="ptag">EC2</span><span class="ptag">ALB</span><span class="ptag">Auto Scaling</span><span class="ptag">Route 53</span><span class="ptag">CloudFront</span></div></div>
+    <div class="proof-card p2"><div class="proof-client">[ SaaS Platform · Noida ]</div><div class="proof-num g2">25% monthly cost reduction</div><div class="proof-desc">Full FinOps audit on AWS production account. Oversized EC2, zero Reserved Instance coverage, missing S3 lifecycle rules. Sustained ₹3L+/month savings in 3 weeks.</div><div class="proof-tags"><span class="ptag">Cost Explorer</span><span class="ptag">Reserved Instances</span><span class="ptag">Right-sizing</span><span class="ptag">S3 Lifecycle</span></div></div>
+    <div class="proof-card p3"><div class="proof-client">[ EdTech Platform · Pan-India ]</div><div class="proof-num g3">40 → 15 min deploy time</div><div class="proof-desc">Rebuilt CI/CD for 3 production services. Automated testing gates, rollback triggers, staging promotion. Deploy time cut 63%. Rollback from 25 min to under 3.</div><div class="proof-tags"><span class="ptag">Jenkins</span><span class="ptag">GitHub Actions</span><span class="ptag">Docker</span><span class="ptag">SonarQube</span></div></div>
+    <div class="proof-card p4"><div class="proof-client">[ EKS Cluster Operations · NCR ]</div><div class="proof-num g4">60 → 20 min MTTR</div><div class="proof-desc">Full observability on Kubernetes. Prometheus alerting, per-service Grafana dashboards, RCA workflows. Resolved chronic OOMKill and CNI failures. MTTR dropped 67% in 6 weeks.</div><div class="proof-tags"><span class="ptag">EKS</span><span class="ptag">Prometheus</span><span class="ptag">Grafana</span><span class="ptag">CloudWatch</span><span class="ptag">Wazuh</span></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-block">
+  <div>
+    <div class="cta-eyebrow">// free assessment · no commitment · 48 hours</div>
+    <h2>Overspending on AWS?<br><span>We'll find it in 48 hours.</span></h2>
+    <p>Send us your last 3 months of billing. We produce a written cost audit — free, no strings. Most teams find significant recoverable waste on the first look.</p>
+  </div>
+  <div class="cta-side">
+    <a href="https://calendly.com/jcsworld" target="_blank" class="btn-primary">📅 Book Free Audit Call</a>
+    <a href="https://wa.me/918920152372" target="_blank" class="btn-wa-hero">💬 WhatsApp us</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-tag">Contact</div>
+  <h2>Let's look at your infrastructure.</h2>
+  <p class="sec-sub">30-minute call. We review your setup and tell you exactly what we'd fix — honest, no pitch.</p>
+  <div class="contact-grid">
+    <div>
+      <div class="ci-row"><span class="ci-icon">📅</span><span class="ci-key">Book Call</span><span class="ci-val"><a href="https://calendly.com/jcsworld" target="_blank">calendly.com/jcsworld</a></span></div>
+      <div class="ci-row"><span class="ci-icon">💬</span><span class="ci-key">WhatsApp</span><span class="ci-val"><a href="https://wa.me/918920152372" target="_blank">+91 89201 52372</a></span></div>
+      <div class="ci-row"><span class="ci-icon">📞</span><span class="ci-key">Phone</span><span class="ci-val"><a href="tel:+918920152372">+91 89201 52372</a></span></div>
+      <div class="ci-row"><span class="ci-icon">✉️</span><span class="ci-key">Email</span><span class="ci-val"><a href="mailto:jcsworld.in@gmail.com">jcsworld.in@gmail.com</a></span></div>
+      <div class="ci-row"><span class="ci-icon">📍</span><span class="ci-key">Location</span><span class="ci-val">Janakpuri, New Delhi</span></div>
+      <div class="ci-row"><span class="ci-icon">⏱️</span><span class="ci-key">Response</span><span class="ci-val">Within 2 business hours</span></div>
+      <div class="ci-row"><span class="ci-icon">🕐</span><span class="ci-key">Hours</span><span class="ci-val">Mon–Sat, 10:00–19:00 IST</span></div>
+    </div>
+    <form class="form-panel" onsubmit="handleSubmit(event)">
+      <div class="fp-row">
+        <div class="fg"><div class="flabel">Name *</div><input class="finput" type="text" placeholder="Your name" required></div>
+        <div class="fg"><div class="flabel">Company</div><input class="finput" type="text" placeholder="Startup / company"></div>
+      </div>
+      <div class="fp-row">
+        <div class="fg"><div class="flabel">Email *</div><input class="finput" type="email" placeholder="you@company.com" required></div>
+        <div class="fg"><div class="flabel">Phone</div><input class="finput" type="tel" placeholder="+91 ... (optional)"></div>
+      </div>
+      <div class="fg fg-full">
+        <div class="flabel">What do you need?</div>
+        <select class="fselect"><option value="">Select service...</option><option>Free AWS Cost Audit</option><option>CI/CD Pipeline Setup</option><option>Kubernetes / EKS Operations</option><option>Infrastructure as Code (Terraform)</option><option>Observability & Monitoring</option><option>DevSecOps & Compliance</option><option>Disaster Recovery & Resilience</option><option>Linux Administration & Support</option><option>Automation & Scripting</option><option>Production Deployments & Incident Response</option><option>Networking & Load Balancing</option><option>Multi-Cloud Setup</option><option>DevOps Contract / Staff Augmentation</option><option>Monthly SRE Retainer</option><option>Cloud Migration</option><option>Other / Not sure</option></select>
+      </div>
+      <div class="fg fg-full">
+        <div class="flabel">Monthly AWS/cloud spend</div>
+        <select class="fselect"><option value="">Select range...</option><option>Under ₹25,000</option><option>₹25,000 – ₹1,00,000</option><option>₹1,00,000 – ₹5,00,000</option><option>₹5,00,000+</option><option>Not on cloud yet</option></select>
+      </div>
+      <div class="fg">
+        <div class="flabel">Describe the problem</div>
+        <textarea class="ftextarea" placeholder="What's broken, slow, or expensive? The more context the better."></textarea>
+      </div>
+      <div class="fsub-wrap">
+        <button type="submit" class="fsub">→ Send Message</button>
+        <span class="fsub-note">⚡ Response within 2 hours</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-l"><span>JCS TechOps</span> — a division of Jaraut Consultancy Services Pvt. Ltd. · New Delhi · © 2026</div>
+  <div class="foot-r">
+    <a href="https://jcsworld.in">jcsworld.in</a>
+    <a href="mailto:jcsworld.in@gmail.com">email</a>
+    <a href="https://wa.me/918920152372" target="_blank">whatsapp</a>
+    <a href="https://calendly.com/jcsworld" target="_blank">book a call</a>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/918920152372" target="_blank" class="wa-float" title="Chat on WhatsApp">💬</a>
+
+<script>
+// CURSOR
+var dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring');
+var mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+function animRing(){rx+=(mx-rx)*0.1;ry+=(my-ry)*0.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
+animRing();
+document.querySelectorAll('a,button').forEach(function(el){
+  el.addEventListener('mouseenter',function(){dot.style.transform='translate(-50%,-50%) scale(2.5)';ring.style.transform='translate(-50%,-50%) scale(0.6)';ring.style.borderColor='rgba(200,169,110,0.7)'});
+  el.addEventListener('mouseleave',function(){dot.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(200,169,110,0.35)'});
+});
+
+// PARTICLE CANVAS
+var canvas=document.getElementById('bg'),ctx=canvas.getContext('2d');
+var W,H,pts=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',function(){resize();init()});
+function P(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.2+.3;this.a=Math.random()*.4+.1;this.c=Math.random()>.6?'200,169,110':Math.random()>.5?'0,212,255':'46,255,160'}
+P.prototype.step=function(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W)this.vx*=-1;if(this.y<0||this.y>H)this.vy*=-1};
+P.prototype.draw=function(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle='rgba('+this.c+','+this.a+')';ctx.fill()};
+function init(){pts=[];var n=Math.floor(W*H/14000);for(var i=0;i<n;i++)pts.push(new P())}
+init();
+var mpx=-999,mpy=-999;
+document.addEventListener('mousemove',function(e){mpx=e.clientX;mpy=e.clientY});
+function drawLines(){
+  for(var i=0;i<pts.length;i++){
+    for(var j=i+1;j<pts.length;j++){
+      var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<120){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle='rgba(200,169,110,'+(1-d/120)*.08+')';ctx.lineWidth=.5;ctx.stroke()}
+    }
+  }
+}
+function drawGlow(){
+  if(mpx<0)return;
+  var g=ctx.createRadialGradient(mpx,mpy,0,mpx,mpy,160);
+  g.addColorStop(0,'rgba(200,169,110,0.04)');g.addColorStop(1,'transparent');
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+}
+function repel(){
+  for(var i=0;i<pts.length;i++){
+    var dx=pts[i].x-mpx,dy=pts[i].y-mpy,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<100){var f=(100-d)/100*.012;pts[i].vx+=dx/d*f;pts[i].vy+=dy/d*f;var s=Math.sqrt(pts[i].vx*pts[i].vx+pts[i].vy*pts[i].vy);if(s>1.2){pts[i].vx=pts[i].vx/s*1.2;pts[i].vy=pts[i].vy/s*1.2}}
+  }
+}
+function animate(){ctx.clearRect(0,0,W,H);drawGlow();repel();drawLines();pts.forEach(function(p){p.step();p.draw()});requestAnimationFrame(animate)}
+animate();
+
+// COUNTERS
+function animCount(el){
+  var t=parseInt(el.getAttribute('data-target')),s=el.getAttribute('data-suffix')||'%',t0=performance.now();
+  function tick(now){var p=Math.min((now-t0)/1800,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(t*e)+s;if(p<1)requestAnimationFrame(tick)}
+  requestAnimationFrame(tick)
+}
+var co=new IntersectionObserver(function(e){if(e[0].isIntersecting){document.querySelectorAll('.hstat-num[data-target]').forEach(animCount);co.disconnect()}},{threshold:.5});
+var se=document.querySelector('.hero-stats');if(se)co.observe(se);
+
+// SCROLL REVEAL
+var ro=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var idx=Array.from(e.target.parentElement.children).indexOf(e.target);
+      e.target.style.transitionDelay=(idx*80)+'ms';
+      e.target.classList.add('vis');
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.svc,.proof-card,.step').forEach(function(el){ro.observe(el)});
+
+// FORM
+function handleSubmit(e){
+  e.preventDefault();
+  var btn=e.target.querySelector('.fsub');
+  btn.textContent='Sending...';btn.disabled=true;
+  var form=e.target,inputs=form.querySelectorAll('input'),selects=form.querySelectorAll('select');
+  var data={name:inputs[0].value,company:inputs[1].value,email:inputs[2].value,phone:inputs[3].value,service:selects[0].value,budget:selects[1].value,message:form.querySelector('textarea').value};
+  fetch('/api/techops-contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(function(r){
+    if(r.ok){btn.textContent='✓ Sent — we will respond within 2 hours';btn.style.background='#2EFFA0';btn.style.color='#080A0D'}
+    else{btn.textContent='Error — WhatsApp us directly';btn.style.background='#FF4D6A';btn.disabled=false}
+  }).catch(function(){btn.textContent='Network error — WhatsApp us';btn.style.background='#FF4D6A';btn.disabled=false});
+}
+</script>
+</body>
+</html>
